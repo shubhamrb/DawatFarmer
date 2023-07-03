@@ -2,7 +2,7 @@ package com.dawat.farmer.mamits.ui.profile;
 
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_KEY_ACCESS_TOKEN;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_KEY_CURRENT_DATE;
-import static com.dawat.farmer.mamits.utils.AppConstant.PREF_USER_NAME;
+import static com.dawat.farmer.mamits.utils.AppConstant.PREF_PROFILE_IMAGE;
 import static com.dawat.farmer.mamits.utils.AppConstant.SHARED_PREF_NAME;
 
 import android.content.Context;
@@ -105,7 +105,7 @@ public class ProfileFragment extends Fragment {
                     binding.txtEmail.setText(model.getEmail());
                     binding.txtAccountStatus.setText(model.getStatus().equals("1") ? "सक्रिय" : "निष्क्रय");
                     Glide.with(getContext()).load(model.getProfile_image()).error(R.drawable.person_profile).into(binding.profileImage);
-                    sharedPreferences.edit().putString(PREF_USER_NAME, model.getProfile_image()).apply();
+                    sharedPreferences.edit().putString(PREF_PROFILE_IMAGE, model.getProfile_image()).apply();
                 }
 
                 @Override

@@ -61,4 +61,9 @@
         android:id="@+id/navigation_appeal"
         android:name="com.dawat.farmer.mamits.ui.appeal.AppealFragment"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/navigation_weather"
+        android:name="com.dawat.farmer.mamits.ui.weather.WeatherFragment"
+        tools:layout="@layout/fragment_weather" />
 </navigation>

@@ -28,16 +28,16 @@ public class WeatherModel implements Serializable {
         String country;
 
         @SerializedName("lat")
-        String lat;
+        float lat;
 
         @SerializedName("lon")
-        String lon;
+        float lon;
 
         @SerializedName("tz_id")
         String tz_id;
 
         @SerializedName("localtime_epoch")
-        String localtime_epoch;
+        long localtime_epoch;
 
         @SerializedName("localtime")
         String localtime;
@@ -66,19 +66,19 @@ public class WeatherModel implements Serializable {
             this.country = country;
         }
 
-        public String getLat() {
+        public float getLat() {
             return lat;
         }
 
-        public void setLat(String lat) {
+        public void setLat(float lat) {
             this.lat = lat;
         }
 
-        public String getLon() {
+        public float getLon() {
             return lon;
         }
 
-        public void setLon(String lon) {
+        public void setLon(float lon) {
             this.lon = lon;
         }
 
@@ -90,11 +90,11 @@ public class WeatherModel implements Serializable {
             this.tz_id = tz_id;
         }
 
-        public String getLocaltime_epoch() {
+        public long getLocaltime_epoch() {
             return localtime_epoch;
         }
 
-        public void setLocaltime_epoch(String localtime_epoch) {
+        public void setLocaltime_epoch(long localtime_epoch) {
             this.localtime_epoch = localtime_epoch;
         }
 
@@ -131,8 +131,19 @@ public class WeatherModel implements Serializable {
         @SerializedName("cloud")
         int cloud;
 
+        @SerializedName("wind_kph")
+        float wind_kph;
+
         @SerializedName("condition")
         ConditionModel condition;
+
+        public float getWind_kph() {
+            return wind_kph;
+        }
+
+        public void setWind_kph(float wind_kph) {
+            this.wind_kph = wind_kph;
+        }
 
         public int getHumidity() {
             return humidity;
@@ -172,6 +183,7 @@ public class WeatherModel implements Serializable {
                     "temp_c=" + temp_c +
                     ", humidity=" + humidity +
                     ", cloud=" + cloud +
+                    ", wind_kph=" + wind_kph +
                     ", condition=" + condition +
                     '}';
         }
@@ -267,6 +279,12 @@ public class WeatherModel implements Serializable {
                 @SerializedName("mintemp_c")
                 float mintemp_c;
 
+                @SerializedName("avgtemp_c")
+                float avgtemp_c;
+
+                @SerializedName("maxwind_kph")
+                float maxwind_kph;
+
                 @SerializedName("avghumidity")
                 float avghumidity;
 
@@ -275,6 +293,22 @@ public class WeatherModel implements Serializable {
 
                 @SerializedName("condition")
                 CurrentModel.ConditionModel condition;
+
+                public float getMaxwind_kph() {
+                    return maxwind_kph;
+                }
+
+                public void setMaxwind_kph(float maxwind_kph) {
+                    this.maxwind_kph = maxwind_kph;
+                }
+
+                public float getAvgtemp_c() {
+                    return avgtemp_c;
+                }
+
+                public void setAvgtemp_c(float avgtemp_c) {
+                    this.avgtemp_c = avgtemp_c;
+                }
 
                 public float getMaxtemp_c() {
                     return maxtemp_c;
@@ -321,6 +355,8 @@ public class WeatherModel implements Serializable {
                     return "{" +
                             "maxtemp_c=" + maxtemp_c +
                             ", mintemp_c=" + mintemp_c +
+                            ", avgtemp_c=" + avgtemp_c +
+                            ", maxwind_kph=" + maxwind_kph +
                             ", avghumidity=" + avghumidity +
                             ", daily_chance_of_rain=" + daily_chance_of_rain +
                             ", condition=" + condition +

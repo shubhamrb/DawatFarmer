@@ -9,6 +9,7 @@ import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -448,4 +449,67 @@ public class ApiHelper {
         });
 
     }
+
+    public void getSrpCategoryList(String token, ResponseListener responseListener) {
+        if (call == null) call = new RetrofitBase(true).retrofit.create(RetrofitInterface.class);
+
+        call.getSrpCategoryList(token, ApiConstant.GET_SRP_CATEGORY_END_POINT).enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> calll, Response<JsonObject> response) {
+                if (response.isSuccessful()) {
+                    if (responseListener != null) responseListener.onSuccess(response.body());
+                } else {
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        ANError anError = new ANError();
+                        anError.setErrorCode(response.code());
+                        anError.setErrorBody(jObjError.toString());
+                        Log.e("Error", jObjError.toString());
+                        if (responseListener != null) responseListener.onFailed(anError);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        if (responseListener != null) responseListener.onFailed(e);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                if (responseListener != null) responseListener.onFailed(t);
+            }
+        });
+
+    }
+
+    public void getSrpSubCategoryList(String token, RequestBody cat_id, ResponseListener responseListener) {
+        if (call == null) call = new RetrofitBase(true).retrofit.create(RetrofitInterface.class);
+
+        call.getSrpSubCategoryList(token, ApiConstant.GET_SRP_SUB_CATEGORY_END_POINT,cat_id).enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> calll, Response<JsonObject> response) {
+                if (response.isSuccessful()) {
+                    if (responseListener != null) responseListener.onSuccess(response.body());
+                } else {
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        ANError anError = new ANError();
+                        anError.setErrorCode(response.code());
+                        anError.setErrorBody(jObjError.toString());
+                        Log.e("Error", jObjError.toString());
+                        if (responseListener != null) responseListener.onFailed(anError);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        if (responseListener != null) responseListener.onFailed(e);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                if (responseListener != null) responseListener.onFailed(t);
+            }
+        });
+
+    }
+
 }

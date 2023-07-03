@@ -22,6 +22,7 @@
             app:cardCornerRadius="8dp">
 
             <ImageView
+                android:id="@+id/icon"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
@@ -43,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
                 android:includeFontPadding="false"
-                android:text="सस्टेनेबल राइस प्लेटफार्म "
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 

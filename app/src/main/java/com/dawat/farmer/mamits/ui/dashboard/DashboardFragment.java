@@ -1,14 +1,19 @@
 package com.dawat.farmer.mamits.ui.dashboard;
 
 
+import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_KEY_ACCESS_TOKEN;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_KEY_CURRENT_DATE;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_PROFILE_IMAGE;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_USER_NAME;
 import static com.dawat.farmer.mamits.utils.AppConstant.SHARED_PREF_NAME;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,6 +36,7 @@ import com.dawat.farmer.mamits.adapter.DashboardSliderAdapter;
 import com.dawat.farmer.mamits.adapter.TabListAdapter;
 import com.dawat.farmer.mamits.databinding.FragmentDashboardBinding;
 import com.dawat.farmer.mamits.model.SliderModel;
+import com.dawat.farmer.mamits.model.SrpCategoryModel;
 import com.dawat.farmer.mamits.model.Tabs;
 import com.dawat.farmer.mamits.model.WeatherModel;
 import com.dawat.farmer.mamits.remote.ApiHelper;
@@ -37,6 +44,8 @@ import com.dawat.farmer.mamits.utils.AppConstant;
 import com.dawat.farmer.mamits.utils.CustomLinearLayoutManager;
 import com.dawat.farmer.mamits.utils.ProgressLoading;
 import com.dawat.farmer.mamits.utils.ResponseListener;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -48,7 +57,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class DashboardFragment extends Fragment implements DashboardCategoryListAdapter.OnClickListener, BlogsListAdapter.OnClickListener {
+public class DashboardFragment extends Fragment implements DashboardCategoryListAdapter.OnClickListener, BlogsListAdapter.OnClickListener, TabListAdapter.OnTabClickListener {
 
     private FragmentDashboardBinding binding;
     private SharedPreferences sharedPreferences;
@@ -60,6 +69,8 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
     private TabListAdapter tabListAdapter;
     private BlogsListAdapter blogsListAdapter;
     private DashboardSliderAdapter dashboardSliderAdapter;
+    private WeatherModel weatherModel;
+    private FusedLocationProviderClient fusedLocationClient;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
@@ -78,8 +89,8 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
         Glide.with(getContext()).load(profile_image).error(R.drawable.person_profile).into(binding.profileImage);
         progressLoading = new ProgressLoading();
 
+        getCurrentLocation();
         clickListeners();
-        getCurrentWeather();
         setUpSlider();
         setUpTabs();
         setUpCategoryList();
@@ -87,14 +98,51 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
         return root;
     }
 
-    private void getCurrentWeather() {
+    private void getCurrentLocation() {
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
+
+        getLastKnownLocation();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == 1) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getLastKnownLocation();
+            } else {
+                Toast.makeText(getContext(), "Location permission denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void getLastKnownLocation() {
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION}, 1);
+            return;
+        }
+        fusedLocationClient.getLastLocation()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && task.getResult() != null) {
+                        Location lastLocation = task.getResult();
+                        double latitude = lastLocation.getLatitude();
+                        double longitude = lastLocation.getLongitude();
+
+                        getCurrentWeather(latitude, longitude);
+                    }
+                });
+    }
+
+    private void getCurrentWeather(double latitude, double longitude) {
         try {
-            new ApiHelper().getWeatherReport("current.json", "dbe4bb2922d6441692391727232606", "Indore", "0", new ResponseListener() {
+            new ApiHelper().getWeatherReport("current.json", "dbe4bb2922d6441692391727232606", latitude + "," + longitude, "0", new ResponseListener() {
                 @Override
                 public void onSuccess(JsonObject jsonObject) {
                     Log.e(AppConstant.LOG_KEY_RESPONSE, jsonObject.toString());
 
-                    WeatherModel weatherModel = new Gson().fromJson(jsonObject.toString(), WeatherModel.class);
+                    weatherModel = new Gson().fromJson(jsonObject.toString(), WeatherModel.class);
                     int current_temp = (int) weatherModel.getCurrent().getTemp_c();
                     binding.txtTemp.setText(current_temp + "' C");
 
@@ -132,7 +180,7 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
         list.add(new Tabs("लेख", R.drawable.srp_report_icon));
         list.add(new Tabs("दूकान", R.drawable.shop_icon));
 
-        tabListAdapter = new TabListAdapter(getContext(), list);
+        tabListAdapter = new TabListAdapter(getContext(), list, this);
         binding.recyclerFarmerProfileTab.setAdapter(tabListAdapter);
     }
 
@@ -189,12 +237,41 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
 
     private void clickListeners() {
         binding.rlUserName.setOnClickListener(v -> {
-            Navigation.findNavController(((MainActivity) getContext())
-                    .findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_profile);
+            Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_profile);
         });
         binding.profileImage.setOnClickListener(v -> {
-            Navigation.findNavController(((MainActivity) getContext())
-                    .findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_profile);
+            Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_profile);
+        });
+        binding.btnWeather.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("weatherModel", weatherModel);
+            Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_weather, bundle);
+        });
+        binding.weatherCard.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("weatherModel", weatherModel);
+            Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_weather, bundle);
+        });
+        binding.btnShop.setOnClickListener(v -> {
+            Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_shop);
+        });
+        binding.btnNotification.setOnClickListener(v -> {
+            Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_notifications);
+        });
+        binding.btnSupport.setOnClickListener(v -> {
+            /*support*/
+        });
+        binding.btnBlog.setOnClickListener(v -> {
+            /*blog*/
+        });
+        binding.btnCart.setOnClickListener(v -> {
+            /*cart*/
+        });
+        binding.btnOrders.setOnClickListener(v -> {
+            /*orders*/
+        });
+        binding.btnProfile.setOnClickListener(v -> {
+            Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_profile);
         });
     }
 
@@ -204,6 +281,35 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
         binding.recyclerCategory.setItemAnimator(null);
         dashboardCategoryListAdapter = new DashboardCategoryListAdapter(getContext(), this);
         binding.recyclerCategory.setAdapter(dashboardCategoryListAdapter);
+        getCategoryList();
+    }
+
+    private void getCategoryList() {
+        progressLoading.showLoading(getContext());
+        try {
+            new ApiHelper().getSrpCategoryList(strToken, new ResponseListener() {
+                @Override
+                public void onSuccess(JsonObject jsonObject) {
+                    progressLoading.hideLoading();
+                    Log.e(AppConstant.LOG_KEY_RESPONSE, jsonObject.toString());
+                    Type slider = new TypeToken<List<SrpCategoryModel>>() {
+                    }.getType();
+
+                    List<SrpCategoryModel> list = new Gson().fromJson(jsonObject.get("data").getAsJsonArray().toString(), slider);
+                    dashboardCategoryListAdapter.setList(list);
+                }
+
+                @Override
+                public void onFailed(Throwable throwable) {
+                    progressLoading.hideLoading();
+                    Log.e(AppConstant.LOG_KEY_ERROR, throwable.getMessage());
+                    Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
+        } catch (Exception e) {
+            progressLoading.hideLoading();
+            Log.e(AppConstant.LOG_KEY_ERROR, e.getMessage());
+        }
     }
 
     @Override
@@ -216,16 +322,34 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
     }
 
     @Override
-    public void onCategoryClick(String category_id) {
+    public void onCategoryClick(SrpCategoryModel model) {
         Bundle bundle = new Bundle();
-        bundle.putString("category_id", category_id);
+        bundle.putString("category_id", model.getId());
+        bundle.putString("category_name", model.getCat_title_hi());
 
-        Navigation.findNavController(((MainActivity) getContext())
-                .findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_sub_category, bundle);
+        Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_sub_category, bundle);
     }
 
     @Override
     public void onBlogClick(String blog_id) {
 
+    }
+
+    @Override
+    public void onTabClick(String tab) {
+        switch (tab) {
+            case "रिपोर्ट्स":
+                Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_report);
+                break;
+            case "समाचार":
+                Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_news);
+                break;
+            case "लेख":
+                Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_news);
+                break;
+            case "दूकान":
+                Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_shop);
+                break;
+        }
     }
 }

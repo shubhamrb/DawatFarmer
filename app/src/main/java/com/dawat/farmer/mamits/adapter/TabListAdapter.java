@@ -21,10 +21,12 @@ public class TabListAdapter extends RecyclerView.Adapter<TabListAdapter.Dashboar
     private Context mContext;
     private View root;
     private List<Tabs> list;
+    private OnTabClickListener listener;
 
-    public TabListAdapter(Context mContext, List<Tabs> list) {
+    public TabListAdapter(Context mContext, List<Tabs> list, OnTabClickListener listener) {
         this.mContext = mContext;
         this.list = list;
+        this.listener = listener;
     }
 
     @NonNull
@@ -39,8 +41,14 @@ public class TabListAdapter extends RecyclerView.Adapter<TabListAdapter.Dashboar
         Tabs tab = list.get(position);
         holder.txt_tab.setText(tab.getName());
         holder.icon_img.setImageDrawable(ResourcesCompat.getDrawable(mContext.getResources(), tab.getIcon(), null));
+        holder.itemView.setOnClickListener(v -> {
+            listener.onTabClick(tab.getName());
+        });
     }
 
+    public interface OnTabClickListener {
+        void onTabClick(String tab);
+    }
 
     @Override
     public int getItemCount() {

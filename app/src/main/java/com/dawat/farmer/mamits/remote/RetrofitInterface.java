@@ -2,12 +2,15 @@ package com.dawat.farmer.mamits.remote;
 
 import com.google.gson.JsonObject;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Url;
 
 public interface RetrofitInterface {
@@ -65,4 +68,12 @@ public interface RetrofitInterface {
     Call<JsonObject> createAppeal(@Header("Authorization") String accessToken, @Url String fullUrl,
                                   @Field("farmer_id") String farmer_id,
                                   @Field("resion") String resion);
+
+    @GET
+    Call<JsonObject> getSrpCategoryList(@Header("Authorization") String accessToken, @Url String fullUrl);
+
+    @Multipart
+    @POST
+    Call<JsonObject> getSrpSubCategoryList(@Header("Authorization") String accessToken, @Url String fullUrl,@Part("category_id") RequestBody cat_id);
+
 }

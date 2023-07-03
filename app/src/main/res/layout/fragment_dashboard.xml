@@ -203,6 +203,7 @@
                         android:padding="15dp">
 
                         <LinearLayout
+                            android:id="@+id/btn_weather"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -227,6 +228,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/btn_shop"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -264,6 +266,7 @@
                         android:padding="15dp">
 
                         <LinearLayout
+                            android:id="@+id/btn_notification"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -288,6 +291,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/btn_support"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -325,6 +329,7 @@
                         android:padding="15dp">
 
                         <LinearLayout
+                            android:id="@+id/btn_blog"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -349,6 +354,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/btn_cart"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -410,6 +416,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/btn_orders"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -471,6 +478,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/btn_profile"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"

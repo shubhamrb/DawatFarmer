@@ -17,4 +17,6 @@ public class ApiConstant {
     public static final String GET_TICKET_LIST_END_POINT = AppConstant.PREF_KEY_BASE + "getTicketList";
     public static final String GET_CREATE_TICKET_END_POINT = AppConstant.PREF_KEY_BASE + "addTicket";
     public static final String GET_CREATE_APPEAL_END_POINT = AppConstant.PREF_KEY_BASE + "addAppeal";
+    public static final String GET_SRP_CATEGORY_END_POINT = AppConstant.PREF_KEY_BASE + "getSrpCategoryList";
+    public static final String GET_SRP_SUB_CATEGORY_END_POINT = AppConstant.PREF_KEY_BASE + "getSrpSubCategoryList";
 }

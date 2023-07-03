@@ -28,6 +28,7 @@ public class CategoryDetailFragment extends Fragment implements CategoryDetailLi
     private String strToken = "";
     private ProgressLoading progressLoading;
     private CategoryDetailListAdapter categoryDetailListAdapter;
+    private String sub_category_id, sub_category_name;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentCategoryDetailBinding.inflate(inflater, container, false);
@@ -42,7 +43,9 @@ public class CategoryDetailFragment extends Fragment implements CategoryDetailLi
         progressLoading = new ProgressLoading();
         Bundle bundle = getArguments();
         if (bundle != null) {
-            String sub_category_id = bundle.getString("sub_category_id");
+            sub_category_id = bundle.getString("sub_category_id");
+            sub_category_name = bundle.getString("sub_category_name", "");
+            binding.labelHello.setText(sub_category_name);
         }
         clickListeners();
         setUpCategoryList();

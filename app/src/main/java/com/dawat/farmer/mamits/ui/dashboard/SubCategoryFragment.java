@@ -8,9 +8,11 @@ import static com.dawat.farmer.mamits.utils.AppConstant.SHARED_PREF_NAME;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,8 +24,21 @@ import com.dawat.farmer.mamits.R;
 import com.dawat.farmer.mamits.adapter.BlogsListAdapter;
 import com.dawat.farmer.mamits.adapter.DashboardSubCategoryListAdapter;
 import com.dawat.farmer.mamits.databinding.FragmentSubCategoryBinding;
+import com.dawat.farmer.mamits.model.SrpCategoryModel;
+import com.dawat.farmer.mamits.remote.ApiHelper;
+import com.dawat.farmer.mamits.utils.AppConstant;
 import com.dawat.farmer.mamits.utils.CustomLinearLayoutManager;
 import com.dawat.farmer.mamits.utils.ProgressLoading;
+import com.dawat.farmer.mamits.utils.ResponseListener;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.List;
+
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 public class SubCategoryFragment extends Fragment implements DashboardSubCategoryListAdapter.OnClickListener, BlogsListAdapter.OnClickListener {
 
@@ -32,6 +47,7 @@ public class SubCategoryFragment extends Fragment implements DashboardSubCategor
     private String strToken = "";
     private ProgressLoading progressLoading;
     private DashboardSubCategoryListAdapter dashboardSubCategoryListAdapter;
+    private String category_id, category_name;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentSubCategoryBinding.inflate(inflater, container, false);
@@ -46,7 +62,9 @@ public class SubCategoryFragment extends Fragment implements DashboardSubCategor
         progressLoading = new ProgressLoading();
         Bundle bundle = getArguments();
         if (bundle != null) {
-            String category_id = bundle.getString("category_id");
+            category_id = bundle.getString("category_id");
+            category_name = bundle.getString("category_name", "");
+            binding.labelHello.setText(category_name);
         }
         clickListeners();
         setUpCategoryList();
@@ -63,6 +81,37 @@ public class SubCategoryFragment extends Fragment implements DashboardSubCategor
         binding.recyclerCategory.setItemAnimator(null);
         dashboardSubCategoryListAdapter = new DashboardSubCategoryListAdapter(getContext(), this);
         binding.recyclerCategory.setAdapter(dashboardSubCategoryListAdapter);
+        getSubCategoryList();
+    }
+
+    private void getSubCategoryList() {
+        progressLoading.showLoading(getContext());
+        RequestBody cat_id = RequestBody.create(MultipartBody.FORM, category_id);
+
+        try {
+            new ApiHelper().getSrpSubCategoryList(strToken, cat_id, new ResponseListener() {
+                @Override
+                public void onSuccess(JsonObject jsonObject) {
+                    progressLoading.hideLoading();
+                    Log.e(AppConstant.LOG_KEY_RESPONSE, jsonObject.toString());
+                    Type slider = new TypeToken<List<SrpCategoryModel>>() {
+                    }.getType();
+
+                    List<SrpCategoryModel> list = new Gson().fromJson(jsonObject.get("data").getAsJsonArray().toString(), slider);
+                    dashboardSubCategoryListAdapter.setList(list);
+                }
+
+                @Override
+                public void onFailed(Throwable throwable) {
+                    progressLoading.hideLoading();
+                    Log.e(AppConstant.LOG_KEY_ERROR, throwable.getMessage());
+                    Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
+        } catch (Exception e) {
+            progressLoading.hideLoading();
+            Log.e(AppConstant.LOG_KEY_ERROR, e.getMessage());
+        }
     }
 
     @Override
@@ -72,9 +121,10 @@ public class SubCategoryFragment extends Fragment implements DashboardSubCategor
     }
 
     @Override
-    public void onSubCategoryClick(String sub_category_id) {
+    public void onSubCategoryClick(SrpCategoryModel model) {
         Bundle bundle = new Bundle();
-        bundle.putString("sub_category_id", sub_category_id);
+        bundle.putString("sub_category_id", model.getId());
+        bundle.putString("sub_category_name", model.getCat_title_hi());
 
         Navigation.findNavController(((MainActivity) getContext())
                 .findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_category_detail, bundle);
