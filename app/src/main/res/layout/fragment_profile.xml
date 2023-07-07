@@ -223,7 +223,7 @@
                             android:layout_marginStart="15dp"
                             android:fontFamily="@font/poppins_medium"
                             android:includeFontPadding="false"
-                            android:text="English"
+                            android:text="हिंदी"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
 

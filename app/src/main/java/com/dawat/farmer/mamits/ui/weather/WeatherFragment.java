@@ -119,12 +119,13 @@ public class WeatherFragment extends Fragment {
     }
 
     private void setUpCurrentWeather() {
-        int current_temp = (int) weatherModel.getCurrent().getTemp_c();
-        binding.txtCurrentTemp.setText(current_temp + "' C");
-        Glide.with(getContext()).load("https:" + weatherModel.getCurrent().getCondition().getIcon()).into(binding.icon);
-        binding.txtWind.setText(((int) weatherModel.getCurrent().getWind_kph()) + " kph");
-        binding.txtHumidity.setText(((int) weatherModel.getCurrent().getHumidity()) + " %");
-
+        if (weatherModel != null) {
+            int current_temp = (int) weatherModel.getCurrent().getTemp_c();
+            binding.txtCurrentTemp.setText(current_temp + "' C");
+            Glide.with(getContext()).load("https:" + weatherModel.getCurrent().getCondition().getIcon()).into(binding.icon);
+            binding.txtWind.setText(((int) weatherModel.getCurrent().getWind_kph()) + " kph");
+            binding.txtHumidity.setText(((int) weatherModel.getCurrent().getHumidity()) + " %");
+        }
     }
 
     private void getFutureWeather(double latitude, double longitude) {

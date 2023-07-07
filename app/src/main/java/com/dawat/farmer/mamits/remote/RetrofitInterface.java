@@ -2,6 +2,7 @@ package com.dawat.farmer.mamits.remote;
 
 import com.google.gson.JsonObject;
 
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -74,6 +75,58 @@ public interface RetrofitInterface {
 
     @Multipart
     @POST
-    Call<JsonObject> getSrpSubCategoryList(@Header("Authorization") String accessToken, @Url String fullUrl,@Part("category_id") RequestBody cat_id);
+    Call<JsonObject> getSrpSubCategoryList(@Header("Authorization") String accessToken, @Url String fullUrl, @Part("category_id") RequestBody cat_id);
+
+    @GET
+    Call<JsonObject> getProductList(@Header("Authorization") String accessToken, @Url String fullUrl);
+
+    @FormUrlEncoded
+    @POST
+    Call<JsonObject> getProductDetail(@Header("Authorization") String accessToken, @Url String fullUrl,
+                                      @Field("product_id") String product_id);
+
+    @FormUrlEncoded
+    @POST
+    Call<JsonObject> addToCart(@Header("Authorization") String accessToken,
+                               @Url String fullUrl,
+                               @Field("category_id") String category_id,
+                               @Field("product_id") String product_id,
+                               @Field("quantity") int quantity
+    );
+
+    @FormUrlEncoded
+    @POST
+    Call<JsonObject> deleteFromCart(@Header("Authorization") String accessToken,
+                                    @Url String fullUrl,
+                                    @Field("id") String id
+    );
+
+    @GET
+    Call<JsonObject> getCartList(@Header("Authorization") String accessToken, @Url String fullUrl);
+
+    @POST
+    Call<JsonObject> checkout(@Header("Authorization") String accessToken,
+                              @Url String fullUrl
+    );
+
+    @FormUrlEncoded
+    @POST
+    Call<JsonObject> cancelOrder(@Header("Authorization") String accessToken,
+                                 @Url String fullUrl,
+                                 @Field("id") String id,
+                                 @Field("status") String status
+    );
+
+    @GET
+    Call<JsonObject> getOrderList(@Header("Authorization") String accessToken, @Url String fullUrl);
+
+    @FormUrlEncoded
+    @POST
+    Call<JsonObject> getOrderDetail(@Header("Authorization") String accessToken, @Url String fullUrl,
+                                    @Field("id") String id);
+
+    @Multipart
+    @POST
+    Call<JsonObject> uploadSignature(@Header("Authorization") String accessToken, @Url String fullUrl, @Part MultipartBody.Part sign);
 
 }

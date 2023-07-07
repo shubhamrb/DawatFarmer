@@ -1,73 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_data"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
     app:cardCornerRadius="15dp"
     app:cardElevation="0dp">
 
-    <RelativeLayout
-        android:id="@+id/rl_data"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/icon_card"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            app:cardBackgroundColor="@color/primary_color"
-            app:cardCornerRadius="8dp">
-
-            <ImageView
-                android:id="@+id/icon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:src="@drawable/leaf_icon"
-                app:tint="@color/light_green" />
-        </androidx.cardview.widget.CardView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="17dp"
-            android:layout_toEndOf="@+id/icon_card"
-            android:orientation="vertical">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/txt_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
-                android:includeFontPadding="false"
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/txt_des"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:alpha="0.5"
-                android:fontFamily="@font/poppins_regular"
-                android:includeFontPadding="false"
-                android:text="टिकाऊ चावल की खेती के लिए मानक"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-        </LinearLayout>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/icon_card"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:cardBackgroundColor="@color/primary_color"
+        app:cardCornerRadius="8dp">
 
         <ImageView
-            android:layout_width="8dp"
-            android:layout_height="15dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/right_arrow" />
-    </RelativeLayout>
+            android:id="@+id/icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/leaf_icon"
+            app:tint="@color/light_green" />
+    </androidx.cardview.widget.CardView>
 
-</androidx.cardview.widget.CardView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="17dp"
+        android:layout_toEndOf="@+id/icon_card"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:includeFontPadding="false"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_des"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:alpha="0.5"
+            android:fontFamily="@font/poppins_regular"
+            android:includeFontPadding="false"
+            android:text="टिकाऊ चावल की खेती के लिए मानक"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="8dp"
+        android:layout_height="15dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/right_arrow" />
+
+</RelativeLayout>

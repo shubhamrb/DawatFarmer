@@ -66,4 +66,29 @@
         android:id="@+id/navigation_weather"
         android:name="com.dawat.farmer.mamits.ui.weather.WeatherFragment"
         tools:layout="@layout/fragment_weather" />
+
+    <fragment
+        android:id="@+id/navigation_product_detail"
+        android:name="com.dawat.farmer.mamits.ui.shop.ProductDetailFragment"
+        tools:layout="@layout/fragment_product_detail" />
+
+    <fragment
+        android:id="@+id/navigation_cart"
+        android:name="com.dawat.farmer.mamits.ui.shop.CartFragment"
+        tools:layout="@layout/fragment_cart" />
+
+    <fragment
+        android:id="@+id/navigation_orders"
+        android:name="com.dawat.farmer.mamits.ui.shop.OrdersFragment"
+        tools:layout="@layout/fragment_orders" />
+
+    <fragment
+        android:id="@+id/navigation_orders_detail"
+        android:name="com.dawat.farmer.mamits.ui.shop.OrdersDetailFragment"
+        tools:layout="@layout/fragment_orders_detail" />
+
+    <fragment
+        android:id="@+id/navigation_track_orders"
+        android:name="com.dawat.farmer.mamits.ui.shop.TrackOrdersFragment"
+        tools:layout="@layout/fragment_track_orders" />
 </navigation>

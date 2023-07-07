@@ -84,7 +84,7 @@ public class OtpActivity extends AppCompatActivity {
                         sharedPreferences.edit().putString(PREF_EMAIL, dataObject.get("email").getAsString()).apply();
                         sharedPreferences.edit().putString(PREF_USER_ID, dataObject.get("id").getAsString()).apply();
                         sharedPreferences.edit().putString(PREF_PROFILE_IMAGE, dataObject.get("profile_image").getAsString()).apply();
-                        startActivity(new Intent(OtpActivity.this, MainActivity.class));
+                        startActivity(new Intent(OtpActivity.this, TermsConditionActivity.class));
                         finishAffinity();
                     } else {
                         Toast.makeText(OtpActivity.this, message, Toast.LENGTH_LONG).show();

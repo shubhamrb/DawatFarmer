@@ -19,4 +19,15 @@ public class ApiConstant {
     public static final String GET_CREATE_APPEAL_END_POINT = AppConstant.PREF_KEY_BASE + "addAppeal";
     public static final String GET_SRP_CATEGORY_END_POINT = AppConstant.PREF_KEY_BASE + "getSrpCategoryList";
     public static final String GET_SRP_SUB_CATEGORY_END_POINT = AppConstant.PREF_KEY_BASE + "getSrpSubCategoryList";
+    public static final String GET_PRODUCT_LIST_END_POINT = AppConstant.PREF_KEY_BASE + "getProductList";
+    public static final String GET_PRODUCT_DETAIL_END_POINT = AppConstant.PREF_KEY_BASE + "getProductDetail";
+    public static final String ADD_TO_CART_END_POINT = AppConstant.PREF_KEY_BASE + "addToCart";
+    public static final String DELETE_FROM_CART_END_POINT = AppConstant.PREF_KEY_BASE + "deleteItem";
+    public static final String GET_CART_LIST_END_POINT = AppConstant.PREF_KEY_BASE + "viewCart";
+    public static final String CHECKOUT_ORDER_END_POINT = AppConstant.PREF_KEY_BASE + "placeOrder";
+    public static final String CANCEL_ORDER_END_POINT = AppConstant.PREF_KEY_BASE + "updateOrderStatus";
+    public static final String GET_ORDER_LIST_END_POINT = AppConstant.PREF_KEY_BASE + "orderList";
+    public static final String GET_ORDER_DETAIL_END_POINT = AppConstant.PREF_KEY_BASE + "orderDetail";
+    public static final String UPLOAD_SIGN_END_POINT = AppConstant.PREF_KEY_BASE + "uploadSignature";
+
 }
