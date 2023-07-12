@@ -17,7 +17,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.dawat.farmer.mamits.adapter.CategoryDetailListAdapter;
 import com.dawat.farmer.mamits.databinding.FragmentBlogDetailBinding;
 import com.dawat.farmer.mamits.model.BlogModel;
 import com.dawat.farmer.mamits.remote.ApiHelper;
@@ -60,7 +59,7 @@ public class BlogDetailFragment extends Fragment {
     private void getBlogsDetail() {
         progressLoading.showLoading(getContext());
         try {
-            new ApiHelper().getBlogsDetail(strToken, "5", new ResponseListener() {
+            new ApiHelper().getBlogsDetail(strToken, blog_id, new ResponseListener() {
                 @Override
                 public void onSuccess(JsonObject jsonObject) {
                     progressLoading.hideLoading();

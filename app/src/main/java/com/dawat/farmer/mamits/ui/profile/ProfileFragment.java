@@ -27,6 +27,7 @@ import com.dawat.farmer.mamits.MainActivity;
 import com.dawat.farmer.mamits.R;
 import com.dawat.farmer.mamits.databinding.FragmentProfileBinding;
 import com.dawat.farmer.mamits.model.ProfileModel;
+import com.dawat.farmer.mamits.notification.NotificationService;
 import com.dawat.farmer.mamits.remote.ApiHelper;
 import com.dawat.farmer.mamits.utils.AppConstant;
 import com.dawat.farmer.mamits.utils.ProgressLoading;
@@ -77,6 +78,7 @@ public class ProfileFragment extends Fragment {
             final AlertDialog.Builder newBuilder = new AlertDialog.Builder(getContext());
             newBuilder.setMessage("Are you sure you want to Logout?");
             newBuilder.setPositiveButton("Yes", (dialog, which) -> {
+                getActivity().stopService(new Intent(getActivity(), NotificationService.class));
                 sharedPreferences.edit().putBoolean(AppConstant.IS_LOGIN, false).apply();
                 sharedPreferences.edit().clear().apply();
                 Intent intent = new Intent(getContext(), LoginActivity.class);

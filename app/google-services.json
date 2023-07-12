@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "729695411347",
+    "project_id": "dawat-farmer",
+    "storage_bucket": "dawat-farmer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:729695411347:android:3d9e86ff96faa116390166",
+        "android_client_info": {
+          "package_name": "com.dawat.farmer.mamits"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "729695411347-5e5sv4c440bp6m5pnplfgtvkevaa8vm0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTdrW__O16udK6fe6r4vToLfMJbF7r71w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "729695411347-5e5sv4c440bp6m5pnplfgtvkevaa8vm0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

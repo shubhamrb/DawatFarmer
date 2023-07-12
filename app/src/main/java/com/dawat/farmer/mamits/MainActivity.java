@@ -4,10 +4,12 @@ import static com.dawat.farmer.mamits.utils.AppConstant.PREF_KEY_CURRENT_DATE;
 import static com.dawat.farmer.mamits.utils.AppConstant.SHARED_PREF_NAME;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,6 +22,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import com.dawat.farmer.mamits.databinding.ActivityMainBinding;
+import com.dawat.farmer.mamits.notification.NotificationService;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -44,6 +48,12 @@ public class MainActivity extends AppCompatActivity implements NavController.OnD
         SimpleDateFormat df = new SimpleDateFormat("dd MMM, yyyy", Locale.getDefault());
         String formattedDate = df.format(c);
         sharedPreferences.edit().putString(PREF_KEY_CURRENT_DATE, formattedDate).apply();
+
+        try {
+            startService(new Intent(this, NotificationService.class));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         navController.addOnDestinationChangedListener(this);

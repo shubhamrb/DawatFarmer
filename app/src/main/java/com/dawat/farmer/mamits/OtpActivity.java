@@ -25,6 +25,7 @@ import com.dawat.farmer.mamits.remote.ApiHelper;
 import com.dawat.farmer.mamits.utils.AppConstant;
 import com.dawat.farmer.mamits.utils.ProgressLoading;
 import com.dawat.farmer.mamits.utils.ResponseListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.JsonObject;
 
 public class OtpActivity extends AppCompatActivity {
@@ -63,39 +64,44 @@ public class OtpActivity extends AppCompatActivity {
         progressLoading.showLoading(this);
 
         try {
-            new ApiHelper().verifyOtp(mobile, otp, new ResponseListener() {
-                @Override
-                public void onSuccess(JsonObject jsonObject) {
-                    progressLoading.hideLoading();
-                    Log.e(AppConstant.LOG_KEY_RESPONSE, jsonObject.toString());
+            FirebaseMessaging.getInstance().getToken().addOnSuccessListener(token -> {
+                if (token != null && token.length() != 0) {
+                    Log.e("FCM token", token);
+                    new ApiHelper().verifyOtp(mobile, otp, token, new ResponseListener() {
+                        @Override
+                        public void onSuccess(JsonObject jsonObject) {
+                            progressLoading.hideLoading();
+                            Log.e(AppConstant.LOG_KEY_RESPONSE, jsonObject.toString());
 
-                    boolean status = jsonObject.get("status").getAsBoolean();
-                    String message = jsonObject.get("message").getAsString();
-                    if (status) {
-                        sharedPreferences.edit().putBoolean(IS_LOGIN, true).apply();
-                        sharedPreferences.edit().putString(PREF_KEY_ACCESS_TOKEN, "Bearer " + jsonObject.get("access_token").getAsString()).apply();
+                            boolean status = jsonObject.get("status").getAsBoolean();
+                            String message = jsonObject.get("message").getAsString();
+                            if (status) {
+                                sharedPreferences.edit().putBoolean(IS_LOGIN, true).apply();
+                                sharedPreferences.edit().putString(PREF_KEY_ACCESS_TOKEN, "Bearer " + jsonObject.get("access_token").getAsString()).apply();
 
-                        JsonObject dataObject = jsonObject.get("data").getAsJsonObject();
+                                JsonObject dataObject = jsonObject.get("data").getAsJsonObject();
 
-                        sharedPreferences.edit().putString(PREF_NAME, dataObject.get("name").getAsString()).apply();
-                        sharedPreferences.edit().putString(PREF_USER_NAME, dataObject.get("username").getAsString()).apply();
-                        sharedPreferences.edit().putString(PREF_USER_TYPE, dataObject.get("user_type").getAsString()).apply();
-                        sharedPreferences.edit().putString(PREF_MOBILE, dataObject.get("mobile").getAsString()).apply();
-                        sharedPreferences.edit().putString(PREF_EMAIL, dataObject.get("email").getAsString()).apply();
-                        sharedPreferences.edit().putString(PREF_USER_ID, dataObject.get("id").getAsString()).apply();
-                        sharedPreferences.edit().putString(PREF_PROFILE_IMAGE, dataObject.get("profile_image").getAsString()).apply();
-                        startActivity(new Intent(OtpActivity.this, TermsConditionActivity.class));
-                        finishAffinity();
-                    } else {
-                        Toast.makeText(OtpActivity.this, message, Toast.LENGTH_LONG).show();
-                    }
-                }
+                                sharedPreferences.edit().putString(PREF_NAME, dataObject.get("name").getAsString()).apply();
+                                sharedPreferences.edit().putString(PREF_USER_NAME, dataObject.get("username").getAsString()).apply();
+                                sharedPreferences.edit().putString(PREF_USER_TYPE, dataObject.get("user_type").getAsString()).apply();
+                                sharedPreferences.edit().putString(PREF_MOBILE, dataObject.get("mobile").getAsString()).apply();
+                                sharedPreferences.edit().putString(PREF_EMAIL, dataObject.get("email").getAsString()).apply();
+                                sharedPreferences.edit().putString(PREF_USER_ID, dataObject.get("id").getAsString()).apply();
+                                sharedPreferences.edit().putString(PREF_PROFILE_IMAGE, dataObject.get("profile_image").getAsString()).apply();
+                                startActivity(new Intent(OtpActivity.this, TermsConditionActivity.class));
+                                finishAffinity();
+                            } else {
+                                Toast.makeText(OtpActivity.this, message, Toast.LENGTH_LONG).show();
+                            }
+                        }
 
-                @Override
-                public void onFailed(Throwable throwable) {
-                    progressLoading.hideLoading();
-                    Log.e(AppConstant.LOG_KEY_ERROR, throwable.getMessage());
-                    Toast.makeText(OtpActivity.this, throwable.getMessage(), Toast.LENGTH_LONG).show();
+                        @Override
+                        public void onFailed(Throwable throwable) {
+                            progressLoading.hideLoading();
+                            Log.e(AppConstant.LOG_KEY_ERROR, throwable.getMessage());
+                            Toast.makeText(OtpActivity.this, throwable.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }
             });
         } catch (Exception e) {

@@ -22,7 +22,7 @@ public interface RetrofitInterface {
 
     @FormUrlEncoded
     @POST
-    Call<JsonObject> verifyOtpApi(@Url String fullUrl, @Field("mobile") String mobile, @Field("otp") String otp);
+    Call<JsonObject> verifyOtpApi(@Url String fullUrl, @Field("mobile") String mobile, @Field("otp") String otp, @Field("token") String token);
 
     @GET
     Call<JsonObject> getSliderList(@Header("Authorization") String accessToken, @Url String fullUrl);
@@ -147,6 +147,7 @@ public interface RetrofitInterface {
                                  @Part MultipartBody.Part file,
                                  @Part("type") RequestBody type
     );
+
     @GET
     Call<JsonObject> getMessagesList(@Header("Authorization") String accessToken, @Url String fullUrl);
 }
