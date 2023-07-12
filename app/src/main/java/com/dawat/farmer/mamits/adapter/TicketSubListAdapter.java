@@ -1,6 +1,7 @@
 package com.dawat.farmer.mamits.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,8 +9,10 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dawat.farmer.mamits.MainActivity;
 import com.dawat.farmer.mamits.R;
 import com.dawat.farmer.mamits.model.TicketModel;
 import com.dawat.farmer.mamits.utils.BeautifyDate;
@@ -45,6 +48,12 @@ public class TicketSubListAdapter extends RecyclerView.Adapter<TicketSubListAdap
             String dat = new BeautifyDate().beautifyDate(model.getCreated_at(), "yyyy-MM-dd", "dd MMM, yyyy");
             holder.txt_date.setText("TICKETID" + model.getId() + " | Requested on " + dat);
             holder.img.setImageResource(R.drawable.headphone_icon);
+            holder.itemView.setOnClickListener(v -> {
+                Bundle bundle = new Bundle();
+                bundle.putString("ticket_id", model.getId());
+                bundle.putString("farmer_id", model.getFarmer_id());
+                Navigation.findNavController(((MainActivity) mContext).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_messenger, bundle);
+            });
         }
     }
 

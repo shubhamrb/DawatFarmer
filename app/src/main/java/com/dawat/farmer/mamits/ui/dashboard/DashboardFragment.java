@@ -35,6 +35,7 @@ import com.dawat.farmer.mamits.adapter.DashboardCategoryListAdapter;
 import com.dawat.farmer.mamits.adapter.DashboardSliderAdapter;
 import com.dawat.farmer.mamits.adapter.TabListAdapter;
 import com.dawat.farmer.mamits.databinding.FragmentDashboardBinding;
+import com.dawat.farmer.mamits.model.BlogModel;
 import com.dawat.farmer.mamits.model.SliderModel;
 import com.dawat.farmer.mamits.model.SrpCategoryModel;
 import com.dawat.farmer.mamits.model.Tabs;
@@ -165,8 +166,37 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
         binding.recyclerBlog.setLayoutManager(manager);
         binding.recyclerBlog.setItemAnimator(null);
 
-        blogsListAdapter = new BlogsListAdapter(getContext(), this);
+        blogsListAdapter = new BlogsListAdapter(getContext(), this, false);
         binding.recyclerBlog.setAdapter(blogsListAdapter);
+        getBlogsList();
+    }
+
+    private void getBlogsList() {
+        progressLoading.showLoading(getContext());
+        try {
+            new ApiHelper().getBlogsList(strToken, null, new ResponseListener() {
+                @Override
+                public void onSuccess(JsonObject jsonObject) {
+                    progressLoading.hideLoading();
+                    Log.e(AppConstant.LOG_KEY_RESPONSE, jsonObject.toString());
+                    Type slider = new TypeToken<List<BlogModel>>() {
+                    }.getType();
+
+                    List<BlogModel> list = new Gson().fromJson(jsonObject.get("data").getAsJsonArray().toString(), slider);
+                    blogsListAdapter.setList(list);
+                }
+
+                @Override
+                public void onFailed(Throwable throwable) {
+                    progressLoading.hideLoading();
+                    Log.e(AppConstant.LOG_KEY_ERROR, throwable.getMessage());
+                    Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
+        } catch (Exception e) {
+            progressLoading.hideLoading();
+            Log.e(AppConstant.LOG_KEY_ERROR, e.getMessage());
+        }
     }
 
     private void setUpTabs() {
@@ -331,8 +361,13 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
     }
 
     @Override
-    public void onBlogClick(String blog_id) {
+    public void onBlogClick(String blog_id, String title) {
+        Bundle bundle = new Bundle();
+        bundle.putString("blog_id", blog_id);
+        bundle.putString("title", title);
 
+        Navigation.findNavController(((MainActivity) getContext())
+                .findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_blog_detail, bundle);
     }
 
     @Override

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.dashboard.DashboardFragment">
+
+
+    <RelativeLayout
+        android:id="@+id/rl_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="149dp"
+        android:background="@color/primary_color">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/img_card"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="15dp"
+                app:cardCornerRadius="25dp">
+
+                <ImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/srp_report_icon"
+                    app:tint="@color/teal" />
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_toEndOf="@id/img_card"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/label_hello"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:includeFontPadding="false"
+                    android:text=""
+                    android:textColor="@color/light_green"
+                    android:textSize="18sp" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.5"
+                    android:fontFamily="@font/poppins_regular"
+                    android:includeFontPadding="false"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_toolbar"
+        android:layout_marginTop="-28dp"
+        android:background="@drawable/top_corner_shape"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:includeFontPadding="false"
+            android:text="टिकाऊ चावल मंच"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:includeFontPadding="false"
+            android:text="परिचय"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_des"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/poppins_regular"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="3sp"
+            android:text="2015 में, सस्टेनेबल राइस प्लेटफॉर्म ने सतत चावल की खेती के लिए दुनिया का पहला मानक लॉन्च किया, बेंचमार्किंग और स्थिरता की वस्तुनिष्ठ तुलना को सक्षम करने के लिए प्रदर्शन संकेतकों के एक सेट के साथ किसी भी चावल प्रणाली की। साथ में, ये उपकरण स्थायी चावल उत्पादन के लिए एक कार्यशील परिभाषा के रूप में काम कर सकते हैं। प्रगति और प्रभाव की निगरानी को सक्षम करने के लिए, एसआरपी नीति निर्माताओं और वैश्विक चावल आपूर्ति श्रृंखला की पेशकश करता है वैश्विक चावल में स्थायी सर्वोत्तम प्रथाओं को व्यापक पैमाने पर अपनाने की सुविधा के लिए उपकरणों का सिद्ध सेट क्षेत्र, जिसमें निम्नलिखित आपस में जुड़े हुए उपकरण शामिल हैं: 1. सतत चावल की खेती के लिए एसआरपी मानक 2. सतत चावल की खेती के लिए एसआरपी प्रदर्शन संकेतक 3. एसआरपी आश्वासन योजना"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+    </LinearLayout>
+</RelativeLayout>

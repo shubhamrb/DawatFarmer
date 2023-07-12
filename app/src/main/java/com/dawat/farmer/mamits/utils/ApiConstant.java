@@ -29,5 +29,9 @@ public class ApiConstant {
     public static final String GET_ORDER_LIST_END_POINT = AppConstant.PREF_KEY_BASE + "orderList";
     public static final String GET_ORDER_DETAIL_END_POINT = AppConstant.PREF_KEY_BASE + "orderDetail";
     public static final String UPLOAD_SIGN_END_POINT = AppConstant.PREF_KEY_BASE + "uploadSignature";
-
+    public static final String GET_SRP_BLOGS_END_POINT = AppConstant.PREF_KEY_BASE + "getSrpEventList";
+    public static final String GET_BLOGS_END_POINT = AppConstant.PREF_KEY_BASE + "getEventList";
+    public static final String GET_BLOG_DETAIL_END_POINT = AppConstant.PREF_KEY_BASE + "getEventDetail";
+    public static final String SEND_MESSAGES_LIST_END_POINT = AppConstant.PREF_KEY_BASE + "sendMessage";
+    public static final String GET_MESSAGES_LIST_END_POINT = AppConstant.PREF_KEY_BASE + "getMessageList";
 }

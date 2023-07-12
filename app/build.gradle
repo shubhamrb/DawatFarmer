@@ -64,13 +64,22 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:4.9.2"
 
     /*image picker*/
-    implementation 'com.github.dhaval2404:imagepicker-support:1.7.1'
+    implementation 'com.github.dhaval2404:imagepicker:2.1'
+
     implementation("com.tbuonomo:dotsindicator:5.0") {
             exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk8'
     }
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0'
 
     implementation 'com.google.android.gms:play-services-location:17.1.0'
+
+    implementation "com.wonderkiln:camerakit:0.13.5"
+    implementation 'com.github.krtkush:LinearTimer:v2.1.1'
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.18.7'
+    implementation 'com.google.android.exoplayer:exoplayer-dash:2.18.7'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.18.7'
+    implementation 'com.google.android.exoplayer:exoplayer:2.18.7'
+    implementation 'com.google.android.exoplayer:exoplayer-hls:2.18.7'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

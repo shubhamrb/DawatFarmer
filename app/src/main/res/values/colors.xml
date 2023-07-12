@@ -19,4 +19,6 @@
     <color name="dim_gray">#F9F9F9</color>
     <color name="color_585858">#585858</color>
     <color name="color_F9FDE7">#F9FDE7</color>
+    <color name="attachment_background">#F9F9F9</color>
+
 </resources>

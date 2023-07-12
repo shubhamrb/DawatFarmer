@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dawat.farmer.mamits.R;
@@ -42,8 +41,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class AppealFragment extends Fragment implements CreateAppealOptionBottomSheet.OnClickCreateButtonListener,
-        CreateAppealReasonBottomSheet.OnClickListener, CreateTicketBottomSheet.OnClickListener {
+public class AppealFragment extends Fragment implements CreateAppealOptionBottomSheet.OnClickCreateButtonListener, CreateAppealReasonBottomSheet.OnClickListener, CreateTicketBottomSheet.OnClickListener {
 
     private FragmentAppealBinding binding;
     private AppealListAdapter appealListAdapter;
@@ -55,8 +53,7 @@ public class AppealFragment extends Fragment implements CreateAppealOptionBottom
     private AppealTicketData appealTickedData;
     private String status_filter = "", type_filter = "";
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentAppealBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -242,7 +239,7 @@ public class AppealFragment extends Fragment implements CreateAppealOptionBottom
                     Log.e(AppConstant.LOG_KEY_RESPONSE, jsonObject.toString());
                     String message = jsonObject.get("message").getAsString();
                     Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-                    Navigation.findNavController((getActivity()).findViewById(R.id.nav_host_fragment)).popBackStack();
+                    getAppeals(status_filter, type_filter);
                 }
 
                 @Override
@@ -269,7 +266,7 @@ public class AppealFragment extends Fragment implements CreateAppealOptionBottom
                     Log.e(AppConstant.LOG_KEY_RESPONSE, jsonObject.toString());
                     String message = jsonObject.get("message").getAsString();
                     Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-                    Navigation.findNavController((getActivity()).findViewById(R.id.nav_host_fragment)).popBackStack();
+                    getTickets(status_filter, type_filter);
                 }
 
                 @Override

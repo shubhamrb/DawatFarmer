@@ -822,4 +822,133 @@ public class ApiHelper {
 
     }
 
+    public void getBlogsList(String token, String sub_category_id, ResponseListener responseListener) {
+        if (call == null) call = new RetrofitBase(true).retrofit.create(RetrofitInterface.class);
+        String url;
+        if (sub_category_id != null) {
+            url = ApiConstant.GET_SRP_BLOGS_END_POINT + "?subcat_id=" + sub_category_id;
+        } else {
+            url = ApiConstant.GET_BLOGS_END_POINT;
+        }
+        call.getBlogsList(token, url).enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> calll, Response<JsonObject> response) {
+                if (response.isSuccessful()) {
+                    if (responseListener != null) responseListener.onSuccess(response.body());
+                } else {
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        ANError anError = new ANError();
+                        anError.setErrorCode(response.code());
+                        anError.setErrorBody(jObjError.toString());
+                        Log.e("Error", jObjError.toString());
+                        if (responseListener != null) responseListener.onFailed(anError);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        if (responseListener != null) responseListener.onFailed(e);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                if (responseListener != null) responseListener.onFailed(t);
+            }
+        });
+
+    }
+
+    public void getBlogsDetail(String token, String blog_id, ResponseListener responseListener) {
+        if (call == null) call = new RetrofitBase(true).retrofit.create(RetrofitInterface.class);
+
+        call.getBlogDetail(token, ApiConstant.GET_BLOG_DETAIL_END_POINT, blog_id).enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> calll, Response<JsonObject> response) {
+                if (response.isSuccessful()) {
+                    if (responseListener != null) responseListener.onSuccess(response.body());
+                } else {
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        ANError anError = new ANError();
+                        anError.setErrorCode(response.code());
+                        anError.setErrorBody(jObjError.toString());
+                        Log.e("Error", jObjError.toString());
+                        if (responseListener != null) responseListener.onFailed(anError);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        if (responseListener != null) responseListener.onFailed(e);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                if (responseListener != null) responseListener.onFailed(t);
+            }
+        });
+
+    }
+
+    public void sendMessage(String token, RequestBody id, RequestBody from_user, RequestBody to_user, RequestBody message, MultipartBody.Part file, RequestBody type, ResponseListener responseListener) {
+        if (call == null) call = new RetrofitBase(true).retrofit.create(RetrofitInterface.class);
+
+        call.sendMessage(token, ApiConstant.SEND_MESSAGES_LIST_END_POINT, id, from_user, to_user, message, file, type).enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> calll, Response<JsonObject> response) {
+                if (response.isSuccessful()) {
+                    if (responseListener != null) responseListener.onSuccess(response.body());
+                } else {
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        ANError anError = new ANError();
+                        anError.setErrorCode(response.code());
+                        anError.setErrorBody(jObjError.toString());
+                        Log.e("Error", jObjError.toString());
+                        if (responseListener != null) responseListener.onFailed(anError);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        if (responseListener != null) responseListener.onFailed(e);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                if (responseListener != null) responseListener.onFailed(t);
+            }
+        });
+
+    }
+
+    public void getMessagesList(String token, String ticket_id, String type, ResponseListener responseListener) {
+        if (call == null) call = new RetrofitBase(true).retrofit.create(RetrofitInterface.class);
+
+        call.getMessagesList(token, ApiConstant.GET_MESSAGES_LIST_END_POINT + "?ticket_id=" + ticket_id + "&type=" + type).enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> calll, Response<JsonObject> response) {
+                if (response.isSuccessful()) {
+                    if (responseListener != null) responseListener.onSuccess(response.body());
+                } else {
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        ANError anError = new ANError();
+                        anError.setErrorCode(response.code());
+                        anError.setErrorBody(jObjError.toString());
+                        Log.e("Error", jObjError.toString());
+                        if (responseListener != null) responseListener.onFailed(anError);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        if (responseListener != null) responseListener.onFailed(e);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                if (responseListener != null) responseListener.onFailed(t);
+            }
+        });
+
+    }
+
 }

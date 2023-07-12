@@ -42,10 +42,10 @@
         tools:layout="@layout/fragment_sub_category" />
 
     <fragment
-        android:id="@+id/navigation_category_detail"
-        android:name="com.dawat.farmer.mamits.ui.dashboard.CategoryDetailFragment"
+        android:id="@+id/navigation_blog_detail"
+        android:name="com.dawat.farmer.mamits.ui.blogs.BlogDetailFragment"
         android:label="@string/title_notification"
-        tools:layout="@layout/fragment_category_detail" />
+        tools:layout="@layout/fragment_blog_detail" />
 
     <fragment
         android:id="@+id/navigation_srp_report_detail"
@@ -91,4 +91,14 @@
         android:id="@+id/navigation_track_orders"
         android:name="com.dawat.farmer.mamits.ui.shop.TrackOrdersFragment"
         tools:layout="@layout/fragment_track_orders" />
+
+    <fragment
+        android:id="@+id/navigation_blogs"
+        android:name="com.dawat.farmer.mamits.ui.blogs.BlogsFragment"
+        tools:layout="@layout/fragment_blogs" />
+
+    <fragment
+        android:id="@+id/navigation_messenger"
+        android:name="com.dawat.farmer.mamits.ui.messages.MessengerFragment"
+        tools:layout="@layout/fragment_messenger" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.dawat.farmer.mamits.ui.dashboard;
+package com.dawat.farmer.mamits.ui.blogs;
 
 
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_KEY_ACCESS_TOKEN;
@@ -22,9 +22,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dawat.farmer.mamits.MainActivity;
 import com.dawat.farmer.mamits.R;
 import com.dawat.farmer.mamits.adapter.BlogsListAdapter;
-import com.dawat.farmer.mamits.adapter.DashboardSubCategoryListAdapter;
-import com.dawat.farmer.mamits.databinding.FragmentSubCategoryBinding;
-import com.dawat.farmer.mamits.model.SrpCategoryModel;
+import com.dawat.farmer.mamits.databinding.FragmentBlogsBinding;
+import com.dawat.farmer.mamits.model.BlogModel;
 import com.dawat.farmer.mamits.remote.ApiHelper;
 import com.dawat.farmer.mamits.utils.AppConstant;
 import com.dawat.farmer.mamits.utils.CustomLinearLayoutManager;
@@ -37,20 +36,17 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
 
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
+public class BlogsFragment extends Fragment implements BlogsListAdapter.OnClickListener {
 
-public class SubCategoryFragment extends Fragment implements DashboardSubCategoryListAdapter.OnClickListener {
-
-    private FragmentSubCategoryBinding binding;
+    private FragmentBlogsBinding binding;
     private SharedPreferences sharedPreferences;
     private String strToken = "";
     private ProgressLoading progressLoading;
-    private DashboardSubCategoryListAdapter dashboardSubCategoryListAdapter;
-    private String category_id, category_name;
+    private BlogsListAdapter blogsListAdapter;
+    private String sub_category_id, sub_category_name;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentSubCategoryBinding.inflate(inflater, container, false);
+        binding = FragmentBlogsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         sharedPreferences = getContext().getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
@@ -62,12 +58,12 @@ public class SubCategoryFragment extends Fragment implements DashboardSubCategor
         progressLoading = new ProgressLoading();
         Bundle bundle = getArguments();
         if (bundle != null) {
-            category_id = bundle.getString("category_id");
-            category_name = bundle.getString("category_name", "");
-            binding.labelHello.setText(category_name);
+            sub_category_id = bundle.getString("sub_category_id");
+            sub_category_name = bundle.getString("sub_category_name", "");
+            binding.labelHello.setText(sub_category_name);
         }
         clickListeners();
-        setUpCategoryList();
+        setUpBlogsList();
         return root;
     }
 
@@ -75,30 +71,28 @@ public class SubCategoryFragment extends Fragment implements DashboardSubCategor
 
     }
 
-    private void setUpCategoryList() {
+    private void setUpBlogsList() {
         CustomLinearLayoutManager manager = new CustomLinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-        binding.recyclerCategory.setLayoutManager(manager);
-        binding.recyclerCategory.setItemAnimator(null);
-        dashboardSubCategoryListAdapter = new DashboardSubCategoryListAdapter(getContext(), this);
-        binding.recyclerCategory.setAdapter(dashboardSubCategoryListAdapter);
-        getSubCategoryList();
+        binding.recyclerBlogs.setLayoutManager(manager);
+        binding.recyclerBlogs.setItemAnimator(null);
+        blogsListAdapter = new BlogsListAdapter(getContext(), this, true);
+        binding.recyclerBlogs.setAdapter(blogsListAdapter);
+        getBlogsList();
     }
 
-    private void getSubCategoryList() {
+    private void getBlogsList() {
         progressLoading.showLoading(getContext());
-        RequestBody cat_id = RequestBody.create(MultipartBody.FORM, category_id);
-
         try {
-            new ApiHelper().getSrpSubCategoryList(strToken, cat_id, new ResponseListener() {
+            new ApiHelper().getBlogsList(strToken, sub_category_id, new ResponseListener() {
                 @Override
                 public void onSuccess(JsonObject jsonObject) {
                     progressLoading.hideLoading();
                     Log.e(AppConstant.LOG_KEY_RESPONSE, jsonObject.toString());
-                    Type slider = new TypeToken<List<SrpCategoryModel>>() {
+                    Type slider = new TypeToken<List<BlogModel>>() {
                     }.getType();
 
-                    List<SrpCategoryModel> list = new Gson().fromJson(jsonObject.get("data").getAsJsonArray().toString(), slider);
-                    dashboardSubCategoryListAdapter.setList(list);
+                    List<BlogModel> list = new Gson().fromJson(jsonObject.get("data").getAsJsonArray().toString(), slider);
+                    blogsListAdapter.setList(list);
                 }
 
                 @Override
@@ -121,12 +115,12 @@ public class SubCategoryFragment extends Fragment implements DashboardSubCategor
     }
 
     @Override
-    public void onSubCategoryClick(SrpCategoryModel model) {
+    public void onBlogClick(String blog_id, String title) {
         Bundle bundle = new Bundle();
-        bundle.putString("sub_category_id", model.getId());
-        bundle.putString("sub_category_name", model.getCat_title_hi());
+        bundle.putString("blog_id", blog_id);
+        bundle.putString("title", title);
 
         Navigation.findNavController(((MainActivity) getContext())
-                .findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_blogs, bundle);
+                .findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_blog_detail, bundle);
     }
 }

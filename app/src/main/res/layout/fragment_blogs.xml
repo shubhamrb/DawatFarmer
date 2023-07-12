@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.dashboard.DashboardFragment">
+    android:layout_height="match_parent">
 
 
     <RelativeLayout
@@ -31,7 +30,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/leaf_icon"
+                    android:src="@drawable/srp_report_icon"
                     app:tint="@color/teal" />
             </androidx.cardview.widget.CardView>
 
@@ -81,9 +80,9 @@
         android:padding="15dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_category"
+            android:id="@+id/recycler_blogs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/blog_list_item" />
+            tools:listitem="@layout/full_blog_list_item" />
     </LinearLayout>
 </RelativeLayout>

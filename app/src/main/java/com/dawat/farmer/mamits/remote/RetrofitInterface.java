@@ -129,4 +129,24 @@ public interface RetrofitInterface {
     @POST
     Call<JsonObject> uploadSignature(@Header("Authorization") String accessToken, @Url String fullUrl, @Part MultipartBody.Part sign);
 
+    @GET
+    Call<JsonObject> getBlogsList(@Header("Authorization") String accessToken, @Url String fullUrl);
+
+    @FormUrlEncoded
+    @POST
+    Call<JsonObject> getBlogDetail(@Header("Authorization") String accessToken, @Url String fullUrl,
+                                   @Field("event_id") String event_id);
+
+    @Multipart
+    @POST
+    Call<JsonObject> sendMessage(@Header("Authorization") String accessToken, @Url String fullUrl,
+                                 @Part("id") RequestBody id,
+                                 @Part("from_user") RequestBody from_user,
+                                 @Part("to_user") RequestBody to_user,
+                                 @Part("message") RequestBody message,
+                                 @Part MultipartBody.Part file,
+                                 @Part("type") RequestBody type
+    );
+    @GET
+    Call<JsonObject> getMessagesList(@Header("Authorization") String accessToken, @Url String fullUrl);
 }
