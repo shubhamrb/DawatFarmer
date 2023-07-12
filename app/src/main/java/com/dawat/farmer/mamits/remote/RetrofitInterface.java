@@ -22,7 +22,7 @@ public interface RetrofitInterface {
 
     @FormUrlEncoded
     @POST
-    Call<JsonObject> verifyOtpApi(@Url String fullUrl, @Field("mobile") String mobile, @Field("otp") String otp, @Field("token") String token);
+    Call<JsonObject> verifyOtpApi(@Url String fullUrl, @Field("mobile") String mobile, @Field("otp") String otp, @Field("token") String token, @Field("device_id") String device_id);
 
     @GET
     Call<JsonObject> getSliderList(@Header("Authorization") String accessToken, @Url String fullUrl);

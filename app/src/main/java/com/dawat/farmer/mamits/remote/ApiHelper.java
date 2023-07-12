@@ -49,9 +49,9 @@ public class ApiHelper {
 
     }
 
-    public void verifyOtp(String mobile, String otp, String fcm_token, ResponseListener responseListener) {
+    public void verifyOtp(String mobile, String otp, String fcm_token, String device_id, ResponseListener responseListener) {
         if (call == null) call = new RetrofitBase(true).retrofit.create(RetrofitInterface.class);
-        call.verifyOtpApi(ApiConstant.OTP_VERIFY_END_POINT, mobile, otp,fcm_token).enqueue(new Callback<JsonObject>() {
+        call.verifyOtpApi(ApiConstant.OTP_VERIFY_END_POINT, mobile, otp, fcm_token, device_id).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> calll, Response<JsonObject> response) {
                 if (response.isSuccessful()) {

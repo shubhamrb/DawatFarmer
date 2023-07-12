@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.dawat.farmer.mamits.databinding.ActivityOtpBinding;
 import com.dawat.farmer.mamits.remote.ApiHelper;
 import com.dawat.farmer.mamits.utils.AppConstant;
+import com.dawat.farmer.mamits.utils.CommonUtils;
 import com.dawat.farmer.mamits.utils.ProgressLoading;
 import com.dawat.farmer.mamits.utils.ResponseListener;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -66,8 +67,10 @@ public class OtpActivity extends AppCompatActivity {
         try {
             FirebaseMessaging.getInstance().getToken().addOnSuccessListener(token -> {
                 if (token != null && token.length() != 0) {
+                    String device_id = CommonUtils.getDeviceId(OtpActivity.this);
                     Log.e("FCM token", token);
-                    new ApiHelper().verifyOtp(mobile, otp, token, new ResponseListener() {
+                    Log.e("device_id", device_id);
+                    new ApiHelper().verifyOtp(mobile, otp, token, device_id, new ResponseListener() {
                         @Override
                         public void onSuccess(JsonObject jsonObject) {
                             progressLoading.hideLoading();
