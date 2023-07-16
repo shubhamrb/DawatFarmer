@@ -54,6 +54,7 @@
                 android:fontFamily="@font/poppins_regular"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="3sp"
+                android:maxLines="4"
                 android:text="सतत चावल की खेती के लिए सतत चावल प्लेटफार्म (एसआरपी) मानक दुनिया का पहला स्वैच्छिक है चावल के लिए स्थिरता मानक।"
                 android:textColor="@color/black"
                 android:textSize="15sp" />

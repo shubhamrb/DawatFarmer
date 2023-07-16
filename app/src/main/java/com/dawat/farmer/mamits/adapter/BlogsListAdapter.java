@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.dawat.farmer.mamits.R;
 import com.dawat.farmer.mamits.model.BlogModel;
+import com.dawat.farmer.mamits.utils.BeautifyDate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +47,7 @@ public class BlogsListAdapter extends RecyclerView.Adapter<BlogsListAdapter.Dash
             Glide.with(mContext).load(model.getAttachment()).into(holder.image);
             holder.txt_title.setText(model.getTitle_hi());
             holder.txt_des.setText("" + model.getDescription_hi());
+//            String date =new BeautifyDate().beautifyAgoDate(model.getEvent_start_date());
             holder.txt_time.setText("");
 
             holder.itemView.setOnClickListener(v -> {

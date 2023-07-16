@@ -380,7 +380,9 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
                 Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_news);
                 break;
             case "लेख":
-                Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_news);
+                Bundle bundle=new Bundle();
+                bundle.putString("sub_category_name","लेख");
+                Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_blogs,bundle);
                 break;
             case "दूकान":
                 Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_shop);
