@@ -289,16 +289,18 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
             Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_notifications);
         });
         binding.btnSupport.setOnClickListener(v -> {
-            /*support*/
+            Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_appeal);
         });
         binding.btnBlog.setOnClickListener(v -> {
-            /*blog*/
+            Bundle bundle = new Bundle();
+            bundle.putString("sub_category_name", "लेख");
+            Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_blogs, bundle);
         });
         binding.btnCart.setOnClickListener(v -> {
-            /*cart*/
+            Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_cart);
         });
         binding.btnOrders.setOnClickListener(v -> {
-            /*orders*/
+            Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_orders);
         });
         binding.btnProfile.setOnClickListener(v -> {
             Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_profile);
@@ -380,9 +382,9 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
                 Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_news);
                 break;
             case "लेख":
-                Bundle bundle=new Bundle();
-                bundle.putString("sub_category_name","लेख");
-                Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_blogs,bundle);
+                Bundle bundle = new Bundle();
+                bundle.putString("sub_category_name", "लेख");
+                Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_blogs, bundle);
                 break;
             case "दूकान":
                 Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_shop);
