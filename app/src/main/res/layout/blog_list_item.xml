@@ -51,6 +51,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:alpha="0.5"
+                android:maxLines="4"
+                android:ellipsize="end"
                 android:fontFamily="@font/poppins_regular"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="3sp"
