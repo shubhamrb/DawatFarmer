@@ -23,9 +23,11 @@ public class SrpReportSubListAdapter extends RecyclerView.Adapter<SrpReportSubLi
     private Context mContext;
     private View root;
     private List<SrpReportModel> list;
+    private String stage_name;
 
-    public SrpReportSubListAdapter(Context mContext) {
+    public SrpReportSubListAdapter(Context mContext, String stage_name) {
         this.mContext = mContext;
+        this.stage_name = stage_name;
         this.list = new ArrayList<>();
     }
 
@@ -43,7 +45,12 @@ public class SrpReportSubListAdapter extends RecyclerView.Adapter<SrpReportSubLi
                 holder.view.setVisibility(View.GONE);
             }
             SrpReportModel model = list.get(position);
-            holder.txt_name.setText(model.getTitle());
+            if (stage_name != null) {
+                String[] stageSplit = stage_name.split(" ");
+                holder.txt_name.setText("Stage " + (stageSplit[stageSplit.length - 1]) + "." + (position + 1));
+            } else {
+                holder.txt_name.setText("Stage " + (position + 1));
+            }
             holder.txt_point.setText(model.getTotalpoints() + " Points");
             String date = new BeautifyDate().beautifyDate(model.getCreated_at(), "yyyy-MM-dd", "dd MMM, yyyy");
             holder.txt_date.setText("Generated on " + date);

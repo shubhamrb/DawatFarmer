@@ -46,7 +46,7 @@ public class SrpStageListAdapter extends RecyclerView.Adapter<SrpStageListAdapte
             CustomLinearLayoutManager manager = new CustomLinearLayoutManager(holder.itemView.getContext(), RecyclerView.VERTICAL, false);
             holder.recycler_srp_sublist.setLayoutManager(manager);
             holder.recycler_srp_sublist.setItemAnimator(null);
-            holder.srpReportSubListAdapter = new SrpReportSubListAdapter(mContext);
+            holder.srpReportSubListAdapter = new SrpReportSubListAdapter(mContext,model.getStage());
             holder.recycler_srp_sublist.setAdapter(holder.srpReportSubListAdapter);
 
             holder.itemView.setOnClickListener(v -> {
