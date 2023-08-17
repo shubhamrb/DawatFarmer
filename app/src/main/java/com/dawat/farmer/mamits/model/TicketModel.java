@@ -35,6 +35,17 @@ public class TicketModel implements Serializable {
         @SerializedName("created_at")
         String created_at;
 
+        @SerializedName("status")
+        String status;
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
+        }
+
         public String getCreated_at() {
             return created_at;
         }
@@ -92,6 +103,7 @@ public class TicketModel implements Serializable {
                     ", description='" + description + '\'' +
                     ", created_by='" + created_by + '\'' +
                     ", created_at='" + created_at + '\'' +
+                    ", status='" + status + '\'' +
                     '}';
         }
     }

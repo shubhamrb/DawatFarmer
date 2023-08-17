@@ -48,6 +48,16 @@ public class TicketSubListAdapter extends RecyclerView.Adapter<TicketSubListAdap
             String dat = new BeautifyDate().beautifyDate(model.getCreated_at(), "yyyy-MM-dd", "dd MMM, yyyy");
             holder.txt_date.setText("TICKETID" + model.getId() + " | Requested on " + dat);
             holder.img.setImageResource(R.drawable.headphone_icon);
+
+            if (model.getStatus().equals("1")) {
+                holder.btn_forward.setVisibility(View.VISIBLE);
+                holder.btn_forward.setText("Resolved");
+                holder.btn_forward.setBackgroundTintList(mContext.getColorStateList(R.color.white));
+                holder.btn_forward.setTextColor(mContext.getColor(R.color.secondary_color));
+            } else {
+                holder.btn_forward.setVisibility(View.GONE);
+            }
+
             holder.itemView.setOnClickListener(v -> {
                 Bundle bundle = new Bundle();
                 bundle.putString("ticket_id", model.getId());
@@ -75,7 +85,7 @@ public class TicketSubListAdapter extends RecyclerView.Adapter<TicketSubListAdap
 
     public static class DashboardListViewHolder extends RecyclerView.ViewHolder {
         private View view;
-        private AppCompatTextView txt_title, txt_date;
+        private AppCompatTextView txt_title, txt_date, btn_forward;
         private ImageView img;
 
         public DashboardListViewHolder(@NonNull View itemView) {
@@ -84,6 +94,8 @@ public class TicketSubListAdapter extends RecyclerView.Adapter<TicketSubListAdap
             txt_title = itemView.findViewById(R.id.txt_title);
             txt_date = itemView.findViewById(R.id.txt_date);
             img = itemView.findViewById(R.id.img);
+            btn_forward = itemView.findViewById(R.id.btn_forward);
+
         }
     }
 }
