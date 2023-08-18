@@ -105,7 +105,6 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="15dp"
-                        android:layout_toStartOf="@+id/btn_edit"
                         android:layout_toEndOf="@+id/img_profile"
                         android:fontFamily="@font/poppins_semi_bold"
                         android:includeFontPadding="false"
@@ -113,13 +112,6 @@
                         android:textColor="@color/black"
                         android:textSize="20sp" />
 
-                    <ImageView
-                        android:id="@+id/btn_edit"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/edit_icon" />
                 </RelativeLayout>
 
                 <View

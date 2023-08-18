@@ -263,33 +263,6 @@
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
-            <RelativeLayout
-                android:layout_width="85dp"
-                android:layout_height="34dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/outline_rect"
-                android:gravity="center_vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="15dp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:includeFontPadding="false"
-                    android:text="नई"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
-
-                <ImageView
-                    android:layout_width="13dp"
-                    android:layout_height="14dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="15dp"
-                    android:src="@drawable/dropdown_arrow" />
-            </RelativeLayout>
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView

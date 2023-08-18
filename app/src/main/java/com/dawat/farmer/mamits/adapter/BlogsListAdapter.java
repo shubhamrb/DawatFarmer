@@ -1,6 +1,7 @@
 package com.dawat.farmer.mamits.adapter;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,8 +46,8 @@ public class BlogsListAdapter extends RecyclerView.Adapter<BlogsListAdapter.Dash
         if (list.size() > 0) {
             BlogModel model = list.get(position);
             Glide.with(mContext).load(model.getAttachment()).into(holder.image);
-            holder.txt_title.setText(model.getTitle_hi());
-            holder.txt_des.setText("" + model.getDescription_hi());
+            holder.txt_title.setText(Html.fromHtml(model.getTitle_hi()));
+            holder.txt_des.setText("" + Html.fromHtml(model.getDescription_hi()));
 //            String date =new BeautifyDate().beautifyAgoDate(model.getEvent_start_date());
             holder.txt_time.setText("");
 

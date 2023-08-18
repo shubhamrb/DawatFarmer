@@ -8,6 +8,7 @@ import static com.dawat.farmer.mamits.utils.AppConstant.SHARED_PREF_NAME;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.dawat.farmer.mamits.databinding.FragmentBlogDetailBinding;
 import com.dawat.farmer.mamits.model.BlogModel;
 import com.dawat.farmer.mamits.remote.ApiHelper;
@@ -83,8 +85,10 @@ public class BlogDetailFragment extends Fragment {
 
     private void setData() {
         if (model != null) {
-            binding.txtTitle.setText(model.getTitle_hi());
-            binding.txtDes.setText(model.getDescription_hi());
+            binding.txtTitle.setText(Html.fromHtml(model.getTitle_hi()));
+            binding.txtDes.setText(Html.fromHtml(model.getDescription_hi()));
+            Glide.with(getContext()).load(model.getAttachment()).into(binding.image);
+
         }
     }
 

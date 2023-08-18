@@ -1,6 +1,7 @@
 package com.dawat.farmer.mamits.adapter;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,7 @@ public class OrderCartAdapter extends RecyclerView.Adapter<OrderCartAdapter.Dash
                 holder.view.setVisibility(View.GONE);
             }
             OrderDetailModel.ProductModel model = list.get(position);
-            holder.txt_title.setText(model.getName_hi());
+            holder.txt_title.setText(Html.fromHtml(model.getName_hi()));
             holder.txt_per_price.setText(model.getQty() + " x ₹ " + model.getFinal_price());
 
             float price = Float.parseFloat(model.getFinal_price().substring(0, model.getFinal_price().indexOf(".")));

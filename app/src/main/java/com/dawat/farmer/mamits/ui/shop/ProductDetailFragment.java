@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -178,7 +179,7 @@ public class ProductDetailFragment extends Fragment implements ProductsAdapter.O
             binding.txtName.setText(model.getName_hi());
             binding.txtPrice.setText("₹ " + model.getSelling_price());
             Glide.with(getContext()).load(model.getImage()).into(binding.image);
-            binding.txtDes.setText(model.getDescription_hi());
+            binding.txtDes.setText(Html.fromHtml(model.getDescription_hi()));
         }
     }
 

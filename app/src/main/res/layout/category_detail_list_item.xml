@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
                 android:includeFontPadding="false"
-                android:text="जल प्रबंधन"
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="18sp" />
         </LinearLayout>

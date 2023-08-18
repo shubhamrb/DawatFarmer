@@ -1,6 +1,7 @@
 package com.dawat.farmer.mamits.adapter;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.dawat.farmer.mamits.R;
 import com.dawat.farmer.mamits.model.NewsModel;
+import com.dawat.farmer.mamits.utils.BeautifyDate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,8 +44,11 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.Dashbo
         if (list.size() > 0) {
             NewsModel model = list.get(position);
             Glide.with(mContext).load(model.getAttachment()).into(holder.image);
-            holder.txt_time.setText("15 April, 2023");
-            holder.txt_title.setText(model.getTitle_hi());
+            if (model.getCreated_at() != null) {
+                String date = new BeautifyDate().beautifyAgoDate(model.getCreated_at());
+                holder.txt_time.setText(date);
+            }
+            holder.txt_title.setText(Html.fromHtml(model.getTitle_hi()));
         }
     }
 

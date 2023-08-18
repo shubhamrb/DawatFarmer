@@ -1,8 +1,6 @@
 package com.dawat.farmer.mamits.ui.weather;
 
 
-import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
-import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_KEY_CURRENT_DATE;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_PROFILE_IMAGE;
 import static com.dawat.farmer.mamits.utils.AppConstant.SHARED_PREF_NAME;
@@ -20,6 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
@@ -52,6 +52,7 @@ public class WeatherFragment extends Fragment {
     private SharedPreferences sharedPreferences;
     private WeatherModel weatherModel;
     private FusedLocationProviderClient fusedLocationClient;
+    private ActivityResultLauncher<String[]> requestPermissionLauncher;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentWeatherBinding.inflate(inflater, container, false);
@@ -75,9 +76,25 @@ public class WeatherFragment extends Fragment {
                 weatherModel = (WeatherModel) bundle.getSerializable("weatherModel");
             }
         }
+        requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), result -> {
+            boolean allPermissionsGranted = true;
+            for (Boolean granted : result.values()) {
+                if (!granted) {
+                    allPermissionsGranted = false;
+                    break;
+                }
+            }
+            if (allPermissionsGranted) {
+                getLastKnownLocation();
+            } else {
+                Toast.makeText(getContext(), "Permissions required", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         setUpCurrentWeather();
         getCurrentLocation();
         setUpTabs();
+
         return root;
     }
 
@@ -87,23 +104,18 @@ public class WeatherFragment extends Fragment {
         getLastKnownLocation();
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (requestCode == 1) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                getLastKnownLocation();
-            } else {
-                Toast.makeText(getContext(), "Location permission denied", Toast.LENGTH_SHORT).show();
-            }
-        }
+    private void requestLocationPermission() {
+        String[] PERMISSIONS_TO_REQUEST = {
+                android.Manifest.permission.ACCESS_FINE_LOCATION,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION
+        };
+        requestPermissionLauncher.launch(PERMISSIONS_TO_REQUEST);
     }
 
     private void getLastKnownLocation() {
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(getActivity(), new String[]{ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION}, 1);
+            requestLocationPermission();
             return;
         }
         fusedLocationClient.getLastLocation()

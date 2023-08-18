@@ -1,6 +1,7 @@
 package com.dawat.farmer.mamits.adapter;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,7 @@ public class DashboardSubCategoryListAdapter extends RecyclerView.Adapter<Dashbo
     public void onBindViewHolder(@NonNull DashboardListViewHolder holder, int position) {
         if (list.size() > 0) {
             SrpCategoryModel model = list.get(position);
-            holder.txt_title.setText(model.getCat_title_hi());
+            holder.txt_title.setText(Html.fromHtml(model.getCat_title_hi()));
             Glide.with(mContext).load(model.getIcon()).into(holder.icon);
 
             holder.itemView.setOnClickListener(v -> {

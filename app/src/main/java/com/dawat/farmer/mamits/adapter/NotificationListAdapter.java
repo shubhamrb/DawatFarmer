@@ -1,6 +1,7 @@
 package com.dawat.farmer.mamits.adapter;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,7 @@ public class NotificationListAdapter extends RecyclerView.Adapter<NotificationLi
                 holder.view.setVisibility(View.GONE);
             }
             NotificationModel model = list.get(position);
-            holder.txt_title.setText(model.getTitle());
+            holder.txt_title.setText(Html.fromHtml(model.getTitle()));
             holder.txt_sub_title.setText("");
 
             String date = new BeautifyDate().beautifyAgoDate(model.getCreated_at());

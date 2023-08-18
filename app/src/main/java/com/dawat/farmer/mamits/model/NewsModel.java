@@ -24,6 +24,17 @@ public class NewsModel implements Serializable {
     @SerializedName("description_en")
     String description_en;
 
+    @SerializedName("created_at")
+    String created_at;
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
+
     public String getId() {
         return id;
     }
@@ -81,6 +92,7 @@ public class NewsModel implements Serializable {
                 ", attachment='" + attachment + '\'' +
                 ", description_hi='" + description_hi + '\'' +
                 ", description_en='" + description_en + '\'' +
+                ", created_at='" + created_at + '\'' +
                 '}';
     }
 }

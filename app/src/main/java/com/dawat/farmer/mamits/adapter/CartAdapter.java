@@ -2,6 +2,7 @@ package com.dawat.farmer.mamits.adapter;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,8 +47,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.DashboardListV
                 holder.view.setVisibility(View.GONE);
             }
             CartModel model = list.get(position);
-            holder.txt_title.setText(model.getName_hi());
-            holder.txt_des.setText(model.getCat_title_hi());
+            holder.txt_title.setText(Html.fromHtml(model.getName_hi()));
+            holder.txt_des.setText(Html.fromHtml(model.getCat_title_hi()));
             holder.txt_quantity.setText(model.getQuantity());
             holder.txt_price.setText("₹ " + model.getSelling_price());
             Glide.with(mContext).load(model.getImage()).into(holder.product_image);

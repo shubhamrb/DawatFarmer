@@ -1,6 +1,7 @@
 package com.dawat.farmer.mamits.adapter;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Dashbo
     public void onBindViewHolder(@NonNull DashboardListViewHolder holder, int position) {
         if (list.size() > 0) {
             ProductModel model = list.get(position);
-            holder.txt_name.setText(model.getName_hi());
+            holder.txt_name.setText(Html.fromHtml(model.getName_hi()));
             holder.txt_price.setText("₹ " + model.getSelling_price());
             Glide.with(mContext).load(model.getAttachment() + model.getImage()).into(holder.image);
 
