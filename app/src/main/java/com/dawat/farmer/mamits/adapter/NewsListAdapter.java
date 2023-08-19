@@ -45,15 +45,18 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.Dashbo
             NewsModel model = list.get(position);
             Glide.with(mContext).load(model.getAttachment()).into(holder.image);
             if (model.getCreated_at() != null) {
-                String date = new BeautifyDate().beautifyAgoDate(model.getCreated_at());
+                String date = new BeautifyDate().beautifyDate(model.getCreated_at(), "yyyy-MM-dd", "dd MMM, yyyy");
                 holder.txt_time.setText(date);
             }
             holder.txt_title.setText(Html.fromHtml(model.getTitle_hi()));
+            holder.itemView.setOnClickListener(v -> {
+                listener.onNewsClick(model);
+            });
         }
     }
 
     public interface OnClickListener {
-        void onNewsClick(String news_id);
+        void onNewsClick(NewsModel news);
     }
 
     @Override

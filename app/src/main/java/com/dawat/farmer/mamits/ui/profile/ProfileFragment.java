@@ -67,9 +67,17 @@ public class ProfileFragment extends Fragment {
         });
 
         binding.btnSupport.setOnClickListener(v -> {
-            if (model != null && model.getCoordinatormobile() != null && !model.getCoordinatormobile().isEmpty()) {
+            if (model != null) {
+                String number = "";
+                if (model.getCoordinatormobile() != null && !model.getCoordinatormobile().isEmpty()) {
+                    number = model.getCoordinatormobile();
+                } else if (model.getAdo_number() != null && !model.getAdo_number().isEmpty()) {
+                    number = model.getAdo_number();
+                } else {
+                    return;
+                }
                 Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                callIntent.setData(Uri.parse("tel:" + model.getCoordinatormobile()));
+                callIntent.setData(Uri.parse("tel:" + number));
                 startActivity(callIntent);
             }
         });

@@ -5,9 +5,9 @@ import static android.Manifest.permission.RECORD_AUDIO;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_KEY_ACCESS_TOKEN;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_KEY_CURRENT_DATE;
+import static com.dawat.farmer.mamits.utils.AppConstant.PREF_NAME;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_PROFILE_IMAGE;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_USER_ID;
-import static com.dawat.farmer.mamits.utils.AppConstant.PREF_USER_NAME;
 import static com.dawat.farmer.mamits.utils.AppConstant.SHARED_PREF_NAME;
 
 import android.app.Activity;
@@ -97,7 +97,7 @@ public class MessengerFragment extends Fragment implements MessageListAdapter.On
 
         sharedPreferences = getContext().getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         strToken = sharedPreferences.getString(PREF_KEY_ACCESS_TOKEN, "");
-        String username = sharedPreferences.getString(PREF_USER_NAME, "");
+        String username = sharedPreferences.getString(PREF_NAME, "");
         String profile_image = sharedPreferences.getString(PREF_PROFILE_IMAGE, "");
         String date = sharedPreferences.getString(PREF_KEY_CURRENT_DATE, "");
         current_user_id = sharedPreferences.getString(PREF_USER_ID, "");

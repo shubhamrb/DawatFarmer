@@ -1,12 +1,14 @@
-package com.dawat.farmer.mamits.ui.report;
+package com.dawat.farmer.mamits.ui.news;
+
 
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_KEY_ACCESS_TOKEN;
-import static com.dawat.farmer.mamits.utils.AppConstant.PREF_NAME;
+import static com.dawat.farmer.mamits.utils.AppConstant.PREF_KEY_CURRENT_DATE;
 import static com.dawat.farmer.mamits.utils.AppConstant.SHARED_PREF_NAME;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,75 +17,56 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.dawat.farmer.mamits.adapter.SrpAnswerListAdapter;
-import com.dawat.farmer.mamits.databinding.FragmentSrpReportDetailBinding;
-import com.dawat.farmer.mamits.model.SrpAnswerModel;
-import com.dawat.farmer.mamits.model.SrpQuestionModel;
+import com.bumptech.glide.Glide;
+import com.dawat.farmer.mamits.databinding.FragmentNewsDetailBinding;
+import com.dawat.farmer.mamits.model.NewsModel;
 import com.dawat.farmer.mamits.remote.ApiHelper;
 import com.dawat.farmer.mamits.utils.AppConstant;
-import com.dawat.farmer.mamits.utils.CustomLinearLayoutManager;
+import com.dawat.farmer.mamits.utils.BeautifyDate;
 import com.dawat.farmer.mamits.utils.ProgressLoading;
 import com.dawat.farmer.mamits.utils.ResponseListener;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
+public class NewsDetailFragment extends Fragment {
 
-public class SrpReportDetailFragment extends Fragment {
-
-    private FragmentSrpReportDetailBinding binding;
-    private SrpAnswerListAdapter srpAnswerListAdapter;
+    private FragmentNewsDetailBinding binding;
     private SharedPreferences sharedPreferences;
     private String strToken = "";
     private ProgressLoading progressLoading;
-    private String report_id;
-    private List<SrpQuestionModel> answerList;
+    private String news_id, title;
+    private NewsModel model;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        binding = FragmentSrpReportDetailBinding.inflate(inflater, container, false);
+        binding = FragmentNewsDetailBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        progressLoading = new ProgressLoading();
 
         sharedPreferences = getContext().getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         strToken = sharedPreferences.getString(PREF_KEY_ACCESS_TOKEN, "");
-        String user_name = sharedPreferences.getString(PREF_NAME, "");
-        binding.txtTime.setText(user_name + "'s SRP Reports");
-        answerList = new ArrayList<>();
+
+        String current_date = sharedPreferences.getString(PREF_KEY_CURRENT_DATE, "");
+        binding.txtTime.setText(current_date);
+
+        progressLoading = new ProgressLoading();
         Bundle bundle = getArguments();
         if (bundle != null) {
-            report_id = bundle.getString("report_id");
+            news_id = bundle.getString("news_id");
         }
-        setUpQuestionsList();
+        getNewsDetail();
         return root;
     }
 
-    private void setUpQuestionsList() {
-        CustomLinearLayoutManager manager = new CustomLinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-        binding.recyclerQuestion.setLayoutManager(manager);
-        binding.recyclerQuestion.setItemAnimator(null);
-        srpAnswerListAdapter = new SrpAnswerListAdapter(getContext());
-        binding.recyclerQuestion.setAdapter(srpAnswerListAdapter);
-    }
-
-    private void getSrpAnswerList() {
+    private void getNewsDetail() {
         progressLoading.showLoading(getContext());
         try {
-            new ApiHelper().getSrpAnswerList(strToken, report_id, new ResponseListener() {
+            new ApiHelper().getNewsDetail(strToken, news_id, new ResponseListener() {
                 @Override
                 public void onSuccess(JsonObject jsonObject) {
                     progressLoading.hideLoading();
                     Log.e(AppConstant.LOG_KEY_RESPONSE, jsonObject.toString());
-                    Type farmer = new TypeToken<List<SrpAnswerModel>>() {
-                    }.getType();
-
-                    List<SrpAnswerModel> list = new Gson().fromJson(jsonObject.get("data").getAsJsonObject().get("questionanswer").getAsJsonArray().toString(), farmer);
-                    srpAnswerListAdapter.setList(list);
+                    model = new Gson().fromJson(jsonObject.get("data").getAsJsonObject(), NewsModel.class);
+                    setData();
                 }
 
                 @Override
@@ -99,15 +82,21 @@ public class SrpReportDetailFragment extends Fragment {
         }
     }
 
+    private void setData() {
+        if (model != null) {
+            binding.txtTitle.setText(Html.fromHtml(model.getTitle_hi()));
+            binding.txtDes.setText(Html.fromHtml(model.getDescription_hi()));
+            String date = new BeautifyDate().beautifyDate(model.getCreated_at(), "yyyy-MM-dd", "dd MMM, yyyy");
+            binding.txtDate.setText(date);
+
+            Glide.with(getContext()).load(model.getAttachment()).into(binding.image);
+
+        }
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        getSrpAnswerList();
     }
 }

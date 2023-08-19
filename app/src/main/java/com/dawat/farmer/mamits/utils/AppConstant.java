@@ -10,12 +10,12 @@ public class AppConstant {
     public static final String PREF_API_KEY = "Bearer VZc3WhUJGHyHOhaWOgV2GS9RCosxxi";
     public static final String SHARED_PREF_NAME = "SHARED_PREF_NAME";
     public static final String IS_LOGIN = "IS_LOGIN";
-    public static final String PREF_USER_NAME = "USER_NAME";
     public static final String PREF_USER_TYPE = "PREF_USER_TYPE";
     public static final String PREF_NAME = "PREF_NAME";
     public static final String PREF_EMAIL = "PREF_EMAIL";
     public static final String PREF_MOBILE = "PREF_MOBILE";
     public static final String PREF_PROFILE_IMAGE = "PREF_PROFILE_IMAGE";
+    public static final String PREF_SIGNATURE_ADDED = "PREF_SIGNATURE_ADDED";
     public static final String PREF_USER_ID = "PREF_USER_ID";
 
 }

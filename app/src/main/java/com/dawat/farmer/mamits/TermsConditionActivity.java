@@ -7,7 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -27,12 +29,10 @@ import java.io.IOException;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import se.warting.signatureview.utils.SignaturePadBindingAdapter;
 
 public class TermsConditionActivity extends AppCompatActivity {
 
     private ActivityTermsConditionBinding binding;
-    private SignaturePadBindingAdapter signaturePadBindingAdapter;
     private SharedPreferences sharedPreferences;
     private ProgressLoading progressLoading;
     private String strToken = "";
@@ -45,8 +45,12 @@ public class TermsConditionActivity extends AppCompatActivity {
         progressLoading = new ProgressLoading();
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         strToken = sharedPreferences.getString(PREF_KEY_ACCESS_TOKEN, "");
-
+        binding.tcText.setText(Html.fromHtml(getString(R.string.t_c)));
         binding.btnContinue.setOnClickListener(v -> {
+            if (!binding.tcCheckbox.isChecked()) {
+                Toast.makeText(this, "Please check the terms & condition.", Toast.LENGTH_SHORT).show();
+                return;
+            }
             Bitmap bitmap = binding.signPad.getTransparentSignatureBitmap(true);
 
             FileOutputStream outputStream;
@@ -65,6 +69,11 @@ public class TermsConditionActivity extends AppCompatActivity {
         });
         binding.btnClear.setOnClickListener(v -> {
             binding.signPad.clear();
+        });
+        binding.tcText.setOnClickListener(v -> {
+            Uri uri = Uri.parse("http://www.google.com");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
         });
     }
 

@@ -137,6 +137,11 @@ public interface RetrofitInterface {
     Call<JsonObject> getBlogDetail(@Header("Authorization") String accessToken, @Url String fullUrl,
                                    @Field("event_id") String event_id);
 
+    @FormUrlEncoded
+    @POST
+    Call<JsonObject> getNewsDetail(@Header("Authorization") String accessToken, @Url String fullUrl,
+                                   @Field("news_id") String news_id);
+
     @Multipart
     @POST
     Call<JsonObject> sendMessage(@Header("Authorization") String accessToken, @Url String fullUrl,

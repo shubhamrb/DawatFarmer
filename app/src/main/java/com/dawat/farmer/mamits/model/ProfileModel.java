@@ -33,6 +33,16 @@ public class ProfileModel implements Serializable {
     @SerializedName("coordinatormobile")
     String coordinatormobile;
 
+    @SerializedName("ado_number")
+    String ado_number;
+
+    public String getAdo_number() {
+        return ado_number;
+    }
+
+    public void setAdo_number(String ado_number) {
+        this.ado_number = ado_number;
+    }
 
     public String getId() {
         return id;
@@ -118,6 +128,7 @@ public class ProfileModel implements Serializable {
                 ", status='" + status + '\'' +
                 ", profile_image='" + profile_image + '\'' +
                 ", coordinatormobile='" + coordinatormobile + '\'' +
+                ", ado_number='" + ado_number + '\'' +
                 '}';
     }
 }

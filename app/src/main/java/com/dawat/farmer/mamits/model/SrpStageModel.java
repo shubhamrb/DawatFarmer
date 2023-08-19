@@ -19,7 +19,7 @@ public class SrpStageModel implements Serializable {
     String created_at;
 
     @SerializedName("totals")
-    int totalpoints;
+    int totals;
 
     public String getId() {
         return id;
@@ -53,12 +53,12 @@ public class SrpStageModel implements Serializable {
         this.created_at = created_at;
     }
 
-    public int getTotalpoints() {
-        return totalpoints;
+    public int getTotals() {
+        return totals;
     }
 
-    public void setTotalpoints(int totalpoints) {
-        this.totalpoints = totalpoints;
+    public void setTotals(int totals) {
+        this.totals = totals;
     }
 
     @Override
@@ -68,7 +68,7 @@ public class SrpStageModel implements Serializable {
                 ", stage='" + stage + '\'' +
                 ", status='" + status + '\'' +
                 ", created_at='" + created_at + '\'' +
-                ", totalpoints=" + totalpoints +
+                ", totals=" + totals +
                 '}';
     }
 }

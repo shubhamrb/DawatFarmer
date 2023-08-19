@@ -175,6 +175,7 @@
                     android:background="@color/gray" />
 
                 <RelativeLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
@@ -267,7 +268,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginStart="15dp"
+                            android:layout_centerHorizontal="true"
                             android:fontFamily="@font/poppins_medium"
                             android:includeFontPadding="false"
                             android:text="सक्रिय"
@@ -275,6 +276,7 @@
                             android:textSize="12sp" />
 
                         <ImageView
+                            android:visibility="gone"
                             android:layout_width="13dp"
                             android:layout_height="14dp"
                             android:layout_alignParentEnd="true"

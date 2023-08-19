@@ -3,8 +3,8 @@ package com.dawat.farmer.mamits.ui.dashboard;
 
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_KEY_ACCESS_TOKEN;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_KEY_CURRENT_DATE;
+import static com.dawat.farmer.mamits.utils.AppConstant.PREF_NAME;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_PROFILE_IMAGE;
-import static com.dawat.farmer.mamits.utils.AppConstant.PREF_USER_NAME;
 import static com.dawat.farmer.mamits.utils.AppConstant.SHARED_PREF_NAME;
 
 import android.Manifest;
@@ -80,7 +80,7 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
 
         sharedPreferences = getContext().getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         strToken = sharedPreferences.getString(PREF_KEY_ACCESS_TOKEN, "");
-        String username = sharedPreferences.getString(PREF_USER_NAME, "");
+        String username = sharedPreferences.getString(PREF_NAME, "");
         String profile_image = sharedPreferences.getString(PREF_PROFILE_IMAGE, "");
         binding.txtUsername.setText(username);
 

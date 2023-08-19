@@ -889,6 +889,37 @@ public class ApiHelper {
 
     }
 
+    public void getNewsDetail(String token, String blog_id, ResponseListener responseListener) {
+        if (call == null) call = new RetrofitBase(true).retrofit.create(RetrofitInterface.class);
+
+        call.getNewsDetail(token, ApiConstant.GET_NEWS_DETAIL_END_POINT, blog_id).enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> calll, Response<JsonObject> response) {
+                if (response.isSuccessful()) {
+                    if (responseListener != null) responseListener.onSuccess(response.body());
+                } else {
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        ANError anError = new ANError();
+                        anError.setErrorCode(response.code());
+                        anError.setErrorBody(jObjError.toString());
+                        Log.e("Error", jObjError.toString());
+                        if (responseListener != null) responseListener.onFailed(anError);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        if (responseListener != null) responseListener.onFailed(e);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                if (responseListener != null) responseListener.onFailed(t);
+            }
+        });
+
+    }
+
     public void sendMessage(String token, RequestBody id, RequestBody from_user, RequestBody to_user, RequestBody message, MultipartBody.Part file, RequestBody type, ResponseListener responseListener) {
         if (call == null) call = new RetrofitBase(true).retrofit.create(RetrofitInterface.class);
 

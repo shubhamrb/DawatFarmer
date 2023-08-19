@@ -16,12 +16,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dawat.farmer.mamits.MainActivity;
+import com.dawat.farmer.mamits.R;
 import com.dawat.farmer.mamits.adapter.NewsListAdapter;
 import com.dawat.farmer.mamits.databinding.FragmentNewsBinding;
 import com.dawat.farmer.mamits.model.NewsModel;
-import com.dawat.farmer.mamits.model.SliderModel;
 import com.dawat.farmer.mamits.remote.ApiHelper;
 import com.dawat.farmer.mamits.utils.AppConstant;
 import com.dawat.farmer.mamits.utils.CustomLinearLayoutManager;
@@ -115,7 +117,12 @@ public class NewsFragment extends Fragment implements NewsListAdapter.OnClickLis
     }
 
     @Override
-    public void onNewsClick(String news_id) {
+    public void onNewsClick(NewsModel news) {
+        Bundle bundle = new Bundle();
+        bundle.putString("news_id", news.getId());
+        bundle.putString("title", news.getTitle_hi());
 
+        Navigation.findNavController(((MainActivity) getContext())
+                .findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_news_detail, bundle);
     }
 }

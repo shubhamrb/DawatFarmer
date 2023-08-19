@@ -41,7 +41,7 @@ public class SrpStageListAdapter extends RecyclerView.Adapter<SrpStageListAdapte
         if (list.size() > 0) {
             SrpStageModel model = list.get(position);
             holder.txt_name.setText(model.getStage());
-            holder.txt_point.setText(model.getTotalpoints() + " Points");
+            holder.txt_point.setText(model.getTotals() + " Points");
 
             CustomLinearLayoutManager manager = new CustomLinearLayoutManager(holder.itemView.getContext(), RecyclerView.VERTICAL, false);
             holder.recycler_srp_sublist.setLayoutManager(manager);

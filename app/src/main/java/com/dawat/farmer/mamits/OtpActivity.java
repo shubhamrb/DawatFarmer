@@ -6,8 +6,8 @@ import static com.dawat.farmer.mamits.utils.AppConstant.PREF_KEY_ACCESS_TOKEN;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_MOBILE;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_NAME;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_PROFILE_IMAGE;
+import static com.dawat.farmer.mamits.utils.AppConstant.PREF_SIGNATURE_ADDED;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_USER_ID;
-import static com.dawat.farmer.mamits.utils.AppConstant.PREF_USER_NAME;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_USER_TYPE;
 import static com.dawat.farmer.mamits.utils.AppConstant.SHARED_PREF_NAME;
 
@@ -85,13 +85,23 @@ public class OtpActivity extends AppCompatActivity {
                                 JsonObject dataObject = jsonObject.get("data").getAsJsonObject();
 
                                 sharedPreferences.edit().putString(PREF_NAME, dataObject.get("name").getAsString()).apply();
-                                sharedPreferences.edit().putString(PREF_USER_NAME, dataObject.get("username").getAsString()).apply();
                                 sharedPreferences.edit().putString(PREF_USER_TYPE, dataObject.get("user_type").getAsString()).apply();
                                 sharedPreferences.edit().putString(PREF_MOBILE, dataObject.get("mobile").getAsString()).apply();
                                 sharedPreferences.edit().putString(PREF_EMAIL, dataObject.get("email").getAsString()).apply();
                                 sharedPreferences.edit().putString(PREF_USER_ID, dataObject.get("id").getAsString()).apply();
                                 sharedPreferences.edit().putString(PREF_PROFILE_IMAGE, dataObject.get("profile_image").getAsString()).apply();
-                                startActivity(new Intent(OtpActivity.this, TermsConditionActivity.class));
+
+                                try {
+                                    boolean sign_added = dataObject.get("signature_added").getAsBoolean();
+                                    sharedPreferences.edit().putBoolean(PREF_SIGNATURE_ADDED, sign_added).apply();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                                if (sharedPreferences.getBoolean(PREF_SIGNATURE_ADDED, false)) {
+                                    startActivity(new Intent(OtpActivity.this, MainActivity.class));
+                                } else {
+                                    startActivity(new Intent(OtpActivity.this, TermsConditionActivity.class));
+                                }
                                 finishAffinity();
                             } else {
                                 Toast.makeText(OtpActivity.this, message, Toast.LENGTH_LONG).show();

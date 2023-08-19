@@ -101,4 +101,9 @@
         android:id="@+id/navigation_messenger"
         android:name="com.dawat.farmer.mamits.ui.messages.MessengerFragment"
         tools:layout="@layout/fragment_messenger" />
+
+    <fragment
+        android:id="@+id/navigation_news_detail"
+        android:name="com.dawat.farmer.mamits.ui.news.NewsDetailFragment"
+        tools:layout="@layout/fragment_news_detail" />
 </navigation>

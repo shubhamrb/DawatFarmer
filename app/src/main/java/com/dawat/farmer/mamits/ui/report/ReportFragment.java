@@ -1,7 +1,7 @@
 package com.dawat.farmer.mamits.ui.report;
 
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_KEY_ACCESS_TOKEN;
-import static com.dawat.farmer.mamits.utils.AppConstant.PREF_USER_NAME;
+import static com.dawat.farmer.mamits.utils.AppConstant.PREF_NAME;
 import static com.dawat.farmer.mamits.utils.AppConstant.SHARED_PREF_NAME;
 
 import android.content.Context;
@@ -51,7 +51,7 @@ public class ReportFragment extends Fragment implements SrpStageListAdapter.OnCl
 
         sharedPreferences = getContext().getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         strToken = sharedPreferences.getString(PREF_KEY_ACCESS_TOKEN, "");
-        String user_name = sharedPreferences.getString(PREF_USER_NAME, "");
+        String user_name = sharedPreferences.getString(PREF_NAME, "");
         binding.txtTime.setText(user_name + "'s SRP Reports");
 
         setUpClickListener();

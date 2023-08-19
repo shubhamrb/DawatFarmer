@@ -392,6 +392,7 @@
                         android:padding="15dp">
 
                         <LinearLayout
+                            android:id="@+id/btn_profile"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -401,7 +402,7 @@
                             <ImageView
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
-                                android:src="@drawable/leaf_icon"
+                                android:src="@drawable/person_profile"
                                 app:tint="@color/black" />
 
                             <androidx.appcompat.widget.AppCompatTextView
@@ -410,7 +411,7 @@
                                 android:layout_marginStart="15dp"
                                 android:fontFamily="@font/poppins_regular"
                                 android:includeFontPadding="false"
-                                android:text="टिकाऊ चावल मंच"
+                                android:text="प्रोफाइल"
                                 android:textColor="@color/black"
                                 android:textSize="15sp" />
                         </LinearLayout>
@@ -436,68 +437,6 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:includeFontPadding="false"
                                 android:text="मेरी ख़रीद"
-                                android:textColor="@color/black"
-                                android:textSize="15sp" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/gray" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="15dp">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:src="@drawable/headphone_icon"
-                                app:tint="@color/black" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="15dp"
-                                android:fontFamily="@font/poppins_regular"
-                                android:includeFontPadding="false"
-                                android:text="सपोर्ट"
-                                android:textColor="@color/black"
-                                android:textSize="15sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/btn_profile"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:src="@drawable/person_profile"
-                                app:tint="@color/black" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="15dp"
-                                android:fontFamily="@font/poppins_regular"
-                                android:includeFontPadding="false"
-                                android:text="प्रोफाइल"
                                 android:textColor="@color/black"
                                 android:textSize="15sp" />
                         </LinearLayout>
