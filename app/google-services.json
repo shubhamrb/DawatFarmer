@@ -1,36 +1,45 @@
 {
   "project_info": {
-    "project_number": "729695411347",
-    "project_id": "dawat-farmer",
-    "storage_bucket": "dawat-farmer.appspot.com"
+    "project_number": "916327353645",
+    "project_id": "daawat-ado",
+    "storage_bucket": "daawat-ado.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:729695411347:android:3d9e86ff96faa116390166",
+        "mobilesdk_app_id": "1:916327353645:android:9907a37e3204534f8c57a4",
         "android_client_info": {
-          "package_name": "com.dawat.farmer.mamits"
+          "package_name": "com.dawat.ado.mamits"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "729695411347-5e5sv4c440bp6m5pnplfgtvkevaa8vm0.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCTdrW__O16udK6fe6r4vToLfMJbF7r71w"
+          "current_key": "AIzaSyBm5uw89cBD77SpgQpc9_FL6JsypXpqcIs"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "729695411347-5e5sv4c440bp6m5pnplfgtvkevaa8vm0.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916327353645:android:28af4c412ee722118c57a4",
+        "android_client_info": {
+          "package_name": "com.dawat.farmer.mamits"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBm5uw89cBD77SpgQpc9_FL6JsypXpqcIs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
         }
       }
     }

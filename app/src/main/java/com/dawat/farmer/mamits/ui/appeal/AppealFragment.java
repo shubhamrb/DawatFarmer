@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dawat.farmer.mamits.R;
 import com.dawat.farmer.mamits.adapter.AppealListAdapter;
 import com.dawat.farmer.mamits.adapter.TicketListAdapter;
+import com.dawat.farmer.mamits.customDialogs.AppealFilterBottomSheet;
 import com.dawat.farmer.mamits.customDialogs.CreateAppealOptionBottomSheet;
 import com.dawat.farmer.mamits.customDialogs.CreateAppealReasonBottomSheet;
 import com.dawat.farmer.mamits.customDialogs.CreateTicketBottomSheet;
@@ -41,7 +42,8 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class AppealFragment extends Fragment implements CreateAppealOptionBottomSheet.OnClickCreateButtonListener, CreateAppealReasonBottomSheet.OnClickListener, CreateTicketBottomSheet.OnClickListener {
+public class AppealFragment extends Fragment implements CreateAppealOptionBottomSheet.OnClickCreateButtonListener,
+        CreateAppealReasonBottomSheet.OnClickListener, CreateTicketBottomSheet.OnClickListener, AppealFilterBottomSheet.OnClickListener {
 
     private FragmentAppealBinding binding;
     private AppealListAdapter appealListAdapter;
@@ -85,6 +87,8 @@ public class AppealFragment extends Fragment implements CreateAppealOptionBottom
     private void setUpClickListener() {
         binding.toggleAppeal.setOnClickListener(v -> {
             TAB = 0;
+            status_filter = "";
+            type_filter = "";
             binding.txtListHeading.setText("अपीलें");
             binding.listIcon.setImageResource(R.drawable.report_icon);
             binding.toggleAppeal.setCardBackgroundColor(getContext().getResources().getColor(R.color.primary_color, null));
@@ -95,6 +99,8 @@ public class AppealFragment extends Fragment implements CreateAppealOptionBottom
         });
         binding.toggleTicket.setOnClickListener(v -> {
             TAB = 1;
+            status_filter = "";
+            type_filter = "";
             binding.txtListHeading.setText("टिकिटें");
             binding.listIcon.setImageResource(R.drawable.headphone_icon);
             binding.toggleTicket.setCardBackgroundColor(getContext().getResources().getColor(R.color.primary_color, null));
@@ -103,6 +109,10 @@ public class AppealFragment extends Fragment implements CreateAppealOptionBottom
             binding.txtToggleAppeal.setTextColor(getContext().getResources().getColor(R.color.primary_color, null));
 
             getTickets(status_filter, type_filter);
+        });
+
+        binding.btnFilter.setOnClickListener(v -> {
+            new AppealFilterBottomSheet(getContext(), this).openOption();
         });
 
         binding.btnCreate.setOnClickListener(v -> {
@@ -279,6 +289,17 @@ public class AppealFragment extends Fragment implements CreateAppealOptionBottom
         } catch (Exception e) {
             progressLoading.hideLoading();
             Log.e(AppConstant.LOG_KEY_ERROR, e.getMessage());
+        }
+    }
+
+    @Override
+    public void onFilterClick(String status, String type) {
+        status_filter = status;
+        type_filter = type;
+        if (TAB == 0) {
+            getAppeals(status_filter, type_filter);
+        } else {
+            getTickets(status_filter, type_filter);
         }
     }
 }

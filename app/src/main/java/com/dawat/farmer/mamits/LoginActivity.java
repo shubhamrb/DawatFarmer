@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
 
         if (sharedPreferences.getBoolean(IS_LOGIN, false)) {
-            if (!sharedPreferences.getBoolean(PREF_SIGNATURE_ADDED, false)) {
+            if (sharedPreferences.getBoolean(PREF_SIGNATURE_ADDED, false)) {
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
             } else {
                 startActivity(new Intent(LoginActivity.this, TermsConditionActivity.class));

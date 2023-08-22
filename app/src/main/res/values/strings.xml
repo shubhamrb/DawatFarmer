@@ -8,8 +8,8 @@
     <string name="default_notification_channel_id">my_channel_02</string>
     <string name="t_c" translatable="false"><![CDATA[मैंने <font color=#0029FF>नियम और शर्तों</font> को पढ़ा है और स्वीकार किया है।]]></string>
 
-    <string-array name="resolved_status">
-        <item>अनरेसोल्वेड</item>
+    <string-array name="status">
+        <item>नई</item>
         <item>रेसोल्वेड</item>
     </string-array>
 

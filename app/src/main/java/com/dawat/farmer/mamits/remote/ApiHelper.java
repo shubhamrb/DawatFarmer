@@ -330,7 +330,7 @@ public class ApiHelper {
     public void getAppealList(String token, String status, String type, ResponseListener responseListener) {
         if (call == null) call = new RetrofitBase(true).retrofit.create(RetrofitInterface.class);
 
-        call.getAppealTicketList(token, ApiConstant.GET_APPEAL_LIST_END_POINT + "?resion=" + type + "&status=" + status).enqueue(new Callback<JsonObject>() {
+        call.getAppealTicketList(token, ApiConstant.GET_APPEAL_LIST_END_POINT + "?reason=" + type + "&status=" + status).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> calll, Response<JsonObject> response) {
                 if (response.isSuccessful()) {
