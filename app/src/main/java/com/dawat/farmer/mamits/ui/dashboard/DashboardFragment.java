@@ -1,6 +1,7 @@
 package com.dawat.farmer.mamits.ui.dashboard;
 
 
+import static com.dawat.farmer.mamits.utils.AppConstant.IS_LOGIN;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_KEY_ACCESS_TOKEN;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_KEY_CURRENT_DATE;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_NAME;
@@ -9,6 +10,7 @@ import static com.dawat.farmer.mamits.utils.AppConstant.SHARED_PREF_NAME;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -28,6 +30,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.dawat.farmer.mamits.LoginActivity;
 import com.dawat.farmer.mamits.MainActivity;
 import com.dawat.farmer.mamits.R;
 import com.dawat.farmer.mamits.adapter.BlogsListAdapter;
@@ -124,29 +127,24 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
     }
 
     private void requestLocationPermission() {
-        String[] PERMISSIONS_TO_REQUEST = {
-                android.Manifest.permission.ACCESS_FINE_LOCATION,
-                android.Manifest.permission.ACCESS_COARSE_LOCATION
-        };
+        String[] PERMISSIONS_TO_REQUEST = {android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION};
         requestPermissionLauncher.launch(PERMISSIONS_TO_REQUEST);
     }
 
     private void getLastKnownLocation() {
-        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             requestLocationPermission();
             return;
         }
-        fusedLocationClient.getLastLocation()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful() && task.getResult() != null) {
-                        Location lastLocation = task.getResult();
-                        double latitude = lastLocation.getLatitude();
-                        double longitude = lastLocation.getLongitude();
+        fusedLocationClient.getLastLocation().addOnCompleteListener(task -> {
+            if (task.isSuccessful() && task.getResult() != null) {
+                Location lastLocation = task.getResult();
+                double latitude = lastLocation.getLatitude();
+                double longitude = lastLocation.getLongitude();
 
-                        getCurrentWeather(latitude, longitude);
-                    }
-                });
+                getCurrentWeather(latitude, longitude);
+            }
+        });
     }
 
     private void getCurrentWeather(double latitude, double longitude) {
@@ -218,6 +216,7 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
         binding.recyclerFarmerProfileTab.setItemAnimator(null);
 
         List<Tabs> list = new ArrayList<>();
+        list.add(new Tabs("सपोर्ट", R.drawable.headphone_icon));
         list.add(new Tabs("रिपोर्ट्स", R.drawable.report_icon));
         list.add(new Tabs("समाचार", R.drawable.news_icon));
         list.add(new Tabs("लेख", R.drawable.srp_report_icon));
@@ -280,10 +279,28 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
 
     private void clickListeners() {
         binding.rlUserName.setOnClickListener(v -> {
-            Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_profile);
+            if (sharedPreferences.getBoolean(IS_LOGIN, false)) {
+                Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_profile);
+            } else {
+                try {
+                    getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
+                    getActivity().finishAffinity();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         });
         binding.profileImage.setOnClickListener(v -> {
-            Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_profile);
+            if (sharedPreferences.getBoolean(IS_LOGIN, false)) {
+                Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_profile);
+            } else {
+                try {
+                    getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
+                    getActivity().finishAffinity();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         });
         binding.btnWeather.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
@@ -296,13 +313,40 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
             Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_weather, bundle);
         });
         binding.btnShop.setOnClickListener(v -> {
-            Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_shop);
+            if (sharedPreferences.getBoolean(IS_LOGIN, false)) {
+                Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_shop);
+            } else {
+                try {
+                    getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
+                    getActivity().finishAffinity();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         });
         binding.btnNotification.setOnClickListener(v -> {
-            Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_notifications);
+            if (sharedPreferences.getBoolean(IS_LOGIN, false)) {
+                Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_notifications);
+            } else {
+                try {
+                    getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
+                    getActivity().finishAffinity();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         });
         binding.btnSupport.setOnClickListener(v -> {
-            Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_appeal);
+            if (sharedPreferences.getBoolean(IS_LOGIN, false)) {
+                Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_appeal);
+            } else {
+                try {
+                    getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
+                    getActivity().finishAffinity();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         });
         binding.btnBlog.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
@@ -310,13 +354,40 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
             Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_blogs, bundle);
         });
         binding.btnCart.setOnClickListener(v -> {
-            Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_cart);
+            if (sharedPreferences.getBoolean(IS_LOGIN, false)) {
+                Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_cart);
+            } else {
+                try {
+                    getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
+                    getActivity().finishAffinity();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         });
         binding.btnOrders.setOnClickListener(v -> {
-            Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_orders);
+            if (sharedPreferences.getBoolean(IS_LOGIN, false)) {
+                Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_orders);
+            } else {
+                try {
+                    getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
+                    getActivity().finishAffinity();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         });
         binding.btnProfile.setOnClickListener(v -> {
-            Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_profile);
+            if (sharedPreferences.getBoolean(IS_LOGIN, false)) {
+                Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_profile);
+            } else {
+                try {
+                    getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
+                    getActivity().finishAffinity();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         });
     }
 
@@ -381,15 +452,35 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
         bundle.putString("blog_id", blog_id);
         bundle.putString("title", title);
 
-        Navigation.findNavController(((MainActivity) getContext())
-                .findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_blog_detail, bundle);
+        Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_blog_detail, bundle);
     }
 
     @Override
     public void onTabClick(String tab) {
         switch (tab) {
+            case "सपोर्ट":
+                if (sharedPreferences.getBoolean(IS_LOGIN, false)) {
+                    Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_appeal);
+                } else {
+                    try {
+                        getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
+                        getActivity().finishAffinity();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
             case "रिपोर्ट्स":
-                Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_report);
+                if (sharedPreferences.getBoolean(IS_LOGIN, false)) {
+                    Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_report);
+                } else {
+                    try {
+                        getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
+                        getActivity().finishAffinity();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
                 break;
             case "समाचार":
                 Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_news);
@@ -400,7 +491,16 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
                 Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_blogs, bundle);
                 break;
             case "दूकान":
-                Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_shop);
+                if (sharedPreferences.getBoolean(IS_LOGIN, false)) {
+                    Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_shop);
+                } else {
+                    try {
+                        getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
+                        getActivity().finishAffinity();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
                 break;
         }
     }

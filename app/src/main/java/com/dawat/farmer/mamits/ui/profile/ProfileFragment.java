@@ -5,11 +5,13 @@ import static com.dawat.farmer.mamits.utils.AppConstant.PREF_KEY_CURRENT_DATE;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_PROFILE_IMAGE;
 import static com.dawat.farmer.mamits.utils.AppConstant.SHARED_PREF_NAME;
 
+import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -98,6 +100,19 @@ public class ProfileFragment extends Fragment {
             newBuilder.show();
         });
 
+        binding.btnDownloadAgreement.setOnClickListener(v -> {
+            String fileUrl = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
+            Uri uri = Uri.parse(fileUrl);
+
+            DownloadManager.Request request = new DownloadManager.Request(uri);
+            request.setTitle("File Download"); // Set a title for the download
+            request.setDescription("Downloading file..."); // Set a description
+            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "agreement.pdf"); // Set the destination directory and file name
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED); // Show a notification when the download completes
+            DownloadManager downloadManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
+            long downloadId = downloadManager.enqueue(request);
+
+        });
     }
 
     private void getUserDetails() {

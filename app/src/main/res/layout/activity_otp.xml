@@ -89,7 +89,7 @@
                         android:layout_marginStart="15dp"
                         android:background="@null"
                         android:inputType="phone"
-                        android:hint="1234" />
+                        android:hint="ओटीपी दर्ज करें" />
                 </LinearLayout>
 
                 <androidx.appcompat.widget.AppCompatTextView

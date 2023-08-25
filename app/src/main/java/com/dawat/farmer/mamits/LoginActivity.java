@@ -43,6 +43,9 @@ public class LoginActivity extends AppCompatActivity {
             finishAffinity();
         }
         binding.btnSendOtp.setOnClickListener(v -> sendOtp());
+        binding.btnSkip.setOnClickListener(v -> {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        });
     }
 
     private void sendOtp() {

@@ -1,11 +1,13 @@
 package com.dawat.farmer.mamits.ui.notifications;
 
+import static com.dawat.farmer.mamits.utils.AppConstant.IS_LOGIN;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_KEY_ACCESS_TOKEN;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_KEY_CURRENT_DATE;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_PROFILE_IMAGE;
 import static com.dawat.farmer.mamits.utils.AppConstant.SHARED_PREF_NAME;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +21,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.dawat.farmer.mamits.LoginActivity;
 import com.dawat.farmer.mamits.R;
 import com.dawat.farmer.mamits.adapter.NotificationListAdapter;
 import com.dawat.farmer.mamits.databinding.FragmentNotificationsBinding;
@@ -48,9 +51,18 @@ public class NotificationsFragment extends Fragment {
 
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        progressLoading = new ProgressLoading();
 
         sharedPreferences = getContext().getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        if (!sharedPreferences.getBoolean(IS_LOGIN, false)) {
+            try {
+                getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
+                getActivity().finishAffinity();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        progressLoading = new ProgressLoading();
         strToken = sharedPreferences.getString(PREF_KEY_ACCESS_TOKEN, "");
         String current_date = sharedPreferences.getString(PREF_KEY_CURRENT_DATE, "");
         binding.txtTime.setText(current_date);

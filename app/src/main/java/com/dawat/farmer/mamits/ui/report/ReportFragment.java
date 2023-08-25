@@ -1,10 +1,12 @@
 package com.dawat.farmer.mamits.ui.report;
 
+import static com.dawat.farmer.mamits.utils.AppConstant.IS_LOGIN;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_KEY_ACCESS_TOKEN;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_NAME;
 import static com.dawat.farmer.mamits.utils.AppConstant.SHARED_PREF_NAME;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dawat.farmer.mamits.LoginActivity;
 import com.dawat.farmer.mamits.adapter.SrpStageListAdapter;
 import com.dawat.farmer.mamits.databinding.FragmentReportBinding;
 import com.dawat.farmer.mamits.model.SrpReportModel;
@@ -47,9 +50,17 @@ public class ReportFragment extends Fragment implements SrpStageListAdapter.OnCl
 
         binding = FragmentReportBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        progressLoading = new ProgressLoading();
-
         sharedPreferences = getContext().getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+
+        if (!sharedPreferences.getBoolean(IS_LOGIN, false)) {
+            try {
+                getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
+                getActivity().finishAffinity();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        progressLoading = new ProgressLoading();
         strToken = sharedPreferences.getString(PREF_KEY_ACCESS_TOKEN, "");
         String user_name = sharedPreferences.getString(PREF_NAME, "");
         binding.txtTime.setText(user_name + "'s SRP Reports");

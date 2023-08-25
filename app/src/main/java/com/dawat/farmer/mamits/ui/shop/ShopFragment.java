@@ -1,10 +1,12 @@
 package com.dawat.farmer.mamits.ui.shop;
 
+import static com.dawat.farmer.mamits.utils.AppConstant.IS_LOGIN;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_KEY_ACCESS_TOKEN;
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_KEY_CURRENT_DATE;
 import static com.dawat.farmer.mamits.utils.AppConstant.SHARED_PREF_NAME;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +21,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dawat.farmer.mamits.LoginActivity;
 import com.dawat.farmer.mamits.R;
 import com.dawat.farmer.mamits.adapter.ProductsAdapter;
 import com.dawat.farmer.mamits.databinding.FragmentShopBinding;
@@ -49,9 +52,18 @@ public class ShopFragment extends Fragment implements ProductsAdapter.OnItemClic
 
         binding = FragmentShopBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        sharedPreferences = getContext().getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        if (!sharedPreferences.getBoolean(IS_LOGIN, false)) {
+            try {
+                getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
+                getActivity().finishAffinity();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
         progressLoading = new ProgressLoading();
         spacesItemDecoration = new SpacesItemDecoration(16);
-        sharedPreferences = getContext().getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         strToken = sharedPreferences.getString(PREF_KEY_ACCESS_TOKEN, "");
         String current_date = sharedPreferences.getString(PREF_KEY_CURRENT_DATE, "");
         binding.txtTime.setText(current_date);
@@ -76,7 +88,7 @@ public class ShopFragment extends Fragment implements ProductsAdapter.OnItemClic
         GridLayoutManager manager = new GridLayoutManager(getContext(), 2, RecyclerView.VERTICAL, false);
         binding.recyclerProducts.setLayoutManager(manager);
         binding.recyclerProducts.removeItemDecoration(spacesItemDecoration);
-        productsAdapter = new ProductsAdapter(getContext(), 0,this);
+        productsAdapter = new ProductsAdapter(getContext(), 0, this);
         binding.recyclerProducts.addItemDecoration(spacesItemDecoration);
         binding.recyclerProducts.setAdapter(productsAdapter);
     }

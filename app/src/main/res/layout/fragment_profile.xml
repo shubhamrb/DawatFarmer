@@ -175,11 +175,11 @@
                     android:background="@color/gray" />
 
                 <RelativeLayout
-                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:visibility="gone">
 
                     <ImageView
                         android:id="@+id/language_icon"
@@ -237,6 +237,53 @@
                     android:gravity="center_vertical">
 
                     <ImageView
+                        android:id="@+id/agreement_icon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/file_icon" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="15dp"
+                        android:layout_toEndOf="@+id/agreement_icon"
+                        android:fontFamily="@font/poppins_regular"
+                        android:includeFontPadding="false"
+                        android:text="एग्रीमेंट डाउनलोड करें"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <RelativeLayout
+                        android:id="@+id/btn_download_agreement"
+                        android:layout_width="91dp"
+                        android:layout_height="34dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/prev_next_border_background"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="15dp"
+                            android:src="@drawable/download_icon"
+                            app:tint="@color/black" />
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
                         android:id="@+id/account_status_icon"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
@@ -267,8 +314,8 @@
                             android:id="@+id/txt_account_status"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
                             android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
                             android:fontFamily="@font/poppins_medium"
                             android:includeFontPadding="false"
                             android:text="सक्रिय"
@@ -276,13 +323,13 @@
                             android:textSize="12sp" />
 
                         <ImageView
-                            android:visibility="gone"
                             android:layout_width="13dp"
                             android:layout_height="14dp"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="15dp"
-                            android:src="@drawable/dropdown_arrow" />
+                            android:src="@drawable/dropdown_arrow"
+                            android:visibility="gone" />
                     </RelativeLayout>
 
                 </RelativeLayout>
