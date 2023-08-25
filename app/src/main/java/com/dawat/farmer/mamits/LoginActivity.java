@@ -1,7 +1,6 @@
 package com.dawat.farmer.mamits;
 
 import static com.dawat.farmer.mamits.utils.AppConstant.IS_LOGIN;
-import static com.dawat.farmer.mamits.utils.AppConstant.PREF_SIGNATURE_ADDED;
 import static com.dawat.farmer.mamits.utils.AppConstant.SHARED_PREF_NAME;
 
 import android.content.Context;
@@ -35,11 +34,12 @@ public class LoginActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
 
         if (sharedPreferences.getBoolean(IS_LOGIN, false)) {
-            if (sharedPreferences.getBoolean(PREF_SIGNATURE_ADDED, false)) {
+            /*if (sharedPreferences.getBoolean(PREF_SIGNATURE_ADDED, false)) {
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
             } else {
                 startActivity(new Intent(LoginActivity.this, TermsConditionActivity.class));
-            }
+            }*/
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finishAffinity();
         }
         binding.btnSendOtp.setOnClickListener(v -> sendOtp());
