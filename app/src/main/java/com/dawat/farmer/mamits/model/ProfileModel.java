@@ -36,6 +36,17 @@ public class ProfileModel implements Serializable {
     @SerializedName("ado_number")
     String ado_number;
 
+    @SerializedName("agreement")
+    String agreement;
+
+    public String getAgreement() {
+        return agreement;
+    }
+
+    public void setAgreement(String agreement) {
+        this.agreement = agreement;
+    }
+
     public String getAdo_number() {
         return ado_number;
     }
@@ -129,6 +140,7 @@ public class ProfileModel implements Serializable {
                 ", profile_image='" + profile_image + '\'' +
                 ", coordinatormobile='" + coordinatormobile + '\'' +
                 ", ado_number='" + ado_number + '\'' +
+                ", agreement='" + agreement + '\'' +
                 '}';
     }
 }
