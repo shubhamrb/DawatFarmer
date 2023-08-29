@@ -100,12 +100,12 @@ public class ProfileFragment extends Fragment {
         });
 
         binding.btnDownloadAgreement.setOnClickListener(v -> {
-            String fileUrl = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
-            if (model != null && model.getAgreement() != null && !model.getAgreement().isEmpty()) {
-                fileUrl = model.getAgreement();
+            if (model == null || model.getAgreement() == null || model.getAgreement().isEmpty()) {
+                Toast.makeText(getContext(), "Agreement not found.", Toast.LENGTH_SHORT).show();
+                return;
             }
             Toast.makeText(getContext(), "Downloading...", Toast.LENGTH_SHORT).show();
-            FileDownloader.downloadFile(getContext(), fileUrl, "agreement" + System.currentTimeMillis() + ".pdf");
+            FileDownloader.downloadFile(getContext(), model.getAgreement(), "agreement" + System.currentTimeMillis() + ".pdf");
         });
     }
 

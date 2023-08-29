@@ -6,22 +6,15 @@ import static com.dawat.farmer.mamits.utils.AppConstant.SHARED_PREF_NAME;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
@@ -29,7 +22,6 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.dawat.farmer.mamits.databinding.ActivityMainBinding;
 import com.dawat.farmer.mamits.notification.NotificationService;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -54,9 +46,6 @@ public class MainActivity extends AppCompatActivity implements NavController.OnD
         SimpleDateFormat df = new SimpleDateFormat("dd MMM, yyyy", Locale.getDefault());
         String formattedDate = df.format(c);
         sharedPreferences.edit().putString(PREF_KEY_CURRENT_DATE, formattedDate).apply();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            checkNotificationPermission();
-        }
         try {
             startService(new Intent(this, NotificationService.class));
         } catch (Exception e) {
@@ -67,34 +56,6 @@ public class MainActivity extends AppCompatActivity implements NavController.OnD
         navController.addOnDestinationChangedListener(this);
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
-
-    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
-    private void checkNotificationPermission() {
-        if (ContextCompat.checkSelfPermission(
-                this, android.Manifest.permission.POST_NOTIFICATIONS) ==
-                PackageManager.PERMISSION_GRANTED) {
-
-        } else {
-            // You can directly ask for the permission.
-            requestPermissionLauncher.launch(
-                    android.Manifest.permission.POST_NOTIFICATIONS
-            );
-        }
-    }
-
-    private ActivityResultLauncher<String> requestPermissionLauncher =
-            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-                if (isGranted) {
-                    // Permission is granted. Continue the action or workflow in your
-                    // app.
-                } else {
-                    // Explain to the user that the feature is unavailable because the
-                    // feature requires a permission that the user has denied. At the
-                    // same time, respect the user's decision. Don't link to system
-                    // settings in an effort to convince the user to change their
-                    // decision.
-                }
-            });
 
     @Override
     public void onDestinationChanged(@NonNull NavController navController, @NonNull NavDestination destination, @Nullable Bundle bundle) {

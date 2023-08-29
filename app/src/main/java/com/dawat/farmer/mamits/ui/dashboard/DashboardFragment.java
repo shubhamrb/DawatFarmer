@@ -63,6 +63,7 @@ import java.util.Locale;
 
 public class DashboardFragment extends Fragment implements DashboardCategoryListAdapter.OnClickListener, BlogsListAdapter.OnClickListener, TabListAdapter.OnTabClickListener {
 
+    private String[] PERMISSIONS_TO_REQUEST = {};
     private FragmentDashboardBinding binding;
     private SharedPreferences sharedPreferences;
     private String strToken = "";
@@ -127,12 +128,16 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
     }
 
     private void requestLocationPermission() {
-        String[] PERMISSIONS_TO_REQUEST = {android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION};
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            PERMISSIONS_TO_REQUEST = new String[]{Manifest.permission.POST_NOTIFICATIONS, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+        } else {
+            PERMISSIONS_TO_REQUEST = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+        }
         requestPermissionLauncher.launch(PERMISSIONS_TO_REQUEST);
     }
 
     private void getLastKnownLocation() {
-        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             requestLocationPermission();
             return;
         }
