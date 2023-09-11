@@ -35,4 +35,20 @@ public class ApiConstant {
     public static final String GET_NEWS_DETAIL_END_POINT = AppConstant.PREF_KEY_BASE + "getNewsDetail";
     public static final String SEND_MESSAGES_LIST_END_POINT = AppConstant.PREF_KEY_BASE + "sendMessage";
     public static final String GET_MESSAGES_LIST_END_POINT = AppConstant.PREF_KEY_BASE + "getMessageList";
+    public static final String GET_FARMER_BASIC_DETAILS_END_POINT = AppConstant.PREF_KEY_BASE + "getFarmerDetail";
+    public static final String GET_CROPS_END_POINT = AppConstant.PREF_KEY_BASE + "getFarmCropList";
+    public static final String GET_FARM_FIELD_END_POINT = AppConstant.PREF_KEY_BASE + "getFarmFieldListByFarm";
+    public static final String GET_FARMS_END_POINT = AppConstant.PREF_KEY_BASE + "getFarmList";
+    public static final String GET_LAND_DETAILS_END_POINT = AppConstant.PREF_KEY_BASE + "getFarmLandList";
+    public static final String GET_IRRIGATION_SOURCES_END_POINT = AppConstant.PREF_KEY_BASE + "getFarmIrrigationSourceList";
+    public static final String GET_FERTILIZATION_LIST_END_POINT = AppConstant.PREF_KEY_BASE + "getFarmFertilization";
+    public static final String GET_HARVESTING_END_POINT = AppConstant.PREF_KEY_BASE + "getFarmHarvestingList";
+    public static final String GET_IRRIGATION_LIST_END_POINT = AppConstant.PREF_KEY_BASE + "getFarmIrrigationList";
+    public static final String GET_LABOR_END_POINT = AppConstant.PREF_KEY_BASE + "getFarmLaborList";
+    public static final String GET_MACHINERY_END_POINT = AppConstant.PREF_KEY_BASE + "getFarmMachineryList";
+    public static final String GET_NURSERY_END_POINT = AppConstant.PREF_KEY_BASE + "getFarmNurseryList";
+    public static final String GET_PLANT_PROTECTION_END_POINT = AppConstant.PREF_KEY_BASE + "getFarmPlantProtectionList";
+    public static final String GET_PURCHASING_END_POINT = AppConstant.PREF_KEY_BASE + "getFarmPurchasingList";
+    public static final String GET_TRANSPLANTATION_END_POINT = AppConstant.PREF_KEY_BASE + "getFarmTransplantationList";
+    public static final String GET_TREATMENT_END_POINT = AppConstant.PREF_KEY_BASE + "getFarmTreatmentList";
 }

@@ -107,6 +107,11 @@ public class ProfileFragment extends Fragment {
             Toast.makeText(getContext(), "Downloading...", Toast.LENGTH_SHORT).show();
             FileDownloader.downloadFile(getContext(), model.getAgreement(), "agreement" + System.currentTimeMillis() + ".pdf");
         });
+
+        binding.btnFarmerProfile.setOnClickListener(v -> {
+            Navigation.findNavController(getActivity().findViewById(R.id.nav_host_fragment))
+                    .navigate(R.id.navigation_farmer_profile);
+        });
     }
 
     private void getUserDetails() {
@@ -122,7 +127,7 @@ public class ProfileFragment extends Fragment {
                     binding.txtUsername.setText(model.getName());
                     binding.txtMobile.setText(model.getMobile());
                     binding.txtEmail.setText(model.getEmail());
-                    binding.txtAccountStatus.setText(model.getStatus().equals("1") ? "सक्रिय" : "निष्क्रय");
+                    binding.txtAccountStatus.setText(model.getStatus().equals("1") ? "सक्रिय" : "निष्क्रिय");
                     Glide.with(getContext()).load(model.getProfile_image()).error(R.drawable.person_profile).into(binding.profileImage);
                     sharedPreferences.edit().putString(PREF_PROFILE_IMAGE, model.getProfile_image()).apply();
                 }

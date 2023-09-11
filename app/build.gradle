@@ -73,7 +73,6 @@ dependencies {
     }
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0'
 
-    implementation 'com.google.android.gms:play-services-location:17.1.0'
 
     implementation "com.wonderkiln:camerakit:0.13.5"
     implementation 'com.github.krtkush:LinearTimer:v2.1.1'
@@ -85,6 +84,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics:18.3.7'
     implementation 'com.google.firebase:firebase-analytics:21.3.0'
     implementation 'com.google.firebase:firebase-messaging:23.1.2'
+
+    /*map*/
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

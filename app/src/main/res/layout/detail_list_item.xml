@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="15dp"
+    android:orientation="horizontal">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:alpha="0.5"
+        android:fontFamily="@font/poppins_regular"
+        android:includeFontPadding="false"
+        android:text="Farm Code"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_source"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/poppins_regular"
+        android:includeFontPadding="false"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+</LinearLayout>
+

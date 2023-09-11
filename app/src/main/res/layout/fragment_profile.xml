@@ -334,6 +334,35 @@
 
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:id="@+id/btn_farmer_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:id="@+id/profile_icon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/person_profile"
+                        app:tint="@color/black" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="15dp"
+                        android:layout_toEndOf="@+id/profile_icon"
+                        android:fontFamily="@font/poppins_regular"
+                        android:includeFontPadding="false"
+                        android:text="प्रोफाइल"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                </RelativeLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"

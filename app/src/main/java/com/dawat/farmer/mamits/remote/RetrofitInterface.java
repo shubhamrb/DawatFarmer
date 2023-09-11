@@ -155,4 +155,56 @@ public interface RetrofitInterface {
 
     @GET
     Call<JsonObject> getMessagesList(@Header("Authorization") String accessToken, @Url String fullUrl);
+
+    @POST
+    Call<JsonObject> getFarmerBasicDetails(@Header("Authorization") String accessToken, @Url String fullUrl);
+
+    @GET
+    Call<JsonObject> getCropsList(@Header("Authorization") String accessToken, @Url String fullUrl);
+
+    @FormUrlEncoded
+    @POST
+    Call<JsonObject> getFarmFieldList(@Header("Authorization") String accessToken, @Url String fullUrl, @Field("id") String id);
+
+    @GET
+    Call<JsonObject> getFarmsList(@Header("Authorization") String accessToken, @Url String fullUrl);
+
+    @GET
+    Call<JsonObject> getFarmLandList(@Header("Authorization") String accessToken, @Url String fullUrl);
+
+    @FormUrlEncoded
+    @POST
+    Call<JsonObject> getIrrigationSources(@Header("Authorization") String accessToken,
+                                          @Url String fullUrl, @Field("farm_id") String farm_id,
+                                          @Field("farm_field_id") String farm_field_id);
+
+    @GET
+    Call<JsonObject> getFertilizationList(@Header("Authorization") String accessToken, @Url String fullUrl);
+
+    @GET
+    Call<JsonObject> getHarvestingList(@Header("Authorization") String accessToken, @Url String fullUrl);
+
+    @GET
+    Call<JsonObject> getIrrigationList(@Header("Authorization") String accessToken, @Url String fullUrl);
+
+    @GET
+    Call<JsonObject> getLaborList(@Header("Authorization") String accessToken, @Url String fullUrl);
+
+    @GET
+    Call<JsonObject> getMachineryList(@Header("Authorization") String accessToken, @Url String fullUrl);
+
+    @GET
+    Call<JsonObject> getNurseryList(@Header("Authorization") String accessToken, @Url String fullUrl);
+
+    @GET
+    Call<JsonObject> getPlantProtectionList(@Header("Authorization") String accessToken, @Url String fullUrl);
+
+    @GET
+    Call<JsonObject> getPurchasingList(@Header("Authorization") String accessToken, @Url String fullUrl);
+
+    @GET
+    Call<JsonObject> getTransplantationList(@Header("Authorization") String accessToken, @Url String fullUrl);
+
+    @GET
+    Call<JsonObject> getTreatmentList(@Header("Authorization") String accessToken, @Url String fullUrl);
 }

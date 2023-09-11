@@ -106,4 +106,18 @@
         android:id="@+id/navigation_news_detail"
         android:name="com.dawat.farmer.mamits.ui.news.NewsDetailFragment"
         tools:layout="@layout/fragment_news_detail" />
+
+    <fragment
+        android:id="@+id/navigation_farmer_profile"
+        android:name="com.dawat.farmer.mamits.ui.farmerProfile.FarmerProfileFragment"
+        tools:layout="@layout/fragment_farmer_profile" />
+    <fragment
+        android:id="@+id/navigation_field_details"
+        android:name="com.dawat.farmer.mamits.ui.farmerProfile.farmDetails.FieldDetailsFragment"
+        tools:layout="@layout/fragment_field_details" />
+
+    <fragment
+        android:id="@+id/navigation_farm_fields"
+        android:name="com.dawat.farmer.mamits.ui.farmerProfile.farmDetails.FarmFieldsListFragment"
+        tools:layout="@layout/fragment_farm_fields" />
 </navigation>
