@@ -66,9 +66,12 @@ public class NurseryModel implements Serializable {
     @SerializedName("season")
     String season;
 
+    @SerializedName("comments")
+    CommentsModel comments;
+
     @Override
     public String toString() {
-        return "NurseryModel{" +
+        return "{" +
                 "id='" + id + '\'' +
                 ", seed_type='" + seed_type + '\'' +
                 ", variety='" + variety + '\'' +
@@ -89,7 +92,16 @@ public class NurseryModel implements Serializable {
                 ", crop_name='" + crop_name + '\'' +
                 ", cultivation_year='" + cultivation_year + '\'' +
                 ", season='" + season + '\'' +
+                ", comments=" + comments +
                 '}';
+    }
+
+    public CommentsModel getComments() {
+        return comments;
+    }
+
+    public void setComments(CommentsModel comments) {
+        this.comments = comments;
     }
 
     public String getSeason() {

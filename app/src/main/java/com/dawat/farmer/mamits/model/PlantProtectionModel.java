@@ -78,6 +78,17 @@ public class PlantProtectionModel implements Serializable {
     @SerializedName("measurement")
     String measurement;
 
+    @SerializedName("comments")
+    CommentsModel comments;
+
+    public CommentsModel getComments() {
+        return comments;
+    }
+
+    public void setComments(CommentsModel comments) {
+        this.comments = comments;
+    }
+
     public String getMeasurement() {
         return measurement;
     }
@@ -297,6 +308,7 @@ public class PlantProtectionModel implements Serializable {
                 ", brand_name='" + brand_name + '\'' +
                 ", company_name='" + company_name + '\'' +
                 ", measurement='" + measurement + '\'' +
+                ", comments=" + comments +
                 '}';
     }
 }

@@ -51,6 +51,17 @@ public class LaborModel implements Serializable {
     @SerializedName("farm_field")
     String farm_field;
 
+    @SerializedName("comments")
+    CommentsModel comments;
+
+    public CommentsModel getComments() {
+        return comments;
+    }
+
+    public void setComments(CommentsModel comments) {
+        this.comments = comments;
+    }
+
     public String getGender() {
         return gender;
     }
@@ -189,6 +200,7 @@ public class LaborModel implements Serializable {
                 ", farm_field_id='" + farm_field_id + '\'' +
                 ", farm_name='" + farm_name + '\'' +
                 ", farm_field='" + farm_field + '\'' +
+                ", comments=" + comments +
                 '}';
     }
 }

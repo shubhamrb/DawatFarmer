@@ -54,6 +54,17 @@ public class IrrigationModel implements Serializable {
     @SerializedName("other_name")
     String other_name;
 
+    @SerializedName("comments")
+    CommentsModel comments;
+
+    public CommentsModel getComments() {
+        return comments;
+    }
+
+    public void setComments(CommentsModel comments) {
+        this.comments = comments;
+    }
+
     public String getId() {
         return id;
     }
@@ -201,6 +212,7 @@ public class IrrigationModel implements Serializable {
                 ", farm_field='" + farm_field + '\'' +
                 ", irrigation_sources='" + irrigation_sources + '\'' +
                 ", other_name='" + other_name + '\'' +
+                ", comments=" + comments +
                 '}';
     }
 }

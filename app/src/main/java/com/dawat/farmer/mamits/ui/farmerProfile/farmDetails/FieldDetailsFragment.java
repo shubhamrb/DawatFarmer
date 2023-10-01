@@ -7,6 +7,7 @@ import static com.dawat.farmer.mamits.utils.AppConstant.PREF_NAME;
 import static com.dawat.farmer.mamits.utils.AppConstant.SHARED_PREF_NAME;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -24,11 +25,16 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.dawat.farmer.mamits.R;
 import com.dawat.farmer.mamits.adapter.IrrigationSourcesAdapter;
 import com.dawat.farmer.mamits.databinding.FragmentFieldDetailsBinding;
+import com.dawat.farmer.mamits.model.AttachmentModel;
+import com.dawat.farmer.mamits.model.CommentsModel;
 import com.dawat.farmer.mamits.model.IrrigationSourcesModel;
 import com.dawat.farmer.mamits.model.LandDetailsModel;
 import com.dawat.farmer.mamits.remote.ApiHelper;
+import com.dawat.farmer.mamits.ui.messages.PlayerActivity;
 import com.dawat.farmer.mamits.utils.AppConstant;
 import com.dawat.farmer.mamits.utils.CustomLinearLayoutManager;
 import com.dawat.farmer.mamits.utils.ResponseListener;
@@ -60,6 +66,8 @@ public class FieldDetailsFragment extends Fragment implements OnMapReadyCallback
     List<LatLng> pontos = new ArrayList<>();
     private Polyline polyline;
     private ActivityResultLauncher<String[]> requestPermissionLauncher;
+    private CommentsModel commentsModel;
+    private List<AttachmentModel> imageArray;
 
     public FieldDetailsFragment() {
     }
@@ -72,6 +80,7 @@ public class FieldDetailsFragment extends Fragment implements OnMapReadyCallback
         View root = binding.getRoot();
         binding.txtSubHeading.setText(user_name + " फार्म विवरण");
         Bundle bundle = getArguments();
+        imageArray = new ArrayList<>();
         if (bundle != null) {
             farm_id = bundle.getString("farm_id");
             field_id = bundle.getString("field_id");
@@ -107,6 +116,42 @@ public class FieldDetailsFragment extends Fragment implements OnMapReadyCallback
     }
 
     private void clickListeners() {
+        binding.rlImg1.setOnClickListener(v -> {
+            try {
+                startActivity(new Intent(getContext(), PlayerActivity.class)
+                        .putExtra("file_type", landDetailsModel.getComments().getAttachment().get(0).getFile_type())
+                        .putExtra("filepath", landDetailsModel.getComments().getAttachment().get(0).getAttachment()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        binding.rlImg2.setOnClickListener(v -> {
+            try {
+                startActivity(new Intent(getContext(), PlayerActivity.class)
+                        .putExtra("file_type", landDetailsModel.getComments().getAttachment().get(1).getFile_type())
+                        .putExtra("filepath", landDetailsModel.getComments().getAttachment().get(1).getAttachment()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        binding.rlImg3.setOnClickListener(v -> {
+            try {
+                startActivity(new Intent(getContext(), PlayerActivity.class)
+                        .putExtra("file_type", landDetailsModel.getComments().getAttachment().get(2).getFile_type())
+                        .putExtra("filepath", landDetailsModel.getComments().getAttachment().get(2).getAttachment()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        binding.rlImg4.setOnClickListener(v -> {
+            try {
+                startActivity(new Intent(getContext(), PlayerActivity.class)
+                        .putExtra("file_type", landDetailsModel.getComments().getAttachment().get(3).getFile_type())
+                        .putExtra("filepath", landDetailsModel.getComments().getAttachment().get(3).getAttachment()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     private void setUpIrrigationSourcesAdapter() {
@@ -184,10 +229,72 @@ public class FieldDetailsFragment extends Fragment implements OnMapReadyCallback
             binding.txtLandUnderProject.setText(landDetailsModel.getLand_area_underproject());
             binding.txtLlCost.setText(landDetailsModel.getLl_cost());
 
+            commentsModel = landDetailsModel.getComments();
+            showAttachments();
+
             if (hasLocationPermission()) {
                 showRoutes();
             } else {
                 requestLocationPermission();
+            }
+        }
+    }
+
+    private void showAttachments() {
+        if (commentsModel != null) {
+            if (commentsModel.getComment().size() != 0) {
+                binding.txtComment.setText(commentsModel.getComment().get(0).getComment());
+            }
+            if (commentsModel.getAttachment() != null) {
+                imageArray = commentsModel.getAttachment();
+            }
+        }
+        binding.txtFile1.setImageResource(R.drawable.image_24);
+        binding.txtFile2.setImageResource(R.drawable.image_24);
+        binding.txtFile3.setImageResource(R.drawable.image_24);
+        binding.txtFile4.setImageResource(R.drawable.image_24);
+        binding.rlImg1.setVisibility(View.GONE);
+        binding.rlImg2.setVisibility(View.GONE);
+        binding.rlImg3.setVisibility(View.GONE);
+        binding.rlImg4.setVisibility(View.GONE);
+
+        for (int i = 0; i < imageArray.size(); i++) {
+            if (i == 0) {
+                if (imageArray.get(i).getFile_type().equalsIgnoreCase("png")
+                        || imageArray.get(i).getFile_type().equalsIgnoreCase("jpg")
+                        || imageArray.get(i).getFile_type().equalsIgnoreCase("jpeg")) {
+                    Glide.with(getContext()).load(imageArray.get(i).getAttachment()).into(binding.txtFile1);
+                } else {
+                    binding.txtFile1.setImageResource(R.drawable.video_24);
+                }
+                binding.rlImg1.setVisibility(View.VISIBLE);
+            } else if (i == 1) {
+                if (imageArray.get(i).getFile_type().equalsIgnoreCase("png")
+                        || imageArray.get(i).getFile_type().equalsIgnoreCase("jpg")
+                        || imageArray.get(i).getFile_type().equalsIgnoreCase("jpeg")) {
+                    Glide.with(getContext()).load(imageArray.get(i).getAttachment()).into(binding.txtFile2);
+                } else {
+                    binding.txtFile2.setImageResource(R.drawable.video_24);
+                }
+                binding.rlImg2.setVisibility(View.VISIBLE);
+            } else if (i == 2) {
+                if (imageArray.get(i).getFile_type().equalsIgnoreCase("png")
+                        || imageArray.get(i).getFile_type().equalsIgnoreCase("jpg")
+                        || imageArray.get(i).getFile_type().equalsIgnoreCase("jpeg")) {
+                    Glide.with(getContext()).load(imageArray.get(i).getAttachment()).into(binding.txtFile3);
+                } else {
+                    binding.txtFile3.setImageResource(R.drawable.video_24);
+                }
+                binding.rlImg3.setVisibility(View.VISIBLE);
+            } else if (i == 3) {
+                if (imageArray.get(i).getFile_type().equalsIgnoreCase("png")
+                        || imageArray.get(i).getFile_type().equalsIgnoreCase("jpg")
+                        || imageArray.get(i).getFile_type().equalsIgnoreCase("jpeg")) {
+                    Glide.with(getContext()).load(imageArray.get(i).getAttachment()).into(binding.txtFile4);
+                } else {
+                    binding.txtFile4.setImageResource(R.drawable.video_24);
+                }
+                binding.rlImg4.setVisibility(View.VISIBLE);
             }
         }
     }

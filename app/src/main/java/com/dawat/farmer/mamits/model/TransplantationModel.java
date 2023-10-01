@@ -45,6 +45,17 @@ public class TransplantationModel implements Serializable {
     @SerializedName("transplantation_rate")
     String transplantation_rate;
 
+    @SerializedName("comments")
+    CommentsModel comments;
+
+    public CommentsModel getComments() {
+        return comments;
+    }
+
+    public void setComments(CommentsModel comments) {
+        this.comments = comments;
+    }
+
     public String getTransplantation_rate() {
         return transplantation_rate;
     }
@@ -151,7 +162,7 @@ public class TransplantationModel implements Serializable {
 
     @Override
     public String toString() {
-        return "TransplantationModel{" +
+        return "{" +
                 "id='" + id + '\'' +
                 ", cultivation_year='" + cultivation_year + '\'' +
                 ", season='" + season + '\'' +
@@ -165,6 +176,7 @@ public class TransplantationModel implements Serializable {
                 ", farm_name='" + farm_name + '\'' +
                 ", farm_field='" + farm_field + '\'' +
                 ", transplantation_rate='" + transplantation_rate + '\'' +
+                ", comments=" + comments +
                 '}';
     }
 }

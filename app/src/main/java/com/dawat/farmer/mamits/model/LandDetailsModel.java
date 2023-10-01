@@ -59,6 +59,16 @@ public class LandDetailsModel implements Serializable {
     @SerializedName("district")
     String district;
 
+    @SerializedName("comments")
+    CommentsModel comments;
+
+    public CommentsModel getComments() {
+        return comments;
+    }
+
+    public void setComments(CommentsModel comments) {
+        this.comments = comments;
+    }
 
     public String getId() {
         return id;
@@ -216,6 +226,7 @@ public class LandDetailsModel implements Serializable {
                 ", farm_field='" + farm_field + '\'' +
                 ", state='" + state + '\'' +
                 ", district='" + district + '\'' +
+                ", comments=" + comments +
                 '}';
     }
 }
