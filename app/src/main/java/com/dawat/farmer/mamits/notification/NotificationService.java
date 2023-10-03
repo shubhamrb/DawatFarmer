@@ -83,6 +83,7 @@ public class NotificationService extends FirebaseMessagingService {
 
             Intent resultIntent = new Intent(this, MainActivity.class);
             resultIntent.putExtra("title", type);
+            resultIntent.putExtra("from", "notification");
             resultIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
             PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
@@ -100,6 +101,7 @@ public class NotificationService extends FirebaseMessagingService {
         } else {
             Intent resultIntent = new Intent(this, MainActivity.class);
             resultIntent.putExtra("title", type);
+            resultIntent.putExtra("from", "notification");
             PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0, resultIntent, PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_IMMUTABLE);
             Notification n = new Notification.Builder(this)
                     .setContentTitle(title)

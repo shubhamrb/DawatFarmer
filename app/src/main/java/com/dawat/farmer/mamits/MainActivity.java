@@ -55,6 +55,9 @@ public class MainActivity extends AppCompatActivity implements NavController.OnD
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         navController.addOnDestinationChangedListener(this);
         NavigationUI.setupWithNavController(binding.navView, navController);
+        if (getIntent().hasExtra("from")) {
+            navController.navigate(R.id.navigation_notifications);
+        }
     }
 
     @Override

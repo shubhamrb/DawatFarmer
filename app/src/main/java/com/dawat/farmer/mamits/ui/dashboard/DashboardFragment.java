@@ -439,7 +439,7 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
         if (update != null) {
             binding.viewpager.removeCallbacks(update);
         }
-        binding = null;
+//        binding = null;
     }
 
     @Override
