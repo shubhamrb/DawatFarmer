@@ -4,17 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.wonderkiln.camerakit.CameraView xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/camera"
+    <androidx.camera.view.PreviewView
+        android:id="@+id/previewView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        app:ckCropOutput="true"
-        app:ckFocus="continuous"
-        app:ckJpegQuality="100"
-        app:ckMethod="standard"
-        app:ckPermissions="strict"
-        app:ckVideoQuality="max720p" />
+        />
 
 
     <TextView

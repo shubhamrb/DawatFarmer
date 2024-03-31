@@ -59,6 +59,8 @@ public class IrrigationAdapter extends RecyclerView.Adapter<IrrigationAdapter.Da
             holder.txt_application_method.setText(model.getApplication_method());
             holder.txt_tensio_meter.setText(model.getTensio_meter());
             holder.txt_action_taken.setText(model.getAction_taken());
+            holder.txt_cost.setText("" + model.getCost());
+
             showAttachments(holder, model.getComments());
             holder.rl_img1.setOnClickListener(v -> {
                 try {
@@ -98,6 +100,7 @@ public class IrrigationAdapter extends RecyclerView.Adapter<IrrigationAdapter.Da
             });
         }
     }
+
     private void showAttachments(DashboardListViewHolder holder, CommentsModel commentsModel) {
         if (commentsModel != null) {
             if (commentsModel.getComment().size() != 0) {
@@ -181,11 +184,12 @@ public class IrrigationAdapter extends RecyclerView.Adapter<IrrigationAdapter.Da
     public static class DashboardListViewHolder extends RecyclerView.ViewHolder {
         private AppCompatTextView txt_label, txt_year, txt_season, txt_farm_code, txt_field_code,
                 txt_crop_stage, txt_irrigation_date, txt_irrigation_source, txt_application_place,
-                txt_application_method, txt_tensio_meter, txt_action_taken;
+                txt_application_method, txt_tensio_meter, txt_action_taken, txt_cost;
         private AppCompatTextView txt_comment;
         private ImageView txt_file1, txt_file2, txt_file3, txt_file4;
         private LinearLayout rl_img1, rl_img2, rl_img3, rl_img4;
         public List<AttachmentModel> imageArray;
+
         public DashboardListViewHolder(@NonNull View itemView) {
             super(itemView);
             txt_label = itemView.findViewById(R.id.txt_label);
@@ -200,6 +204,8 @@ public class IrrigationAdapter extends RecyclerView.Adapter<IrrigationAdapter.Da
             txt_application_method = itemView.findViewById(R.id.txt_application_method);
             txt_tensio_meter = itemView.findViewById(R.id.txt_tensio_meter);
             txt_action_taken = itemView.findViewById(R.id.txt_action_taken);
+            txt_cost = itemView.findViewById(R.id.txt_cost);
+
             imageArray = new ArrayList<>();
             txt_comment = itemView.findViewById(R.id.txt_comment);
             txt_file1 = itemView.findViewById(R.id.txt_file1);

@@ -2,7 +2,7 @@ package com.dawat.farmer.mamits.utils;
 
 public class AppConstant {
 
-    public static String PREF_KEY_BASE = "https://mamits.org/dawat/api/farmer/";
+    public static String PREF_KEY_BASE = "https://ltdaawat.in/dawat/api/farmer/";
     public static String LOG_KEY_RESPONSE = "Response : ";
     public static String LOG_KEY_ERROR = "Error : ";
     public static final String PREF_KEY_ACCESS_TOKEN = "PREF_KEY_ACCESS_TOKEN";

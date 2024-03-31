@@ -1477,4 +1477,36 @@ public class ApiHelper {
         });
 
     }
+
+    public void getCocDetail(String token, String farmer_id, ResponseListener responseListener) {
+        if (call == null) call = new RetrofitBase(true).retrofit.create(RetrofitInterface.class);
+
+        call.getCoc(token, ApiConstant.GET_COC_END_POINT, farmer_id).enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> calll, Response<JsonObject> response) {
+                if (response.isSuccessful()) {
+                    if (responseListener != null) responseListener.onSuccess(response.body());
+                } else {
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        ANError anError = new ANError();
+                        anError.setErrorCode(response.code());
+                        anError.setErrorBody(jObjError.toString());
+                        Log.e("Error", jObjError.toString());
+                        if (responseListener != null) responseListener.onFailed(anError);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        if (responseListener != null) responseListener.onFailed(e);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                if (responseListener != null) responseListener.onFailed(t);
+            }
+        });
+
+    }
+
 }

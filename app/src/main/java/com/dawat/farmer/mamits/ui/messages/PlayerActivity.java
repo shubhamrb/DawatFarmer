@@ -45,11 +45,10 @@ public class PlayerActivity extends AppCompatActivity {
         });
 
         path = getIntent().getStringExtra("filepath");
-        String file_type = getIntent().getStringExtra("file_type");
         Log.e("Link", path);
-        if (file_type.equalsIgnoreCase("png")
-                || file_type.equalsIgnoreCase("jpg")
-                || file_type.equalsIgnoreCase("jpeg")) {
+        if (path.toLowerCase().contains("png")
+                || path.toLowerCase().contains("jpg")
+                || path.toLowerCase().contains("jpeg")) {
             playerView.setVisibility(View.GONE);
             image_view.setVisibility(View.VISIBLE);
             Glide.with(this).load(path).into(image_view);

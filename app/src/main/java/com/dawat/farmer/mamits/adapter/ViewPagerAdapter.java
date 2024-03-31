@@ -1,12 +1,11 @@
 package com.dawat.farmer.mamits.adapter;
 
-import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.dawat.farmer.mamits.ui.farmerProfile.CocFragment;
 import com.dawat.farmer.mamits.ui.farmerProfile.basicDetails.BasicDetailsFragment;
 import com.dawat.farmer.mamits.ui.farmerProfile.cropDetails.CropListFragment;
 import com.dawat.farmer.mamits.ui.farmerProfile.farmDetails.FarmListFragment;
@@ -22,7 +21,7 @@ import com.dawat.farmer.mamits.ui.farmerProfile.transplantationDetails.Transplan
 import com.dawat.farmer.mamits.ui.farmerProfile.treatmentDetails.TreatmentListFragment;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
-    private final int PAGE_COUNT = 13;
+    private final int PAGE_COUNT = 14;
     public BasicDetailsFragment basicDetailsFragment;
     public FarmListFragment farmListFragment;
     public CropListFragment cropListFragment;
@@ -36,6 +35,7 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     public PurchaseListFragment purchaseListFragment;
     public MachineryListFragment machineryListFragment;
     public LaborListFragment laborListFragment;
+    public CocFragment cocFragment;
 
     public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
@@ -81,9 +81,12 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
             case 11:
                 machineryListFragment = new MachineryListFragment();
                 return machineryListFragment;
-            default:
+            case 12:
                 laborListFragment = new LaborListFragment();
                 return laborListFragment;
+            default:
+                cocFragment = new CocFragment();
+                return cocFragment;
         }
     }
 

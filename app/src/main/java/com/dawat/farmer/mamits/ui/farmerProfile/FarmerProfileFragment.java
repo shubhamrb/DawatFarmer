@@ -109,6 +109,9 @@ public class FarmerProfileFragment extends Fragment implements FarmerProfileTabL
                 if (currentFragment instanceof LaborListFragment) {
                     currentFragment.onResume();
                 }
+                if (currentFragment instanceof CocFragment) {
+                    currentFragment.onResume();
+                }
             }
         });
     }
@@ -137,6 +140,7 @@ public class FarmerProfileFragment extends Fragment implements FarmerProfileTabL
         list.add(new FarmerProfileTabs("खरीद", R.drawable.bag));
         list.add(new FarmerProfileTabs("मशीनरी", R.drawable.bus_icon));
         list.add(new FarmerProfileTabs("लेबर", R.drawable.person_multi));
+        list.add(new FarmerProfileTabs("खेती की लागत", R.drawable.person_multi));
 
 
         farmerProfileTabListAdapter = new FarmerProfileTabListAdapter(getContext(), this, list);

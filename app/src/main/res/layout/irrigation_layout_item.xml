@@ -382,6 +382,35 @@
             android:alpha="0.5"
             android:fontFamily="@font/poppins_regular"
             android:includeFontPadding="false"
+            android:text="लागत*"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_cost"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_regular"
+            android:includeFontPadding="false"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:alpha="0.5"
+            android:fontFamily="@font/poppins_regular"
+            android:includeFontPadding="false"
             android:text="टिप्पणी"
             android:textColor="@color/black"
             android:textSize="12sp" />

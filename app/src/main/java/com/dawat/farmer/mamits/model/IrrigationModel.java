@@ -33,6 +33,9 @@ public class IrrigationModel implements Serializable {
     @SerializedName("action_taken")
     String action_taken;
 
+    @SerializedName("cost")
+    String cost;
+
     @SerializedName("irrigation_source_id")
     String irrigation_source_id;
 
@@ -56,6 +59,14 @@ public class IrrigationModel implements Serializable {
 
     @SerializedName("comments")
     CommentsModel comments;
+
+    public String getCost() {
+        return cost;
+    }
+
+    public void setCost(String cost) {
+        this.cost = cost;
+    }
 
     public CommentsModel getComments() {
         return comments;
@@ -205,6 +216,7 @@ public class IrrigationModel implements Serializable {
                 ", application_method='" + application_method + '\'' +
                 ", tensio_meter='" + tensio_meter + '\'' +
                 ", action_taken='" + action_taken + '\'' +
+                ", cost='" + cost + '\'' +
                 ", irrigation_source_id='" + irrigation_source_id + '\'' +
                 ", farm_id='" + farm_id + '\'' +
                 ", farm_field_id='" + farm_field_id + '\'' +

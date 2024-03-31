@@ -2,9 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
 
@@ -42,7 +48,15 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+        <activity
+            android:name=".ui.messages.VideoRecorderActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".ui.messages.PlayerActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <provider
             android:name="com.github.dhaval2404.imagepicker.ImagePickerFileProvider"
             android:authorities="${applicationId}.imagepicker.provider"

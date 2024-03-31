@@ -207,4 +207,9 @@ public interface RetrofitInterface {
 
     @GET
     Call<JsonObject> getTreatmentList(@Header("Authorization") String accessToken, @Url String fullUrl);
+
+    @FormUrlEncoded
+    @POST
+    Call<JsonObject> getCoc(@Header("Authorization") String accessToken, @Url String fullUrl,
+                            @Field("farmer_id") String farmer_id);
 }
