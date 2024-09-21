@@ -172,12 +172,12 @@
             android:alpha="0.5"
             android:fontFamily="@font/poppins_regular"
             android:includeFontPadding="false"
-            android:text="संचालन*"
+            android:text="भूमि की तैयारी*"
             android:textColor="@color/black"
             android:textSize="12sp" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txt_operation"
+            android:id="@+id/txt_land_preparation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -188,6 +188,7 @@
             android:textSize="12sp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -201,12 +202,12 @@
             android:alpha="0.5"
             android:fontFamily="@font/poppins_regular"
             android:includeFontPadding="false"
-            android:text="तरीका*"
+            android:text="छिड़काव*"
             android:textColor="@color/black"
             android:textSize="12sp" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txt_Method"
+            android:id="@+id/txt_spray"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -217,6 +218,97 @@
             android:textSize="12sp" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:alpha="0.5"
+            android:fontFamily="@font/poppins_regular"
+            android:includeFontPadding="false"
+            android:text="जुताई की तिथि"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_tillage_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_regular"
+            android:includeFontPadding="false"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:alpha="0.5"
+            android:fontFamily="@font/poppins_regular"
+            android:includeFontPadding="false"
+            android:text="जुताई की गहराई"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_tillage_depth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_regular"
+            android:includeFontPadding="false"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:alpha="0.5"
+            android:fontFamily="@font/poppins_regular"
+            android:includeFontPadding="false"
+            android:text="मृदा उलटाव*"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_soil_inversion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_regular"
+            android:includeFontPadding="false"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -236,96 +328,6 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txt_tool_used"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/poppins_regular"
-            android:includeFontPadding="false"
-            android:text=""
-            android:textColor="@color/black"
-            android:textSize="12sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:alpha="0.5"
-            android:fontFamily="@font/poppins_regular"
-            android:includeFontPadding="false"
-            android:text="लागत/एकड़*"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txt_unit"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/poppins_regular"
-            android:includeFontPadding="false"
-            android:text=""
-            android:textColor="@color/black"
-            android:textSize="12sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:alpha="0.5"
-            android:fontFamily="@font/poppins_regular"
-            android:includeFontPadding="false"
-            android:text="मूल्य (INR*)"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txt_rate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/poppins_regular"
-            android:includeFontPadding="false"
-            android:text=""
-            android:textColor="@color/black"
-            android:textSize="12sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:alpha="0.5"
-            android:fontFamily="@font/poppins_regular"
-            android:includeFontPadding="false"
-            android:text="प्रकार"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txt_type"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -380,12 +382,42 @@
             android:alpha="0.5"
             android:fontFamily="@font/poppins_regular"
             android:includeFontPadding="false"
-            android:text="लागत/एकड़ (INR)*"
+            android:text="भूमि की तैयारी लागत/एकड़*"
             android:textColor="@color/black"
             android:textSize="12sp" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txt_cost_per_acre"
+            android:id="@+id/txt_land_preparation_cost"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_regular"
+            android:includeFontPadding="false"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:alpha="0.5"
+            android:fontFamily="@font/poppins_regular"
+            android:includeFontPadding="false"
+            android:text="छिड़काव लागत/एकड़*"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_spray_cost"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

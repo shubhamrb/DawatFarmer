@@ -17,6 +17,7 @@ import com.dawat.farmer.mamits.R;
 import com.dawat.farmer.mamits.model.AttachmentModel;
 import com.dawat.farmer.mamits.model.CommentsModel;
 import com.dawat.farmer.mamits.model.CropModel;
+import com.dawat.farmer.mamits.model.VarietyModel;
 import com.dawat.farmer.mamits.ui.messages.PlayerActivity;
 
 import java.util.ArrayList;
@@ -44,13 +45,21 @@ public class CropsAdapter extends RecyclerView.Adapter<CropsAdapter.DashboardLis
     public void onBindViewHolder(@NonNull DashboardListViewHolder holder, int position) {
         if (list.size() > 0) {
             CropModel model = list.get(position);
-            holder.txt_label.setText("Crop Details   |   Field " + model.getFarm_field());
+            holder.txt_label.setText("Crop Details");
             holder.txt_year.setText(model.getCultivation_year());
             holder.txt_season.setText(model.getSeason());
-            holder.txt_farm_code.setText(model.getFarm_name());
-            holder.txt_field_code.setText(model.getFarm_field());
             holder.txt_crop_name.setText(model.getName());
-            holder.txt_total_area.setText(model.getCropped_area());
+            holder.txt_total_cropped_area.setText(model.getCropped_area());
+            holder.txt_land_lease.setText(model.getLease_land());
+            holder.txt_land_lease_cost.setText(model.getLease_land_cost());
+            holder.txt_field_area.setText(model.getLand_area());
+            holder.txt_total_project_area.setText(model.getArea_under_project());
+            StringBuilder builder = new StringBuilder();
+            for (VarietyModel variety : model.getVarietyList()) {
+                builder.append(variety.getName()).append(" ");
+            }
+            holder.txt_variety_name.setText(builder.toString().trim().replace(" ", ", "));
+
             showAttachments(holder, model.getComments());
             holder.rl_img1.setOnClickListener(v -> {
                 try {
@@ -171,7 +180,8 @@ public class CropsAdapter extends RecyclerView.Adapter<CropsAdapter.DashboardLis
 
 
     public static class DashboardListViewHolder extends RecyclerView.ViewHolder {
-        private AppCompatTextView txt_label, txt_year, txt_season, txt_farm_code, txt_field_code, txt_crop_name, txt_total_area;
+        private AppCompatTextView txt_label, txt_year, txt_season, txt_crop_name, txt_variety_name,
+                txt_total_cropped_area, txt_land_lease, txt_land_lease_cost, txt_field_area, txt_total_project_area;
         private AppCompatTextView txt_comment;
         private ImageView txt_file1, txt_file2, txt_file3, txt_file4;
         private LinearLayout rl_img1, rl_img2, rl_img3, rl_img4;
@@ -181,10 +191,13 @@ public class CropsAdapter extends RecyclerView.Adapter<CropsAdapter.DashboardLis
             txt_label = itemView.findViewById(R.id.txt_label);
             txt_year = itemView.findViewById(R.id.txt_year);
             txt_season = itemView.findViewById(R.id.txt_season);
-            txt_farm_code = itemView.findViewById(R.id.txt_farm_code);
-            txt_field_code = itemView.findViewById(R.id.txt_field_code);
             txt_crop_name = itemView.findViewById(R.id.txt_crop_name);
-            txt_total_area = itemView.findViewById(R.id.txt_total_area);
+            txt_variety_name = itemView.findViewById(R.id.txt_variety_name);
+            txt_total_cropped_area = itemView.findViewById(R.id.txt_total_cropped_area);
+            txt_land_lease = itemView.findViewById(R.id.txt_land_lease);
+            txt_land_lease_cost = itemView.findViewById(R.id.txt_land_lease_cost);
+            txt_field_area = itemView.findViewById(R.id.txt_field_area);
+            txt_total_project_area = itemView.findViewById(R.id.txt_total_project_area);
             imageArray = new ArrayList<>();
             txt_comment = itemView.findViewById(R.id.txt_comment);
             txt_file1 = itemView.findViewById(R.id.txt_file1);

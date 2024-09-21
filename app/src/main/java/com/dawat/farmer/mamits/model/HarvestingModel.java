@@ -27,6 +27,12 @@ public class HarvestingModel implements Serializable {
     @SerializedName("done_by")
     String done_by;
 
+    @SerializedName("residue_managemeent")
+    String residue_managemeent;
+
+    @SerializedName("reaper_cost")
+    String reaper_cost;
+
     @SerializedName("no_of_labor")
     String no_of_labor;
 
@@ -62,6 +68,22 @@ public class HarvestingModel implements Serializable {
 
     @SerializedName("comments")
     CommentsModel comments;
+
+    public String getReaper_cost() {
+        return reaper_cost;
+    }
+
+    public void setReaper_cost(String reaper_cost) {
+        this.reaper_cost = reaper_cost;
+    }
+
+    public String getResidue_managemeent() {
+        return residue_managemeent;
+    }
+
+    public void setResidue_managemeent(String residue_managemeent) {
+        this.residue_managemeent = residue_managemeent;
+    }
 
     public CommentsModel getComments() {
         return comments;

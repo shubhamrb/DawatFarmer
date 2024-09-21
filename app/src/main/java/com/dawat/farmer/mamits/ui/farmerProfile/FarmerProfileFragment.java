@@ -128,8 +128,8 @@ public class FarmerProfileFragment extends Fragment implements FarmerProfileTabL
 
         List<FarmerProfileTabs> list = new ArrayList<>();
         list.add(new FarmerProfileTabs("सामान्य विवरण", R.drawable.person_profile));
-        list.add(new FarmerProfileTabs("खेत विवरण", R.drawable.golf_icon));
         list.add(new FarmerProfileTabs("फसल विवरण", R.drawable.leaf_icon));
+        list.add(new FarmerProfileTabs("खेत विवरण", R.drawable.golf_icon));
         list.add(new FarmerProfileTabs("नर्सरी", R.drawable.football_icon));
         list.add(new FarmerProfileTabs("इलाज", R.drawable.syringe_icon));
         list.add(new FarmerProfileTabs("ट्रांसप्लांटेशन", R.drawable.dice_icon));

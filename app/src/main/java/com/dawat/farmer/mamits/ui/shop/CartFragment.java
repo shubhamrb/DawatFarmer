@@ -72,7 +72,7 @@ public class CartFragment extends Fragment implements CartAdapter.OnClickQuantit
                 public void onSuccess(JsonObject jsonObject) {
                     progressLoading.hideLoading();
                     Log.e(AppConstant.LOG_KEY_RESPONSE, jsonObject.toString());
-                    Navigation.findNavController(getActivity().findViewById(R.id.nav_host_fragment)).popBackStack(R.id.navigation_shop, false);
+                    Navigation.findNavController(getActivity().findViewById(R.id.nav_host_fragment)).popBackStack(R.id.navigation_shop_list, false);
                 }
 
                 @Override

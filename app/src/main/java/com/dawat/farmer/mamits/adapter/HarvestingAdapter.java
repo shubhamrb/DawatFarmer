@@ -57,16 +57,13 @@ public class HarvestingAdapter extends RecyclerView.Adapter<HarvestingAdapter.Da
             holder.txt_to_date.setText(to_date);
             holder.txt_method_type.setText(model.getMethod_type());
             holder.txt_done_by.setText(model.getDone_by());
+            holder.txt_residue_management.setText(model.getResidue_managemeent());
+            holder.txt_reaper.setText(model.getReaper_cost());
+            holder.txt_no_of_labor.setText(model.getNo_of_labor());
+            holder.txt_cost_per_labor.setText(model.getPer_labor_cost());
 
-            if (model.getDone_by().equalsIgnoreCase("Individual")) {
-                holder.txt_no_of_labor.setText(model.getNo_of_labor());
-                holder.txt_cost_per_labor.setText(model.getPer_labor_cost());
-                holder.ll_individual_options.setVisibility(View.VISIBLE);
-            } else if (model.getDone_by().equalsIgnoreCase("Contract")) {
-                holder.txt_contract_cost.setText(model.getContract_cost());
-                holder.ll_contract_options.setVisibility(View.VISIBLE);
-            }
-            holder.txt_est_area.setText(model.getEstimated_area());
+
+            holder.txt_labor_cost_per_acre.setText(model.getEstimated_area());
             holder.txt_thresher_cost.setText(model.getThresher_cost());
             holder.txt_cleaning_cost.setText(model.getCleaning_cost());
             holder.txt_total_cost.setText(model.getTotal_cost());
@@ -193,9 +190,9 @@ public class HarvestingAdapter extends RecyclerView.Adapter<HarvestingAdapter.Da
 
     public static class DashboardListViewHolder extends RecyclerView.ViewHolder {
         private AppCompatTextView txt_label, txt_year, txt_season, txt_farm_code, txt_field_code,
-                txt_from_date, txt_to_date, txt_method_type, txt_done_by, txt_no_of_labor, txt_cost_per_labor, txt_contract_cost,
-                txt_thresher_cost, txt_cleaning_cost, txt_est_area, txt_total_cost;
-        private LinearLayout ll_individual_options, ll_contract_options;
+                txt_from_date, txt_to_date, txt_method_type, txt_done_by, txt_reaper, txt_residue_management,
+                txt_no_of_labor, txt_cost_per_labor,
+                txt_thresher_cost, txt_cleaning_cost, txt_labor_cost_per_acre, txt_total_cost;
 
         private AppCompatTextView txt_comment;
         private ImageView txt_file1, txt_file2, txt_file3, txt_file4;
@@ -215,13 +212,10 @@ public class HarvestingAdapter extends RecyclerView.Adapter<HarvestingAdapter.Da
             txt_done_by = itemView.findViewById(R.id.txt_done_by);
             txt_no_of_labor = itemView.findViewById(R.id.txt_no_of_labor);
             txt_cost_per_labor = itemView.findViewById(R.id.txt_cost_per_labor);
-            txt_contract_cost = itemView.findViewById(R.id.txt_contract_cost);
             txt_thresher_cost = itemView.findViewById(R.id.txt_thresher_cost);
             txt_cleaning_cost = itemView.findViewById(R.id.txt_cleaning_cost);
-            txt_est_area = itemView.findViewById(R.id.txt_est_area);
+            txt_labor_cost_per_acre = itemView.findViewById(R.id.txt_labor_cost_per_acre);
             txt_total_cost = itemView.findViewById(R.id.txt_total_cost);
-            ll_individual_options = itemView.findViewById(R.id.ll_individual_options);
-            ll_contract_options = itemView.findViewById(R.id.ll_contract_options);
 
             imageArray = new ArrayList<>();
             txt_comment = itemView.findViewById(R.id.txt_comment);

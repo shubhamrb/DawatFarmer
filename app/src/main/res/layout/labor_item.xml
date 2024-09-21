@@ -204,12 +204,12 @@
             android:alpha="0.5"
             android:fontFamily="@font/poppins_regular"
             android:includeFontPadding="false"
-            android:text="लेबर"
+            android:text="पुरुष लागत/एकड़"
             android:textColor="@color/black"
             android:textSize="12sp" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txt_labor"
+            android:id="@+id/txt_male_labor"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -234,12 +234,12 @@
             android:alpha="0.5"
             android:fontFamily="@font/poppins_regular"
             android:includeFontPadding="false"
-            android:text="लिंग"
+            android:text="महिला लागत/एकड़"
             android:textColor="@color/black"
             android:textSize="12sp" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txt_gender"
+            android:id="@+id/txt_female_labor"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

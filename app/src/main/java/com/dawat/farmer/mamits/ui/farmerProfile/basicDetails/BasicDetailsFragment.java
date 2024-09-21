@@ -94,11 +94,16 @@ public class BasicDetailsFragment extends Fragment implements FarmerProfileTabLi
             binding.txtState.setText(farmerBasicDetails.getFk_state().getName());
         if (farmerBasicDetails.getFk_district() != null)
             binding.txtDistrict.setText(farmerBasicDetails.getFk_district().getName());
-        binding.txtTahseel.setText(farmerBasicDetails.getTehseel());
-        binding.txtBlock.setText(farmerBasicDetails.getBlock());
+        if (farmerBasicDetails.getMandi() != null)
+            binding.txtMandi.setText(farmerBasicDetails.getMandi());
+        if (farmerBasicDetails.getTehseel() != null)
+            binding.txtTahseel.setText(farmerBasicDetails.getTehseel());
         binding.txtPinCode.setText(farmerBasicDetails.getPin_code());
-        binding.txtVillageName.setText(farmerBasicDetails.getVillage_name());
+        if (farmerBasicDetails.getVillage_name() != null)
+            binding.txtVillageName.setText(farmerBasicDetails.getVillage_name());
         binding.txtFullAddress.setText(farmerBasicDetails.getFull_address());
+        binding.txtCommissionAgent.setText(farmerBasicDetails.getCommission_agent().toString().replace("[", "").replace("]", ""));
+        binding.txtDealer.setText("" + farmerBasicDetails.getFk_dealer().size() + " Dealer selected");
 
         binding.txtAadhar.setText(farmerBasicDetails.getAadhaar_no());
         binding.txtPan.setText(farmerBasicDetails.getPan_no());

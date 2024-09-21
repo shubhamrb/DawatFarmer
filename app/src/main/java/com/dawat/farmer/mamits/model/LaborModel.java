@@ -21,8 +21,8 @@ public class LaborModel implements Serializable {
     @SerializedName("labour")
     String labour;
 
-    @SerializedName("gender")
-    String gender;
+    @SerializedName("labour_female")
+    String labour_female;
 
     @SerializedName("rate")
     String rate;
@@ -54,20 +54,20 @@ public class LaborModel implements Serializable {
     @SerializedName("comments")
     CommentsModel comments;
 
+    public String getLabour_female() {
+        return labour_female;
+    }
+
+    public void setLabour_female(String labour_female) {
+        this.labour_female = labour_female;
+    }
+
     public CommentsModel getComments() {
         return comments;
     }
 
     public void setComments(CommentsModel comments) {
         this.comments = comments;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     public String getId() {
@@ -190,7 +190,7 @@ public class LaborModel implements Serializable {
                 ", season='" + season + '\'' +
                 ", operation='" + operation + '\'' +
                 ", labour='" + labour + '\'' +
-                ", gender='" + gender + '\'' +
+                ", labour_female='" + labour_female + '\'' +
                 ", rate='" + rate + '\'' +
                 ", days='" + days + '\'' +
                 ", type='" + type + '\'' +

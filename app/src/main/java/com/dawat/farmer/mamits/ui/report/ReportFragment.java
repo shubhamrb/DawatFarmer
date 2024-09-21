@@ -43,7 +43,7 @@ public class ReportFragment extends Fragment implements SrpStageListAdapter.OnCl
     private SharedPreferences sharedPreferences;
     private String strToken = "";
     private ProgressLoading progressLoading;
-    private String currentActiveId = "";
+//    private String currentActiveId = "";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -99,7 +99,7 @@ public class ReportFragment extends Fragment implements SrpStageListAdapter.OnCl
                     int totalReport = jsonObject.get("totalreport").getAsInt();
                     int totalpoints = jsonObject.get("totalpoints").getAsInt();
                     int averagepoints = jsonObject.get("averagepoints").getAsInt();
-                    currentActiveId = jsonObject.get("currentActiveId").getAsString();
+//                    currentActiveId = jsonObject.get("currentActiveId").getAsString();
 
                     binding.txtTotalCount.setText("" + totalReport);
                     binding.txtAvgPoint.setText("Average Points " + averagepoints);

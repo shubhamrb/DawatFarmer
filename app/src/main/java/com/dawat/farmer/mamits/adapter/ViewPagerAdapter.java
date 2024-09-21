@@ -49,11 +49,11 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
                 basicDetailsFragment = new BasicDetailsFragment();
                 return basicDetailsFragment;
             case 1:
-                farmListFragment = new FarmListFragment();
-                return farmListFragment;
-            case 2:
                 cropListFragment = new CropListFragment();
                 return cropListFragment;
+            case 2:
+                farmListFragment = new FarmListFragment();
+                return farmListFragment;
             case 3:
                 nurseryListFragment = new NurseryListFragment();
                 return nurseryListFragment;

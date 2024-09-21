@@ -1,7 +1,6 @@
 package com.dawat.farmer.mamits.ui.farmerProfile;
 
 import static com.dawat.farmer.mamits.utils.AppConstant.PREF_KEY_ACCESS_TOKEN;
-import static com.dawat.farmer.mamits.utils.AppConstant.PREF_KEY_CURRENT_DATE;
 import static com.dawat.farmer.mamits.utils.AppConstant.SHARED_PREF_NAME;
 
 import android.content.Context;
@@ -23,6 +22,7 @@ import com.dawat.farmer.mamits.utils.AppConstant;
 import com.dawat.farmer.mamits.utils.ProgressLoading;
 import com.dawat.farmer.mamits.utils.ResponseListener;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 public class CocFragment extends Fragment {
@@ -40,7 +40,6 @@ public class CocFragment extends Fragment {
         View root = binding.getRoot();
         sharedPreferences = getContext().getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         strToken = sharedPreferences.getString(PREF_KEY_ACCESS_TOKEN, "");
-        String current_date = sharedPreferences.getString(PREF_KEY_CURRENT_DATE, "");
 
         Bundle bundle = getArguments();
         if (bundle != null) {
@@ -57,15 +56,17 @@ public class CocFragment extends Fragment {
     private void getCocDetail() {
         try {
             progressLoading.showLoading(getContext());
-            new ApiHelper().getCocDetail(strToken, farmer_id, new ResponseListener() {
+            new ApiHelper().getCocDetail(strToken, new ResponseListener() {
                 @Override
                 public void onSuccess(JsonObject jsonObject) {
                     progressLoading.hideLoading();
                     Log.e(AppConstant.LOG_KEY_RESPONSE, jsonObject.toString());
-                    CocModel cocModel = new Gson().fromJson(jsonObject.get("total").getAsJsonObject().toString(), CocModel.class);
-
-                    if (cocModel != null) {
-                        setCocDetails(cocModel);
+                    JsonArray jsonArray = jsonObject.get("data").getAsJsonArray();
+                    if (!jsonArray.isEmpty()) {
+                        CocModel cocModel = new Gson().fromJson(jsonArray.get(0).getAsJsonObject().toString(), CocModel.class);
+                        if (cocModel != null) {
+                            setCocDetails(cocModel);
+                        }
                     }
                 }
 
@@ -83,18 +84,17 @@ public class CocFragment extends Fragment {
     }
 
     private void setCocDetails(CocModel cocModel) {
-        binding.txtNursery.setText("₹ " + cocModel.getNurserytotal());
-        binding.txtSeed.setText("₹ " + cocModel.getSeedtreatmenttotal());
-        binding.txtIrrigation.setText("₹ " + cocModel.getIrrigationtotal());
-        binding.txtFertilizer.setText("₹ " + cocModel.getFertilizationtotal());
-        binding.txtPlant.setText("₹ " + cocModel.getPlantprotectiontotal());
-        binding.txtHarvesting.setText("₹ " + cocModel.getHarvestingtotal());
-        binding.txtMachinery.setText("₹ " + cocModel.getMachinerytotal());
-        binding.txtLabour.setText("₹ " + cocModel.getLabourtotal());
-        binding.txtPurchases.setText("₹ " + cocModel.getPurchasingtotal());
-        binding.txtGrossIncome.setText("₹ " + cocModel.getPurchasingtotal());
-        binding.txtTotalCost.setText("₹ " + cocModel.getTotalcost());
-        binding.txtNetTotalIncome.setText("₹ " + cocModel.getNettotalincome());
+        binding.txtNursery.setText("₹ " + cocModel.getNursery_cost());
+        binding.txtSeed.setText("₹ " + cocModel.getSeed_treatment_cost());
+        binding.txtIrrigation.setText("₹ " + cocModel.getIrrigation_cost());
+        binding.txtFertilizer.setText("₹ " + cocModel.getFertilizer_cost());
+        binding.txtPlant.setText("₹ " + cocModel.getPlant_protection_cost());
+        binding.txtHarvesting.setText("₹ " + cocModel.getHarvesting_cost());
+        binding.txtMachinery.setText("₹ " + cocModel.getMachinery_cost());
+        binding.txtLabour.setText("₹ " + cocModel.getLabor_cost());
+        binding.txtTotalCost.setText("₹ " + cocModel.getTotal_cost());
+        binding.txtGrossIncome.setText("₹ " + cocModel.getGross_income());
+        binding.txtNetTotalIncome.setText("₹ " + cocModel.getNet_income());
     }
 
     @Override

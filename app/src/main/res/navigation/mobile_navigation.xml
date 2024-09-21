@@ -16,9 +16,20 @@
         android:name="com.dawat.farmer.mamits.ui.report.ReportFragment"
         android:label="@string/title_report"
         tools:layout="@layout/fragment_report" />
+    <fragment
+        android:id="@+id/navigation_srp_report"
+        android:name="com.dawat.farmer.mamits.ui.report.ReportFragment"
+        android:label="@string/title_report"
+        tools:layout="@layout/fragment_report" />
 
     <fragment
         android:id="@+id/navigation_news"
+        android:name="com.dawat.farmer.mamits.ui.news.NewsFragment"
+        android:label="@string/title_news"
+        tools:layout="@layout/fragment_news" />
+
+    <fragment
+        android:id="@+id/navigation_news_list"
         android:name="com.dawat.farmer.mamits.ui.news.NewsFragment"
         android:label="@string/title_news"
         tools:layout="@layout/fragment_news" />
@@ -30,7 +41,19 @@
         tools:layout="@layout/fragment_shop" />
 
     <fragment
+        android:id="@+id/navigation_shop_list"
+        android:name="com.dawat.farmer.mamits.ui.shop.ShopFragment"
+        android:label="@string/title_shop"
+        tools:layout="@layout/fragment_shop" />
+
+    <fragment
         android:id="@+id/navigation_notifications"
+        android:name="com.dawat.farmer.mamits.ui.notifications.NotificationsFragment"
+        android:label="@string/title_notification"
+        tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_notifications_list"
         android:name="com.dawat.farmer.mamits.ui.notifications.NotificationsFragment"
         android:label="@string/title_notification"
         tools:layout="@layout/fragment_notifications" />

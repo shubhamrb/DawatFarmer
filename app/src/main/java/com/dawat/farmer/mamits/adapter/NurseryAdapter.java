@@ -67,8 +67,6 @@ public class NurseryAdapter extends RecyclerView.Adapter<NurseryAdapter.Dashboar
             holder.txt_date_sowing.setText(sowing_date);
             holder.txt_sown_area.setText(model.getSown_area());
             holder.txt_field_area.setText(model.getField_area());
-            String lc_date = new BeautifyDate().beautifyDate(model.getLc_date(), "yyyy-MM-dd", "dd MMM, yyyy");
-            holder.txt_lc_date.setText(lc_date);
             holder.txt_total_cost.setText(model.getTotal_cost());
 
             showAttachments(holder, model.getComments());
@@ -193,7 +191,7 @@ public class NurseryAdapter extends RecyclerView.Adapter<NurseryAdapter.Dashboar
     public static class DashboardListViewHolder extends RecyclerView.ViewHolder {
         private AppCompatTextView txt_label, txt_crop_name, txt_year, txt_season, txt_farm_code, txt_field_code,
                 txt_seed_type, txt_variety, txt_seed_source, txt_company, txt_seed_used, txt_seed_cost, txt_date_sowing,
-                txt_sown_area, txt_field_area, txt_lc_date, txt_total_cost;
+                txt_sown_area, txt_field_area, txt_total_cost;
         private LinearLayout ll_company_name;
         private AppCompatTextView txt_comment;
         private ImageView txt_file1, txt_file2, txt_file3, txt_file4;
@@ -216,7 +214,6 @@ public class NurseryAdapter extends RecyclerView.Adapter<NurseryAdapter.Dashboar
             txt_date_sowing = itemView.findViewById(R.id.txt_date_sowing);
             txt_sown_area = itemView.findViewById(R.id.txt_sown_area);
             txt_field_area = itemView.findViewById(R.id.txt_field_area);
-            txt_lc_date = itemView.findViewById(R.id.txt_lc_date);
             txt_total_cost = itemView.findViewById(R.id.txt_total_cost);
             ll_company_name = itemView.findViewById(R.id.ll_company_name);
 

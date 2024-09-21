@@ -3,6 +3,7 @@ package com.dawat.farmer.mamits.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class CropModel implements Serializable {
 
@@ -21,6 +22,21 @@ public class CropModel implements Serializable {
     @SerializedName("cropped_area")
     String cropped_area;
 
+    @SerializedName("lease_land")
+    String lease_land;
+
+    @SerializedName("lease_land_cost")
+    String lease_land_cost;
+
+    @SerializedName("land_area")
+    String land_area;
+
+    @SerializedName("area_under_project")
+    String area_under_project;
+
+    @SerializedName("varietyList")
+    List<VarietyModel> varietyList;
+
     @SerializedName("farm_id")
     String farm_id;
 
@@ -35,6 +51,46 @@ public class CropModel implements Serializable {
 
     @SerializedName("comments")
     CommentsModel comments;
+
+    public List<VarietyModel> getVarietyList() {
+        return varietyList;
+    }
+
+    public void setVarietyList(List<VarietyModel> varietyList) {
+        this.varietyList = varietyList;
+    }
+
+    public String getLease_land() {
+        return lease_land;
+    }
+
+    public void setLease_land(String lease_land) {
+        this.lease_land = lease_land;
+    }
+
+    public String getLease_land_cost() {
+        return lease_land_cost;
+    }
+
+    public void setLease_land_cost(String lease_land_cost) {
+        this.lease_land_cost = lease_land_cost;
+    }
+
+    public String getLand_area() {
+        return land_area;
+    }
+
+    public void setLand_area(String land_area) {
+        this.land_area = land_area;
+    }
+
+    public String getArea_under_project() {
+        return area_under_project;
+    }
+
+    public void setArea_under_project(String area_under_project) {
+        this.area_under_project = area_under_project;
+    }
 
     public CommentsModel getComments() {
         return comments;

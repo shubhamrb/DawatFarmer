@@ -319,7 +319,7 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
         });
         binding.btnShop.setOnClickListener(v -> {
             if (sharedPreferences.getBoolean(IS_LOGIN, false)) {
-                Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_shop);
+                Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_shop_list);
             } else {
                 try {
                     getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
@@ -331,7 +331,7 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
         });
         binding.btnNotification.setOnClickListener(v -> {
             if (sharedPreferences.getBoolean(IS_LOGIN, false)) {
-                Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_notifications);
+                Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_notifications_list);
             } else {
                 try {
                     getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
@@ -477,7 +477,7 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
                 break;
             case "रिपोर्ट्स":
                 if (sharedPreferences.getBoolean(IS_LOGIN, false)) {
-                    Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_report);
+                    Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_srp_report);
                 } else {
                     try {
                         getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
@@ -488,7 +488,7 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
                 }
                 break;
             case "समाचार":
-                Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_news);
+                Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_news_list);
                 break;
             case "लेख":
                 Bundle bundle = new Bundle();
@@ -497,7 +497,7 @@ public class DashboardFragment extends Fragment implements DashboardCategoryList
                 break;
             case "दूकान":
                 if (sharedPreferences.getBoolean(IS_LOGIN, false)) {
-                    Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_shop);
+                    Navigation.findNavController(((MainActivity) getContext()).findViewById(R.id.nav_host_fragment)).navigate(R.id.navigation_shop_list);
                 } else {
                     try {
                         getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));

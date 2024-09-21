@@ -1478,10 +1478,10 @@ public class ApiHelper {
 
     }
 
-    public void getCocDetail(String token, String farmer_id, ResponseListener responseListener) {
+    public void getCocDetail(String token, ResponseListener responseListener) {
         if (call == null) call = new RetrofitBase(true).retrofit.create(RetrofitInterface.class);
 
-        call.getCoc(token, ApiConstant.GET_COC_END_POINT, farmer_id).enqueue(new Callback<JsonObject>() {
+        call.getCoc(token, ApiConstant.GET_COC_END_POINT).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> calll, Response<JsonObject> response) {
                 if (response.isSuccessful()) {

@@ -3,6 +3,7 @@ package com.dawat.farmer.mamits.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class FarmerBasicDetails implements Serializable {
 
@@ -54,6 +55,9 @@ public class FarmerBasicDetails implements Serializable {
     @SerializedName("tehseel")
     String tehseel= "";
 
+    @SerializedName("mandi")
+    String mandi= "";
+
     @SerializedName("pin_code")
     String pin_code= "";
 
@@ -92,6 +96,36 @@ public class FarmerBasicDetails implements Serializable {
 
     @SerializedName("bank_passbook_photo")
     String bank_passbook_photo= "";
+
+    @SerializedName("fk_dealer")
+    List<DealerModel> fk_dealer;
+
+    @SerializedName("commission_agent")
+    List<String> commission_agent;
+
+    public List<DealerModel> getFk_dealer() {
+        return fk_dealer;
+    }
+
+    public void setFk_dealer(List<DealerModel> fk_dealer) {
+        this.fk_dealer = fk_dealer;
+    }
+
+    public List<String> getCommission_agent() {
+        return commission_agent;
+    }
+
+    public void setCommission_agent(List<String> commission_agent) {
+        this.commission_agent = commission_agent;
+    }
+
+    public String getMandi() {
+        return mandi;
+    }
+
+    public void setMandi(String mandi) {
+        this.mandi = mandi;
+    }
 
     public String getGender() {
         return gender;
@@ -325,38 +359,4 @@ public class FarmerBasicDetails implements Serializable {
         this.bank_passbook_photo = bank_passbook_photo;
     }
 
-    @Override
-    public String toString() {
-        return "{" +
-                "id='" + id + '\'' +
-                ", farmer_code='" + farmer_code + '\'' +
-                ", farmer_type='" + farmer_type + '\'' +
-                ", father_name='" + father_name + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", mobile='" + mobile + '\'' +
-                ", gender='" + gender + '\'' +
-                ", profile_image='" + profile_image + '\'' +
-                ", created_at='" + created_at + '\'' +
-                ", status='" + status + '\'' +
-                ", fk_country=" + fk_country +
-                ", fk_state=" + fk_state +
-                ", fk_district=" + fk_district +
-                ", block='" + block + '\'' +
-                ", tehseel='" + tehseel + '\'' +
-                ", pin_code='" + pin_code + '\'' +
-                ", village_name='" + village_name + '\'' +
-                ", full_address='" + full_address + '\'' +
-                ", aadhaar_no='" + aadhaar_no + '\'' +
-                ", pan_no='" + pan_no + '\'' +
-                ", bank_name='" + bank_name + '\'' +
-                ", bank_account_no='" + bank_account_no + '\'' +
-                ", ifsc_code='" + ifsc_code + '\'' +
-                ", branch='" + branch + '\'' +
-                ", aadhaar_photo_front='" + aadhaar_photo_front + '\'' +
-                ", aadhaar_photo_back='" + aadhaar_photo_back + '\'' +
-                ", pan_photo='" + pan_photo + '\'' +
-                ", bank_passbook_photo='" + bank_passbook_photo + '\'' +
-                '}';
-    }
 }

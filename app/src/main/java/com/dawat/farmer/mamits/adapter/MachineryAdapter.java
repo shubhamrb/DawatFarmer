@@ -18,6 +18,7 @@ import com.dawat.farmer.mamits.model.AttachmentModel;
 import com.dawat.farmer.mamits.model.CommentsModel;
 import com.dawat.farmer.mamits.model.MachineryModel;
 import com.dawat.farmer.mamits.ui.messages.PlayerActivity;
+import com.dawat.farmer.mamits.utils.BeautifyDate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,14 +51,16 @@ public class MachineryAdapter extends RecyclerView.Adapter<MachineryAdapter.Dash
             holder.txt_season.setText(model.getSeason());
             holder.txt_farm_code.setText(model.getFarm_name());
             holder.txt_field_code.setText(model.getFarm_field());
-            holder.txt_operation.setText(model.getOperation());
-            holder.txt_Method.setText(model.getMethod());
+            holder.txt_land_preparation.setText(model.getLand_preparation());
+            holder.txt_spray.setText(model.getSpray());
+            String date = new BeautifyDate().beautifyDate(model.getTillage_date(), "yyyy-MM-dd", "dd MMM, yyyy");
+            holder.txt_tillage_date.setText(date);
+            holder.txt_tillage_depth.setText(model.getDepth());
+            holder.txt_soil_inversion.setText(model.getSoil_inversion());
             holder.txt_tool_used.setText(model.getTool_used());
-            holder.txt_unit.setText(model.getUnits());
-            holder.txt_rate.setText(model.getRate());
-            holder.txt_type.setText(model.getType_owned());
+            holder.txt_land_preparation_cost.setText(model.getLand_preparation_cost());
+            holder.txt_spray_cost.setText(model.getSpray_cost());
             holder.txt_machine.setText(model.getMachine());
-            holder.txt_cost_per_acre.setText(model.getCost());
             holder.txt_total_cost.setText(model.getTotal_cost());
 
             showAttachments(holder, model.getComments());
@@ -99,6 +102,7 @@ public class MachineryAdapter extends RecyclerView.Adapter<MachineryAdapter.Dash
             });
         }
     }
+
     private void showAttachments(DashboardListViewHolder holder, CommentsModel commentsModel) {
         if (commentsModel != null) {
             if (commentsModel.getComment().size() != 0) {
@@ -181,12 +185,14 @@ public class MachineryAdapter extends RecyclerView.Adapter<MachineryAdapter.Dash
 
     public static class DashboardListViewHolder extends RecyclerView.ViewHolder {
         private AppCompatTextView txt_label, txt_year, txt_season, txt_farm_code, txt_field_code,
-                txt_operation, txt_Method, txt_tool_used, txt_unit, txt_rate, txt_type, txt_machine, txt_cost_per_acre, txt_total_cost;
+                txt_land_preparation, txt_spray, txt_tillage_date, txt_tillage_depth,
+                txt_soil_inversion, txt_tool_used, txt_land_preparation_cost, txt_spray_cost, txt_machine, txt_total_cost;
 
         private AppCompatTextView txt_comment;
         private ImageView txt_file1, txt_file2, txt_file3, txt_file4;
         private LinearLayout rl_img1, rl_img2, rl_img3, rl_img4;
         public List<AttachmentModel> imageArray;
+
         public DashboardListViewHolder(@NonNull View itemView) {
             super(itemView);
             txt_label = itemView.findViewById(R.id.txt_label);
@@ -194,14 +200,15 @@ public class MachineryAdapter extends RecyclerView.Adapter<MachineryAdapter.Dash
             txt_season = itemView.findViewById(R.id.txt_season);
             txt_farm_code = itemView.findViewById(R.id.txt_farm_code);
             txt_field_code = itemView.findViewById(R.id.txt_field_code);
-            txt_operation = itemView.findViewById(R.id.txt_operation);
-            txt_Method = itemView.findViewById(R.id.txt_Method);
+            txt_land_preparation = itemView.findViewById(R.id.txt_land_preparation);
+            txt_spray = itemView.findViewById(R.id.txt_spray);
+            txt_tillage_date = itemView.findViewById(R.id.txt_tillage_date);
+            txt_tillage_depth = itemView.findViewById(R.id.txt_tillage_depth);
+            txt_soil_inversion = itemView.findViewById(R.id.txt_soil_inversion);
             txt_tool_used = itemView.findViewById(R.id.txt_tool_used);
-            txt_unit = itemView.findViewById(R.id.txt_unit);
-            txt_type = itemView.findViewById(R.id.txt_type);
-            txt_rate = itemView.findViewById(R.id.txt_rate);
+            txt_land_preparation_cost = itemView.findViewById(R.id.txt_land_preparation_cost);
+            txt_spray_cost = itemView.findViewById(R.id.txt_spray_cost);
             txt_machine = itemView.findViewById(R.id.txt_machine);
-            txt_cost_per_acre = itemView.findViewById(R.id.txt_cost_per_acre);
             txt_total_cost = itemView.findViewById(R.id.txt_total_cost);
 
             imageArray = new ArrayList<>();

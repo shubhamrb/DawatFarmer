@@ -45,20 +45,21 @@ public class PurchasingAdapter extends RecyclerView.Adapter<PurchasingAdapter.Da
     public void onBindViewHolder(@NonNull DashboardListViewHolder holder, int position) {
         if (list.size() > 0) {
             PurchasingModel model = list.get(position);
-            holder.txt_label.setText("Purchasing Details   |\nField " + model.getFarm_field());
+            holder.txt_label.setText("Purchasing Details");
 
             holder.txt_year.setText(model.getCultivation_year());
             holder.txt_season.setText(model.getSeason());
             holder.txt_farm_code.setText(model.getFarm_name());
-            holder.txt_field_code.setText(model.getFarm_field());
             String date = new BeautifyDate().beautifyDate(model.getDate(), "yyyy-MM-dd", "dd MMM, yyyy");
             holder.txt_date.setText(date);
-            holder.txt_bill_no.setText(model.getBill_no());
-            holder.txt_qty.setText(model.getQty());
+            holder.txt_tr_no.setText(model.getTrno());
+            holder.txt_qty_procured.setText(model.getQuantity_procured());
+            holder.txt_qty_rejected.setText(model.getQuantity_rejected());
+            holder.txt_reason_for_rejection.setText(model.getReason_for_rejection());
             holder.txt_rate.setText(model.getRate());
-            holder.txt_area.setText(model.getArea());
-            holder.txt_total_other.setText(model.getTotal_other());
-            holder.txt_total_income.setText(model.getTotal_income());
+            holder.txt_acre_arrived.setText(model.getArea());
+            holder.txt_buyer.setText(model.getBuyer());
+
             showAttachments(holder, model.getComments());
             holder.rl_img1.setOnClickListener(v -> {
                 try {
@@ -179,8 +180,9 @@ public class PurchasingAdapter extends RecyclerView.Adapter<PurchasingAdapter.Da
 
 
     public static class DashboardListViewHolder extends RecyclerView.ViewHolder {
-        private AppCompatTextView txt_label, txt_year, txt_season, txt_farm_code, txt_field_code,
-                txt_date, txt_bill_no, txt_qty, txt_rate, txt_area, txt_total_other, txt_total_income;
+        private AppCompatTextView txt_label, txt_year, txt_season, txt_farm_code,
+                txt_date, txt_tr_no, txt_qty_procured, txt_qty_rejected, txt_reason_for_rejection,
+                txt_rate, txt_acre_arrived, txt_buyer;
         private AppCompatTextView txt_comment;
         private ImageView txt_file1, txt_file2, txt_file3, txt_file4;
         private LinearLayout rl_img1, rl_img2, rl_img3, rl_img4;
@@ -191,14 +193,14 @@ public class PurchasingAdapter extends RecyclerView.Adapter<PurchasingAdapter.Da
             txt_year = itemView.findViewById(R.id.txt_year);
             txt_season = itemView.findViewById(R.id.txt_season);
             txt_farm_code = itemView.findViewById(R.id.txt_farm_code);
-            txt_field_code = itemView.findViewById(R.id.txt_field_code);
             txt_date = itemView.findViewById(R.id.txt_date);
-            txt_bill_no = itemView.findViewById(R.id.txt_bill_no);
-            txt_qty = itemView.findViewById(R.id.txt_qty);
+            txt_tr_no = itemView.findViewById(R.id.txt_tr_no);
+            txt_qty_procured = itemView.findViewById(R.id.txt_qty_procured);
+            txt_qty_rejected = itemView.findViewById(R.id.txt_qty_rejected);
+            txt_reason_for_rejection = itemView.findViewById(R.id.txt_reason_for_rejection);
             txt_rate = itemView.findViewById(R.id.txt_rate);
-            txt_area = itemView.findViewById(R.id.txt_area);
-            txt_total_other = itemView.findViewById(R.id.txt_total_other);
-            txt_total_income = itemView.findViewById(R.id.txt_total_income);
+            txt_acre_arrived = itemView.findViewById(R.id.txt_acre_arrived);
+            txt_buyer = itemView.findViewById(R.id.txt_buyer);
 
             imageArray = new ArrayList<>();
             txt_comment = itemView.findViewById(R.id.txt_comment);

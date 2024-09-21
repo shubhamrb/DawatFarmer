@@ -541,12 +541,12 @@
                         android:alpha="0.5"
                         android:fontFamily="@font/poppins_regular"
                         android:includeFontPadding="false"
-                        android:text="तहसील"
+                        android:text="मंडी"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/txt_tahseel"
+                        android:id="@+id/txt_mandi"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -557,6 +557,7 @@
                         android:textSize="12sp" />
 
                 </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -571,12 +572,12 @@
                         android:alpha="0.5"
                         android:fontFamily="@font/poppins_regular"
                         android:includeFontPadding="false"
-                        android:text="ब्लाक"
+                        android:text="तहसील"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/txt_block"
+                        android:id="@+id/txt_tahseel"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -667,6 +668,65 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txt_full_address"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:includeFontPadding="false"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:alpha="0.5"
+                        android:fontFamily="@font/poppins_regular"
+                        android:includeFontPadding="false"
+                        android:text="कमीशन एजेंट"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txt_commission_agent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:includeFontPadding="false"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:alpha="0.5"
+                        android:fontFamily="@font/poppins_regular"
+                        android:includeFontPadding="false"
+                        android:text="डीलर"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txt_dealer"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

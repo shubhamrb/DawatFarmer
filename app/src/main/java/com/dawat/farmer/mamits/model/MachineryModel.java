@@ -54,8 +54,85 @@ public class MachineryModel implements Serializable {
     @SerializedName("farm_field")
     String farm_field;
 
+    @SerializedName("land_preparation")
+    String land_preparation;
+
+    @SerializedName("spray")
+    String spray;
+
+    @SerializedName("land_preparation_cost")
+    String land_preparation_cost;
+
+    @SerializedName("spray_cost")
+    String spray_cost;
+
+    @SerializedName("tillage_date")
+    String tillage_date;
+
+    @SerializedName("depth")
+    String depth;
+
+    @SerializedName("soil_inversion")
+    String soil_inversion;
+
     @SerializedName("comments")
     CommentsModel comments;
+
+    public String getLand_preparation() {
+        return land_preparation;
+    }
+
+    public void setLand_preparation(String land_preparation) {
+        this.land_preparation = land_preparation;
+    }
+
+    public String getSpray() {
+        return spray;
+    }
+
+    public void setSpray(String spray) {
+        this.spray = spray;
+    }
+
+    public String getLand_preparation_cost() {
+        return land_preparation_cost;
+    }
+
+    public void setLand_preparation_cost(String land_preparation_cost) {
+        this.land_preparation_cost = land_preparation_cost;
+    }
+
+    public String getSpray_cost() {
+        return spray_cost;
+    }
+
+    public void setSpray_cost(String spray_cost) {
+        this.spray_cost = spray_cost;
+    }
+
+    public String getTillage_date() {
+        return tillage_date;
+    }
+
+    public void setTillage_date(String tillage_date) {
+        this.tillage_date = tillage_date;
+    }
+
+    public String getDepth() {
+        return depth;
+    }
+
+    public void setDepth(String depth) {
+        this.depth = depth;
+    }
+
+    public String getSoil_inversion() {
+        return soil_inversion;
+    }
+
+    public void setSoil_inversion(String soil_inversion) {
+        this.soil_inversion = soil_inversion;
+    }
 
     public CommentsModel getComments() {
         return comments;

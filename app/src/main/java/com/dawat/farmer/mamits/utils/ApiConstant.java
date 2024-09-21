@@ -51,6 +51,6 @@ public class ApiConstant {
     public static final String GET_PURCHASING_END_POINT = AppConstant.PREF_KEY_BASE + "getFarmPurchasingList";
     public static final String GET_TRANSPLANTATION_END_POINT = AppConstant.PREF_KEY_BASE + "getFarmTransplantationList";
     public static final String GET_TREATMENT_END_POINT = AppConstant.PREF_KEY_BASE + "getFarmTreatmentList";
-    public static final String GET_COC_END_POINT = AppConstant.PREF_KEY_BASE + "costOfcultivation";
+    public static final String GET_COC_END_POINT = AppConstant.PREF_KEY_BASE + "getFarmCultivationList";
 
 }

@@ -231,7 +231,7 @@
             android:alpha="0.5"
             android:fontFamily="@font/poppins_regular"
             android:includeFontPadding="false"
-            android:text="मात्रा(KG/g)"
+            android:text="मात्रा(Kg of seed)"
             android:textColor="@color/black"
             android:textSize="12sp" />
 
@@ -261,7 +261,7 @@
             android:alpha="0.5"
             android:fontFamily="@font/poppins_regular"
             android:includeFontPadding="false"
-            android:text="माप"
+            android:text="माप इकाई"
             android:textColor="@color/black"
             android:textSize="12sp" />
 
@@ -321,7 +321,7 @@
             android:alpha="0.5"
             android:fontFamily="@font/poppins_regular"
             android:includeFontPadding="false"
-            android:text="लागत/ग्राम"
+            android:text="लागत/इकाई"
             android:textColor="@color/black"
             android:textSize="12sp" />
 

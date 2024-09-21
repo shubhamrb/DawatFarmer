@@ -291,7 +291,7 @@
             android:alpha="0.5"
             android:fontFamily="@font/poppins_regular"
             android:includeFontPadding="false"
-            android:text="में मापें*"
+            android:text="माप इकाई*"
             android:textColor="@color/black"
             android:textSize="12sp" />
 
@@ -321,7 +321,7 @@
             android:alpha="0.5"
             android:fontFamily="@font/poppins_regular"
             android:includeFontPadding="false"
-            android:text="लागत (INR)*"
+            android:text="लागत/इकाई (INR)*"
             android:textColor="@color/black"
             android:textSize="12sp" />
 

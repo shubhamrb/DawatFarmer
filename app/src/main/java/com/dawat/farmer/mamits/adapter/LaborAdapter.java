@@ -51,8 +51,8 @@ public class LaborAdapter extends RecyclerView.Adapter<LaborAdapter.DashboardLis
             holder.txt_farm_code.setText(model.getFarm_name());
             holder.txt_field_code.setText(model.getFarm_field());
             holder.txt_operation.setText(model.getOperation());
-            holder.txt_labor.setText(model.getLabour());
-            holder.txt_gender.setText("" + model.getGender());
+            holder.txt_male_labor.setText(model.getLabour());
+            holder.txt_female_labor.setText(model.getLabour_female());
             holder.txt_days.setText(model.getDays());
             holder.txt_rate.setText(model.getRate());
             holder.txt_type.setText(model.getType());
@@ -181,7 +181,7 @@ public class LaborAdapter extends RecyclerView.Adapter<LaborAdapter.DashboardLis
 
     public static class DashboardListViewHolder extends RecyclerView.ViewHolder {
         private AppCompatTextView txt_label, txt_year, txt_season, txt_farm_code, txt_field_code,
-                txt_operation, txt_labor, txt_gender, txt_rate, txt_days, txt_type, txt_cost_per_acre, txt_total_cost;
+                txt_operation, txt_male_labor, txt_female_labor, txt_rate, txt_days, txt_type, txt_cost_per_acre, txt_total_cost;
         private AppCompatTextView txt_comment;
         private ImageView txt_file1, txt_file2, txt_file3, txt_file4;
         private LinearLayout rl_img1, rl_img2, rl_img3, rl_img4;
@@ -195,8 +195,8 @@ public class LaborAdapter extends RecyclerView.Adapter<LaborAdapter.DashboardLis
             txt_farm_code = itemView.findViewById(R.id.txt_farm_code);
             txt_field_code = itemView.findViewById(R.id.txt_field_code);
             txt_operation = itemView.findViewById(R.id.txt_operation);
-            txt_labor = itemView.findViewById(R.id.txt_labor);
-            txt_gender = itemView.findViewById(R.id.txt_gender);
+            txt_male_labor = itemView.findViewById(R.id.txt_male_labor);
+            txt_female_labor = itemView.findViewById(R.id.txt_female_labor);
             txt_days = itemView.findViewById(R.id.txt_days);
             txt_rate = itemView.findViewById(R.id.txt_rate);
             txt_type = itemView.findViewById(R.id.txt_type);

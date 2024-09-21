@@ -6,124 +6,190 @@ import java.io.Serializable;
 
 public class CocModel implements Serializable {
 
-    @SerializedName("plantprotectiontotal")
-    float plantprotectiontotal;
 
-    @SerializedName("fertilizationtotal")
-    float fertilizationtotal;
+    @SerializedName("id")
+    String id;
 
-    @SerializedName("labourtotal")
-    float labourtotal;
+    @SerializedName("nursery_cost")
+    String nursery_cost;
 
-    @SerializedName("machinerytotal")
-    float machinerytotal;
+    @SerializedName("seed_treatment_cost")
+    String seed_treatment_cost;
 
-    @SerializedName("nurserytotal")
-    float nurserytotal;
+    @SerializedName("irrigation_cost")
+    String irrigation_cost;
 
-    @SerializedName("harvestingtotal")
-    float harvestingtotal;
+    @SerializedName("fertilizer_cost")
+    String fertilizer_cost;
 
-    @SerializedName("irrigationtotal")
-    float irrigationtotal;
+    @SerializedName("plant_protection_cost")
+    String plant_protection_cost;
 
-    @SerializedName("seedtreatmenttotal")
-    float seedtreatmenttotal;
+    @SerializedName("harvesting_cost")
+    String harvesting_cost;
 
-    @SerializedName("purchasingtotal")
-    float purchasingtotal;
+    @SerializedName("machinery_cost")
+    String machinery_cost;
 
-    @SerializedName("totalcost")
-    String totalcost;
+    @SerializedName("labor_cost")
+    String labor_cost;
 
-    @SerializedName("nettotalincome")
-    String nettotalincome;
+    @SerializedName("other_cost")
+    String other_cost;
 
-    public String getTotalcost() {
-        return totalcost;
+    @SerializedName("total_cost")
+    String total_cost;
+
+    @SerializedName("gross_income")
+    String gross_income;
+
+    @SerializedName("other_income")
+    String other_income;
+
+    @SerializedName("total_income")
+    String total_income;
+
+    @SerializedName("net_income")
+    String net_income;
+
+    public String getId() {
+        return id;
     }
 
-    public void setTotalcost(String totalcost) {
-        this.totalcost = totalcost;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getNettotalincome() {
-        return nettotalincome;
+    public String getNursery_cost() {
+        return nursery_cost;
     }
 
-    public void setNettotalincome(String nettotalincome) {
-        this.nettotalincome = nettotalincome;
+    public void setNursery_cost(String nursery_cost) {
+        this.nursery_cost = nursery_cost;
     }
 
-    public float getPlantprotectiontotal() {
-        return plantprotectiontotal;
+    public String getSeed_treatment_cost() {
+        return seed_treatment_cost;
     }
 
-    public void setPlantprotectiontotal(float plantprotectiontotal) {
-        this.plantprotectiontotal = plantprotectiontotal;
+    public void setSeed_treatment_cost(String seed_treatment_cost) {
+        this.seed_treatment_cost = seed_treatment_cost;
     }
 
-    public float getFertilizationtotal() {
-        return fertilizationtotal;
+    public String getIrrigation_cost() {
+        return irrigation_cost;
     }
 
-    public void setFertilizationtotal(float fertilizationtotal) {
-        this.fertilizationtotal = fertilizationtotal;
+    public void setIrrigation_cost(String irrigation_cost) {
+        this.irrigation_cost = irrigation_cost;
     }
 
-    public float getLabourtotal() {
-        return labourtotal;
+    public String getFertilizer_cost() {
+        return fertilizer_cost;
     }
 
-    public void setLabourtotal(float labourtotal) {
-        this.labourtotal = labourtotal;
+    public void setFertilizer_cost(String fertilizer_cost) {
+        this.fertilizer_cost = fertilizer_cost;
     }
 
-    public float getMachinerytotal() {
-        return machinerytotal;
+    public String getPlant_protection_cost() {
+        return plant_protection_cost;
     }
 
-    public void setMachinerytotal(float machinerytotal) {
-        this.machinerytotal = machinerytotal;
+    public void setPlant_protection_cost(String plant_protection_cost) {
+        this.plant_protection_cost = plant_protection_cost;
     }
 
-    public float getNurserytotal() {
-        return nurserytotal;
+    public String getHarvesting_cost() {
+        return harvesting_cost;
     }
 
-    public void setNurserytotal(float nurserytotal) {
-        this.nurserytotal = nurserytotal;
+    public void setHarvesting_cost(String harvesting_cost) {
+        this.harvesting_cost = harvesting_cost;
     }
 
-    public float getHarvestingtotal() {
-        return harvestingtotal;
+    public String getMachinery_cost() {
+        return machinery_cost;
     }
 
-    public void setHarvestingtotal(float harvestingtotal) {
-        this.harvestingtotal = harvestingtotal;
+    public void setMachinery_cost(String machinery_cost) {
+        this.machinery_cost = machinery_cost;
     }
 
-    public float getIrrigationtotal() {
-        return irrigationtotal;
+    public String getLabor_cost() {
+        return labor_cost;
     }
 
-    public void setIrrigationtotal(float irrigationtotal) {
-        this.irrigationtotal = irrigationtotal;
+    public void setLabor_cost(String labor_cost) {
+        this.labor_cost = labor_cost;
     }
 
-    public float getSeedtreatmenttotal() {
-        return seedtreatmenttotal;
+    public String getOther_cost() {
+        return other_cost;
     }
 
-    public void setSeedtreatmenttotal(float seedtreatmenttotal) {
-        this.seedtreatmenttotal = seedtreatmenttotal;
+    public void setOther_cost(String other_cost) {
+        this.other_cost = other_cost;
     }
 
-    public float getPurchasingtotal() {
-        return purchasingtotal;
+    public String getTotal_cost() {
+        return total_cost;
     }
 
-    public void setPurchasingtotal(float purchasingtotal) {
-        this.purchasingtotal = purchasingtotal;
+    public void setTotal_cost(String total_cost) {
+        this.total_cost = total_cost;
+    }
+
+    public String getGross_income() {
+        return gross_income;
+    }
+
+    public void setGross_income(String gross_income) {
+        this.gross_income = gross_income;
+    }
+
+    public String getOther_income() {
+        return other_income;
+    }
+
+    public void setOther_income(String other_income) {
+        this.other_income = other_income;
+    }
+
+    public String getTotal_income() {
+        return total_income;
+    }
+
+    public void setTotal_income(String total_income) {
+        this.total_income = total_income;
+    }
+
+    public String getNet_income() {
+        return net_income;
+    }
+
+    public void setNet_income(String net_income) {
+        this.net_income = net_income;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "id='" + id + '\'' +
+                ", nursery_cost='" + nursery_cost + '\'' +
+                ", seed_treatment_cost='" + seed_treatment_cost + '\'' +
+                ", irrigation_cost='" + irrigation_cost + '\'' +
+                ", fertilizer_cost='" + fertilizer_cost + '\'' +
+                ", plant_protection_cost='" + plant_protection_cost + '\'' +
+                ", harvesting_cost='" + harvesting_cost + '\'' +
+                ", machinery_cost='" + machinery_cost + '\'' +
+                ", labor_cost='" + labor_cost + '\'' +
+                ", other_cost='" + other_cost + '\'' +
+                ", total_cost='" + total_cost + '\'' +
+                ", gross_income='" + gross_income + '\'' +
+                ", other_income='" + other_income + '\'' +
+                ", total_income='" + total_income + '\'' +
+                ", net_income='" + net_income + '\'' +
+                '}';
     }
 }

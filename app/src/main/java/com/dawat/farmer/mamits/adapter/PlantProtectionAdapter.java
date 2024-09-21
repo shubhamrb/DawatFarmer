@@ -53,10 +53,10 @@ public class PlantProtectionAdapter extends RecyclerView.Adapter<PlantProtection
             holder.txt_field_code.setText(model.getFarm_field());
             String date = new BeautifyDate().beautifyDate(model.getDate(), "yyyy-MM-dd", "dd MMM, yyyy");
             holder.txt_date.setText(date);
-            holder.txt_disease.setText(model.getType());
-            holder.txt_description.setText(model.getPesticide_name());
             holder.txt_treatment_type.setText(model.getTreatment_type());
-            holder.txt_treatment.setText(model.getChemical_name());
+            holder.txt_chemical_name.setText(model.getChemical_name());
+            holder.txt_brand.setText(model.getBrand_name());
+            holder.txt_company.setText(model.getCompany_name());
             holder.txt_dose.setText(model.getDose());
             holder.txt_cost_per_unit.setText(model.getCost_unit());
             holder.txt_cost_per_acre.setText(model.getCost_per_acre());
@@ -183,8 +183,8 @@ public class PlantProtectionAdapter extends RecyclerView.Adapter<PlantProtection
 
     public static class DashboardListViewHolder extends RecyclerView.ViewHolder {
         private AppCompatTextView txt_label, txt_year, txt_season, txt_farm_code, txt_field_code,
-                txt_date, txt_disease, txt_description, txt_treatment_type,
-                txt_treatment, txt_dose, txt_cost_per_unit, txt_cost_per_acre, txt_total_cost, txt_measure;
+                txt_date, txt_treatment_type,txt_chemical_name, txt_brand, txt_company
+                , txt_dose, txt_cost_per_unit, txt_cost_per_acre, txt_total_cost, txt_measure;
         private AppCompatTextView txt_comment;
         private ImageView txt_file1, txt_file2, txt_file3, txt_file4;
         private LinearLayout rl_img1, rl_img2, rl_img3, rl_img4;
@@ -197,10 +197,10 @@ public class PlantProtectionAdapter extends RecyclerView.Adapter<PlantProtection
             txt_farm_code = itemView.findViewById(R.id.txt_farm_code);
             txt_field_code = itemView.findViewById(R.id.txt_field_code);
             txt_date = itemView.findViewById(R.id.txt_date);
-            txt_disease = itemView.findViewById(R.id.txt_disease);
-            txt_description = itemView.findViewById(R.id.txt_description);
             txt_treatment_type = itemView.findViewById(R.id.txt_treatment_type);
-            txt_treatment = itemView.findViewById(R.id.txt_treatment);
+            txt_chemical_name = itemView.findViewById(R.id.txt_chemical_name);
+            txt_brand = itemView.findViewById(R.id.txt_brand);
+            txt_company = itemView.findViewById(R.id.txt_company);
             txt_dose = itemView.findViewById(R.id.txt_dose);
             txt_cost_per_unit = itemView.findViewById(R.id.txt_cost_per_unit);
             txt_cost_per_acre = itemView.findViewById(R.id.txt_cost_per_acre);

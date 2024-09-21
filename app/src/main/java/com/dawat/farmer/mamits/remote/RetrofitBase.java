@@ -1,5 +1,6 @@
 package com.dawat.farmer.mamits.remote;
 
+import com.androidnetworking.interceptors.HttpLoggingInterceptor;
 import com.dawat.farmer.mamits.utils.AppConstant;
 import com.dawat.farmer.mamits.utils.CommonUtils;
 import com.google.gson.Gson;
@@ -17,6 +18,12 @@ public class RetrofitBase {
 
     public RetrofitBase(boolean addTimeout) {
         try {
+            HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(message -> {
+                // Log the message or convert it to cURL command and log
+                System.out.println("cURL: " + message);
+            });
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
             OkHttpClient.Builder httpClientBuilder = new OkHttpClient().newBuilder();
             if (addTimeout) {
                 httpClientBuilder.readTimeout(CommonUtils.TimeOut.SOCKET_TIME_OUT, TimeUnit.SECONDS);
@@ -26,6 +33,7 @@ public class RetrofitBase {
                 httpClientBuilder.connectTimeout(CommonUtils.TimeOut.IMAGE_UPLOAD_CONNECTION_TIMEOUT, TimeUnit.SECONDS);
             }
             httpClientBuilder.retryOnConnectionFailure(true);
+            httpClientBuilder.addInterceptor(loggingInterceptor);
             OkHttpClient httpClient = httpClientBuilder.build();
 
             Gson gson = new GsonBuilder()

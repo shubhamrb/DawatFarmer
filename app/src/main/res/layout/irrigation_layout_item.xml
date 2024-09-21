@@ -382,7 +382,7 @@
             android:alpha="0.5"
             android:fontFamily="@font/poppins_regular"
             android:includeFontPadding="false"
-            android:text="लागत*"
+            android:text="लागत/एकड़*"
             android:textColor="@color/black"
             android:textSize="12sp" />
 

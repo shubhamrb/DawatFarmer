@@ -321,7 +321,7 @@
             android:alpha="0.5"
             android:fontFamily="@font/poppins_regular"
             android:includeFontPadding="false"
-            android:text="प्रत्यारोपित मूल्य*"
+            android:text="रोपण घनत्व*"
             android:textColor="@color/black"
             android:textSize="12sp" />
 

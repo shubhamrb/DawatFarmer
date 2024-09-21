@@ -18,11 +18,20 @@ public class PurchasingModel implements Serializable {
     @SerializedName("date")
     String date;
 
-    @SerializedName("bill_no")
-    String bill_no;
-
     @SerializedName("qty")
     String qty;
+
+    @SerializedName("quantity_procured")
+    String quantity_procured;
+
+    @SerializedName("quantity_rejected")
+    String quantity_rejected;
+
+    @SerializedName("reason_for_rejection")
+    String reason_for_rejection;
+
+    @SerializedName("trno")
+    String trno;
 
     @SerializedName("rate")
     String rate;
@@ -30,8 +39,8 @@ public class PurchasingModel implements Serializable {
     @SerializedName("area")
     String area;
 
-    @SerializedName("total_other")
-    String total_other;
+    @SerializedName("buyer")
+    String buyer;
 
     @SerializedName("total_income")
     String total_income;
@@ -50,14 +59,6 @@ public class PurchasingModel implements Serializable {
 
     @SerializedName("comments")
     CommentsModel comments;
-
-    public CommentsModel getComments() {
-        return comments;
-    }
-
-    public void setComments(CommentsModel comments) {
-        this.comments = comments;
-    }
 
     public String getId() {
         return id;
@@ -91,20 +92,44 @@ public class PurchasingModel implements Serializable {
         this.date = date;
     }
 
-    public String getBill_no() {
-        return bill_no;
-    }
-
-    public void setBill_no(String bill_no) {
-        this.bill_no = bill_no;
-    }
-
     public String getQty() {
         return qty;
     }
 
     public void setQty(String qty) {
         this.qty = qty;
+    }
+
+    public String getQuantity_procured() {
+        return quantity_procured;
+    }
+
+    public void setQuantity_procured(String quantity_procured) {
+        this.quantity_procured = quantity_procured;
+    }
+
+    public String getQuantity_rejected() {
+        return quantity_rejected;
+    }
+
+    public void setQuantity_rejected(String quantity_rejected) {
+        this.quantity_rejected = quantity_rejected;
+    }
+
+    public String getReason_for_rejection() {
+        return reason_for_rejection;
+    }
+
+    public void setReason_for_rejection(String reason_for_rejection) {
+        this.reason_for_rejection = reason_for_rejection;
+    }
+
+    public String getTrno() {
+        return trno;
+    }
+
+    public void setTrno(String trno) {
+        this.trno = trno;
     }
 
     public String getRate() {
@@ -123,12 +148,12 @@ public class PurchasingModel implements Serializable {
         this.area = area;
     }
 
-    public String getTotal_other() {
-        return total_other;
+    public String getBuyer() {
+        return buyer;
     }
 
-    public void setTotal_other(String total_other) {
-        this.total_other = total_other;
+    public void setBuyer(String buyer) {
+        this.buyer = buyer;
     }
 
     public String getTotal_income() {
@@ -171,24 +196,11 @@ public class PurchasingModel implements Serializable {
         this.farm_field = farm_field;
     }
 
-    @Override
-    public String toString() {
-        return "{" +
-                "id='" + id + '\'' +
-                ", cultivation_year='" + cultivation_year + '\'' +
-                ", season='" + season + '\'' +
-                ", date='" + date + '\'' +
-                ", bill_no='" + bill_no + '\'' +
-                ", qty='" + qty + '\'' +
-                ", rate='" + rate + '\'' +
-                ", area='" + area + '\'' +
-                ", total_other='" + total_other + '\'' +
-                ", total_income='" + total_income + '\'' +
-                ", farm_id='" + farm_id + '\'' +
-                ", farm_field_id='" + farm_field_id + '\'' +
-                ", farm_name='" + farm_name + '\'' +
-                ", farm_field='" + farm_field + '\'' +
-                ", comments=" + comments +
-                '}';
+    public CommentsModel getComments() {
+        return comments;
+    }
+
+    public void setComments(CommentsModel comments) {
+        this.comments = comments;
     }
 }
