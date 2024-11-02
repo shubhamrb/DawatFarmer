@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Dawat Farmer</string>
+    <string name="app_name">LT Food Farmer</string>
     <string name="title_home">होम</string>
     <string name="title_report">रिपोर्ट</string>
     <string name="title_news">समाचार</string>
@@ -7,6 +7,7 @@
     <string name="title_notification">समन</string>
     <string name="default_notification_channel_id">my_channel_02</string>
     <string name="t_c" translatable="false"><![CDATA[मैंने <font color=#0029FF>नियम और शर्तों</font> को पढ़ा है और स्वीकार किया है।]]></string>
+    <string name="map_key">AIzaSyBfr4aique1YdXOFT9yYlf3U9oSlrnd8Ag</string>
 
     <string-array name="status">
         <item>नई</item>

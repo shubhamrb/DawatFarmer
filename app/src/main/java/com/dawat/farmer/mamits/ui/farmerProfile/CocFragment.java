@@ -92,8 +92,11 @@ public class CocFragment extends Fragment {
         binding.txtHarvesting.setText("₹ " + cocModel.getHarvesting_cost());
         binding.txtMachinery.setText("₹ " + cocModel.getMachinery_cost());
         binding.txtLabour.setText("₹ " + cocModel.getLabor_cost());
+        binding.txtOtherCost.setText("₹ " + cocModel.getOther_cost());
         binding.txtTotalCost.setText("₹ " + cocModel.getTotal_cost());
         binding.txtGrossIncome.setText("₹ " + cocModel.getGross_income());
+        binding.txtOtherIncome.setText("₹ " + cocModel.getOther_income());
+        binding.txtTotalIncome.setText("₹ " + cocModel.getTotal_income());
         binding.txtNetTotalIncome.setText("₹ " + cocModel.getNet_income());
     }
 

@@ -678,54 +678,6 @@
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:background="@drawable/rectangle_background"
-                    android:orientation="vertical"
-                    android:padding="15dp">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/bucket_icon"
-                                app:tint="@color/black" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="15dp"
-                                android:fontFamily="@font/poppins_medium"
-                                android:includeFontPadding="false"
-                                android:text="सिंचाई स्रोत"
-                                android:textColor="@color/black"
-                                android:textSize="15sp" />
-                        </LinearLayout>
-
-                    </RelativeLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recycler_irrigation_sources"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
-                        android:orientation="horizontal"
-                        tools:itemCount="3"
-                        tools:listitem="@layout/detail_list_item" />
-                </LinearLayout>
-
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </RelativeLayout>

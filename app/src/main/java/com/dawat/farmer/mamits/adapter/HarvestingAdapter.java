@@ -210,6 +210,8 @@ public class HarvestingAdapter extends RecyclerView.Adapter<HarvestingAdapter.Da
             txt_to_date = itemView.findViewById(R.id.txt_to_date);
             txt_method_type = itemView.findViewById(R.id.txt_method_type);
             txt_done_by = itemView.findViewById(R.id.txt_done_by);
+            txt_reaper = itemView.findViewById(R.id.txt_reaper);
+            txt_residue_management = itemView.findViewById(R.id.txt_residue_management);
             txt_no_of_labor = itemView.findViewById(R.id.txt_no_of_labor);
             txt_cost_per_labor = itemView.findViewById(R.id.txt_cost_per_labor);
             txt_thresher_cost = itemView.findViewById(R.id.txt_thresher_cost);

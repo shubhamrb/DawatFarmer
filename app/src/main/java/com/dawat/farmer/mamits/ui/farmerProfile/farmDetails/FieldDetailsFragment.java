@@ -110,7 +110,6 @@ public class FieldDetailsFragment extends Fragment implements OnMapReadyCallback
         binding.mapView.onCreate(savedInstanceState);
         binding.mapView.getMapAsync(this);
         clickListeners();
-        setUpIrrigationSourcesAdapter();
         getFarmLandList();
         return root;
     }
@@ -154,16 +153,6 @@ public class FieldDetailsFragment extends Fragment implements OnMapReadyCallback
         });
     }
 
-    private void setUpIrrigationSourcesAdapter() {
-        CustomLinearLayoutManager manager = new CustomLinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-        binding.recyclerIrrigationSources.setLayoutManager(manager);
-        binding.recyclerIrrigationSources.setItemAnimator(null);
-        irrigationSourcesAdapter = new IrrigationSourcesAdapter(getContext());
-        binding.recyclerIrrigationSources.setAdapter(irrigationSourcesAdapter);
-        getIrrigationSources();
-
-    }
-
     private void getFarmLandList() {
         try {
             new ApiHelper().getFarmLandList(strToken, farm_id, field_id, new ResponseListener() {
@@ -179,29 +168,6 @@ public class FieldDetailsFragment extends Fragment implements OnMapReadyCallback
                         setData();
                     }
 
-                }
-
-                @Override
-                public void onFailed(Throwable throwable) {
-                    Log.e(AppConstant.LOG_KEY_ERROR, throwable.getMessage());
-                    Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_LONG).show();
-                }
-            });
-        } catch (Exception e) {
-            Log.e(AppConstant.LOG_KEY_ERROR, e.getMessage());
-        }
-    }
-
-    private void getIrrigationSources() {
-        try {
-            new ApiHelper().getIrrigationSources(strToken, farm_id, field_id, new ResponseListener() {
-                @Override
-                public void onSuccess(JsonObject jsonObject) {
-                    Log.e(AppConstant.LOG_KEY_RESPONSE, jsonObject.toString());
-                    Type irrigation = new TypeToken<List<IrrigationSourcesModel>>() {
-                    }.getType();
-                    List<IrrigationSourcesModel> irrigationSourcesList = new Gson().fromJson(jsonObject.get("data").getAsJsonArray().toString(), irrigation);
-                    irrigationSourcesAdapter.setList(irrigationSourcesList);
                 }
 
                 @Override
